@@ -1,0 +1,55 @@
+<!DOCTYPE>
+<HTML>
+
+    <HEAD>
+    
+        <title>Cabana de Zenaida | Login</title>
+        <link rel="stylesheet" type="text/css" href="css/styles.css">
+        <script type="text/javascript" language = "javascript" src="js/jquery-2.0.3.min.js"></script>    
+        <script type="text/javascript" language = "javascript" src="utilities.js"></script>  
+        <script type="text/javascript" language = "javascript" src="js/script.js"></script>    
+          
+        
+    </HEAD>
+    
+    <body>
+    
+        <form id = "login" name = "login" action="validation.php" method="post">
+            <div id = "loginForm" class="theme">
+                <span>Admin Login</span>
+                
+                <img src="images/bottom_shadow.png">
+                
+                <div class = "field">
+                    <div>Username:</div>
+                    <div><input type = "username" id="txtUsername" maxlength = "30" required></div>
+                </div>
+                
+                <div class = "field">
+                    <div>Password:</div>
+                    <div><input type = "password" id = "txtPassword" required></div>
+                </div>
+                
+
+                <div id = "bottomBar">
+                    <div id = "keep">
+                        <input type="checkbox" id="cbKeep">    
+                        keep me logged in
+                    </div>
+                    
+                    <div id = "loginButton" class = "theme" onclick="validate()">
+<!--                        <input type="submit" value="login" class="theme">-->
+                        Login
+                        <img id = "bottom" src="images/bottom_shadow.png">
+                    </div>
+                    
+                </div>
+                
+                <img id = "bottom" src="images/bottom_shadow.png">
+                
+                <div id = "notifications"></div>
+            </div>
+        </form>
+    </body>
+    
+</HTML>

@@ -1,0 +1,132 @@
+@font-face{ 
+	font-family: 'Entypo';
+	src: url('../fonts/Entypo-webfont.eot');
+	src: url('../fonts/Entypo-webfont.eot?iefix') format('eot'),
+	     url('../fonts/Entypo-webfont.woff') format('woff'),
+	     url('../fonts/Entypo-webfont.ttf') format('truetype'),
+	     url('../fonts/Entypo-webfont.svg#webfont') format('svg');
+
+}
+
+body{
+    margin:0px;
+    padding:0px;
+}
+
+.icon{
+    font-family:'Entypo';
+    font-size:50px;
+    text-align:center;
+}
+
+
+#topLayer {
+    margin:0px;
+    padding:0px;
+    position:absolute;
+    width:100%;
+    height:100%;
+}
+
+
+#editPanel { 
+    
+/*    border:2px solid #00baff;*/
+    position:absolute;
+    z-index:999999;
+    width: 30px; 
+    height: 30px; 
+    box-shadow:0px 0px 8px black;
+    border-radius: 10px;
+    background-color:#414141;
+    
+    overflow:hidden;
+    
+    left:200px;
+    top:50px;
+    height:400px;
+    width:250px;
+    
+/*    -webkit-transition:0.5s;*/
+}
+#editPanel #handle{
+    margin: 0px;
+    left:0px;
+    top:0px;
+    width:20px;
+    height:35px;
+    height:45px;
+    width:100%;
+    background-color:#2a2a2a;
+    position:absolute;
+    display:table-cell;
+    vertical-align:text-bottom;
+    color:white;
+    cursor:move;
+    box-shadow: 0px 0px 8px black;
+    border-radius: 10px 10px 0px 0px;
+    border-top:1px solid black;
+    border-bottom:1px solid black;
+    z-index:99999;
+}
+
+
+#editPanel #content {
+    width:100%;
+    height:100%;
+    display:block;
+    margin:0px;
+    margin-top:30px;
+    padding:0px;
+    padding-top:5px;
+
+}
+
+#editPanel #content ul{
+    padding:0px;
+    margin:0px;
+    list-style:none;
+    display:block;
+}
+#editPanel #content ul li{
+    padding:0px;
+    margin:0px;
+    display:inline-block;
+    float:left;
+    width:50%;
+    height:125px;
+    outline:1px solid #272727;
+    text-align:center;
+}
+
+
+#editPanel #bottomBar {
+    width:100%;
+    height:20px;
+    bottom:0px;
+    position:absolute;
+    background-color:#2a2a2a;
+    box-shadow:-2px 0px 8px black;
+
+}
+#editPanel #bottomBar>div{
+    width:50%;
+    height:100%;
+    float:left;
+    text-align:center;
+    cursor:pointer;
+    cursor:hand;
+    color:#9b9b9b;
+    font-family:sans-serif;
+}
+
+#editPanel #bottomBar>div:nth-child(1){
+    padding-top:2px;
+    font-size:1.2em;
+}
+
+#editPanel #bottomBar>div:hover{
+    
+    background-color:#414141;
+    color:#222;
+}

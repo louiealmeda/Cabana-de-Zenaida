@@ -1,0 +1,173 @@
+
+body{
+    
+    padding: 0px;
+    margin: 0px;
+}
+
+
+#chatPane {
+    width: 200px;
+    height: 96%;
+    background-color: rgba(20,20,20,0.9);
+    display: block;
+    color: white;
+    position: fixed;
+    z-index: 99999;
+    padding: 1% 10px;
+    top: 0px;
+}
+
+#chatPane #inner {
+    height: 100%;
+    width: 100%;
+}
+
+
+
+#chat{
+/*    display: none;*/
+    width: 100%;
+    
+}
+
+#chatbox * { 
+   white-space: pre-wrap;      /* CSS3 */   
+   white-space: -moz-pre-wrap; /* Firefox */    
+   white-space: -pre-wrap;     /* Opera <7 */   
+   white-space: -o-pre-wrap;   /* Opera 7 */    
+   word-wrap: break-word;      /* IE */
+}
+
+#chat #chatbox{
+
+    height: 252px;
+/*    padding-bottom: 10px;*/
+    margin: 0px;
+/*    top: -10px;*/
+    width: 100%;
+    overflow-y: scroll;
+    font-family: open sans;
+    font-size: 0.8em;
+    position: relative;
+    transition:1.5s;
+    box-shadow: inset 0px 0px 4px black;
+    background-color: rgba(0, 0, 0, 0.22);
+}
+
+#chat #chatbox>div{
+    display: block;
+    
+    height: auto;
+    margin: 5px 0px;
+    padding: 0px 5px;
+/*    position: absolute;*/
+    position: relative;
+    clear: both;
+    
+
+}
+
+#chat #chatbox>div span{
+    max-width: 70%;   
+    width: auto;
+    margin: 5px 0px;
+    padding: 2px 5px;
+    box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+/*    position: absolute;*/
+/*    clear: both;*/
+}
+
+#chat #chatbox>div.in span{
+    background-color: rgba(188, 188, 188, 0.9);
+    border-radius: 0px 8px 8px 8px;
+    text-align: left;
+    color: black;
+    left: 0px;
+    float: left;
+}
+
+#chat #chatbox>div.out span{
+/*    background-color: #feb674;*/
+    color: rgba(188, 188, 188, 0.9);
+    border: 1px solid rgba(188, 188, 188, 0.9);
+    border-radius: 8px 8px 0px 8px;
+    text-align: right;
+    right: 0px;
+    float: right;
+
+}
+
+
+#chat input.textbox{
+    display: inline-block;
+    width: 100%;
+    margin: 0px;
+    position: relative;
+/*    bottom: 10px;*/
+    box-sizing:border-box;
+    font-size: 0.9em;
+    height: 30px;
+    padding: 0px 8px;
+    box-shadow: none;
+    border-radius:0px 0px 4px 4px;
+}
+
+#chat input.textbox:focus{
+    outline: none !important;
+    border-right: none !important;
+    border-left: none !important;
+    border-top: 1px solid black;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+
+.textbox {
+    width:100%;
+    background-color: rgba(188, 188, 188, 0.9);
+    color:#2a2a2a;
+    border:none;
+    box-shadow:inset 0px 0px 4px black;
+    border-radius:3px;
+    height:25px;
+    font-size:1em;
+    margin-top:5px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    
+}
+.textbox::-webkit-input-placeholder {
+    color: #646464;
+    
+}
+.textbox:focus {
+    outline: none !important;
+    border:1px solid #ef9a70;
+    
+}
+
+#selectVisitor {
+
+    background: transparent;
+
+    width: 100%;
+    padding: 5px;
+    font-size: 0.9em;
+    line-height: 1;
+    border: 0;
+    border-radius: 2px;
+    height:auto;
+    color: white;
+    -webkit-appearance: none;
+}
+
+#selectVisitor:focus {
+    border: none !important;
+    outline: none !important;
+}
+
+#selectVisitor:hover {
+    background-color: rgba(128, 128, 128, 0.71);
+    box-shadow: 0px 0px 2px black;
+}
+

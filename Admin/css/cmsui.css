@@ -1,0 +1,239 @@
+#pagePreview {
+    width:100%;
+    height:auto;
+    display:block;
+    overflow-y:scroll;
+}
+
+body, html {
+    margin:0px;
+    padding:0px;
+    position:relative;
+    height:100%;
+    width:100%;
+}
+
+.icon{
+    font-family:Icons;
+}
+
+#editPanel {
+    position:fixed;
+    bottom:0px;
+    height:270px;
+    width:100%;
+    display:block;
+    -webkit-transition:0.5s;
+    
+}
+
+#editPanel *{
+/*    outline: 1px solid red;*/
+    -webkit-user-select:none;
+    
+}
+
+#editPanel *:not(.icon){
+    font-family:"Open Sans";
+}
+
+#editPanel #header {
+    
+    font-size:0.8em;
+    color:white;
+    
+    margin:0px;
+    padding:0px 10px;
+    display:block;
+    height:25px;
+    background: -webkit-linear-gradient(#414141, #303030);
+    border-top: 1px solid gray;
+    border-bottom: 1px solid #6c6c6c;
+}
+
+#editPanel #header #editToggle{
+    width: 60px;
+    height: 68%;
+/*    background-color: red;*/
+    padding: 4px;
+    margin: 0px;
+    float: left;
+    cursor: pointer;
+    cursor: default;
+}
+
+#editPanel #header #editToggle span:nth-child(1){
+    text-shadow: 0px 0px 5px green;
+}
+
+#editPanel #header #editToggle span:nth-child(2){
+    text-shadow: 0px 0px 4px red;
+}
+
+#editPanel #header #editToggle #switch{
+    height: 100%;
+    box-shadow: inset 0px 0px 4px black;
+    background-color: rgba(0,0,0,0.4);
+    border-radius: 5px;
+    position: relative;
+/*    border-bottom: 1px solid rgba(255,255,255,0.3);*/
+}
+
+#editPanel #header #editToggle #switch #bullet{
+    width: 50%;
+    height: 100%;
+    border-radius: 5px;
+    background: -webkit-linear-gradient( #777, #444);
+    border-top: 1px solid rgba(255,255,255,0.5);
+    border-bottom: 1px solid rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 2px rgba(0,0,0,0.5);
+    box-sizing: border-box;
+    position: absolute;
+    top: 0px;
+    cursor: pointer;
+    cursor: hand;
+    left: 0px;
+    transition: 0.2s;
+}
+
+#editPanel #header ul{
+    height:100%;   
+    display:inline-block;
+    margin:0px;
+    padding:0px;
+}
+
+#editPanel #header ul li {
+    float:left;
+    line-height:25px;
+    padding:0px 10px;
+    margin:0px;
+    
+    height:100%;
+    list-style:none;
+    cursor:pointer;
+    cursor:hand;
+
+}
+#editPanel #header ul li:hover {
+    background-color:#2a2a2a;
+}
+
+#editPanel #header li.selected{
+    background-color:#1c1c1c;
+    border-left: 1px solid #4d4d4d;
+    border-right: 1px solid #4d4d4d;
+/*    border-top:1px solid #6c6c6c;*/
+    border-bottom:1px solid #1c1c1c;
+/*    background: -webkit-linear-gradient(#414141, #3e3e3e);*/
+}
+
+#editPanel #content {
+    height: 250px;
+    width: 100%;
+    background-color:#1c1c1c;
+    overflow:hidden;
+    -webkit-transition:0.5s;
+}
+
+#editPanel #content *{
+/*    outline: 1px solid red;   */
+}
+
+#editPanel #content #overflow {
+/*    display:block;*/
+    width:500%;
+    height:100%;
+    list-style:none;
+    padding:0px;
+    margin:0px;
+    
+}
+
+#editPanel #content #inner{
+    width:100%;
+    overflow:none;
+    -webkit-transition:1s;
+}
+
+#editPanel #content #inner ul#overflow>li {
+    width:20%;
+    float:left;
+    display:inline-block;
+}
+
+#editPanel #header .divider {
+    border-left:1px solid gray;
+    border-right:1px solid black;
+    display:inline-block;
+    width:0px;
+    height:100%;
+/*    background-color:black;*/
+}
+
+#editPanel #content #components {
+    margin:0px;
+    padding:0px;
+    list-style:none;
+    padding:20px;
+/*    position:absolute;*/
+}
+
+#editPanel #content #filler{
+    position:relative;
+    width:100%;
+    height:100%;
+    display:block;
+}
+
+#editPanel #content #components span{
+    margin:0px;
+    padding:0px;
+    list-style:none;
+    font-size:20px;
+    line-height:20px;
+    display:block;
+    position:relative;
+/*    bottom:41px;*/
+/*    border:1px solid red;*/
+}
+
+
+#editPanel #content #components li {
+    width:100px;
+    height:100px;
+    margin: 2px 0px;
+    display:inline-block;
+    background-color:gray;
+    box-shadow:0px 0px 8px black;
+    border-radius:10px;
+    line-height:70px;
+    text-align:center;
+    font-size:60px;
+    color:#191919;
+    cursor:pointer;
+    cursor:move;
+}
+
+#editPanel #content #components li:active {
+/*
+    width:92px;
+    height:92px;
+*/
+    margin-top:-4px;
+    position:relative;
+    border:4px dashed #2c2b2b;
+    box-sizing:border-box;
+    background-color:#202020;
+/*    box-shadow:none;*/
+}
+
+
+
+#editPanel #header>#toggle {
+    float:right;
+    line-height:25px;
+    cursor:pointer;
+    cursor:hand;
+}
+

@@ -1,0 +1,8 @@
+@font-face{ 
+	font-family: 'Icons';
+	src: url('../fonts/cdzv1.eot');
+	src: url('../fonts/cdzv1.eot?iefix') format('eot'),
+	     url('../fonts/cdzv1.woff') format('woff'),
+	     url('../fonts/cdzv1.ttf') format('truetype'),
+	     url('../fonts/cdzv1.svg#webfont') format('svg');
+}

@@ -7,6 +7,7 @@
         <link type="text/css" rel="stylesheet" href="css/sliderStyles.css">
         <script type="text/javascript" src="js/jquery-2.0.3.js" ></script>
         <script type="text/javascript" src="js/script.js"></script>
+        <script type="text/javascript" src="js/cmsControler.js"></script>
         <title>Cabana de Zenaida</title>
     </head>
      
@@ -190,20 +191,20 @@
             </div>
             
             
-            <section id = "home" >
+            <section id = "home" class="element">
                 <div class="tablizer">
                     <div class = "inner">
                         <div class = "element">yeah </div>
-                        <div class = "element, columns" style="text-align:center;">
-                            <div class="c3">
+                        <div class = "element , columns , c3" style="text-align:center;">
+                            <div class="element">
                                 the quick brown fox
 
                             </div>
-                            <div class="c3">
+                            <div class="element">
                                 Boom
                             </div>
                             
-                            <div class="c3">
+                            <div class="element">
                                 Boom
                             </div>
                             
@@ -212,16 +213,17 @@
                 </div>
             </section>
             
-            <section id = "contact" class="separated">
+            <section id = "contact" class="element , separated">
                 <div class="tablizer">
                     <div class = "inner">
                         <div class="element" align="center">yeah1</div>
-                        <div class = "columns">
-                            <div class="c2" align="right">
-                                the quick brown fox<br>
+                        <div class = "element , columns , c2">
+                            <div class="element" align="right" style="border: 2px solid red;">
+                                the quick brown fox
                                 Yeah
+                                <div class="element">Break it Down</div>
                             </div>
-                            <div class="c2">
+                            <div class="element">
                                 Boom
                             </div>
                         </div>
@@ -310,6 +312,14 @@
                 <li> This is a test </li>
             </ul>
             
+        </div>
+        
+        <div id = "selector">
+            <div id = "handle">
+                <div>e</div>
+                <div id = "move">::::::::::</div>
+                <div>x</div>
+            </div>
         </div>
         
     </body>

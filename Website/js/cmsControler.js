@@ -1,19 +1,36 @@
 var activeElement = null;
+var isEditing = false;
+
 
 $(document).ready(function(){
     
     //////////Hover selection
-    $(".element").each(function(index){
-        $(this).mousemove(function(){
-            activeElement = this;
-            focusTo(activeElement);
-            return false;
-        });
-    });
+    if(isEditing)
+    {
+        $(".element").each(function(index){
+            $(this).mousemove(function(){
 
-    $("#handle").click(function(){
-        alert($(this).parent().html());             
-    });
+                    activeElement = this;
+                    focusTo(activeElement);
+
+                return false;
+            });
+        });
+    }
+    
+    
+    if(!isEditing)
+        $("#selector").css({"display":"none"});
+    else
+        $("#selector").css({"display":"block"});
+    
+    
+//    $("#selector").draggable({handle:"#handle"});
+    
+//    $(".element").sortable({
+////        cursorAt: { top:  $(window).scrollTop(), left: 0 }
+//    }).disableSelection();
+    
     
     $(".element").css({"outline":"1px dashed gray"});
 

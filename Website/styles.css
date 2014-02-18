@@ -985,7 +985,7 @@ body>#content {
 #content #inner div.columns {
     display:table;
     width:100%;
-    position:relative;
+    position:inherit;
 /*    outline: 1px solid red;*/
     border: 0px solid white;
 /*    outline:none;*/
@@ -1067,6 +1067,7 @@ section {
     height: 400px;   
 /*    margin: 1%;*/
 /*    padding: 1%;*/
+    position: inherit;
 }
 
 section .tablizer{
@@ -1163,6 +1164,7 @@ section .columns > div{
 }
 
 #selector{
+    
     top: 0px;
     width: 100px;
     height: 100px;
@@ -1173,6 +1175,7 @@ section .columns > div{
     transition: 0.5s;
     outline: 5000px solid rgba(0,0,0,0.5);
     pointer-events: none;
+/*    display: none;*/
 }
 
 #selector>#handle{

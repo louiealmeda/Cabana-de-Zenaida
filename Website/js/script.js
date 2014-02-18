@@ -14,6 +14,7 @@ var chatStarted = false;
 
 $(document).ready(function(){
          
+   
     
     $.post("clientBackend.php", {method:"VisitorSessionCheck"},function(data){
 //        $("title").html(data);

@@ -2,6 +2,8 @@
 <html>
 
     <head>
+        <meta name="viewport" content="width=device-width, user-scalable=no">
+        
         <link rel="stylesheet" type="text/css" href="css/fontfaces.css">
         <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.10.4.custom.css">
         
@@ -11,14 +13,27 @@
         <script type="text/javascript" language = "javascript" src="js/jquery-ui-1.10.4.custom.min.js"></script>    
         <script type="text/javascript" language = "javascript" src="utilities.js"></script>  
         
+        <script type="text/javascript" src="js/cmsController.js"></script>
         <script language = "javascript" src="js/cmsjs.js"></script>
+        
+        
+        <link type="text/css" rel="stylesheet" href="Website/styles.css">
+        <link type="text/css" rel="stylesheet" href="Website/css/sliderStyles.css">
+        <script type="text/javascript" src="Website/js/script.js"></script>
+        
+        
+        
     </head>
 
     
     <body>
+        <div id = "pagePreview" class="customScroll">
+                
+            
+        
+        </div>
         
         <div id = "editPanel">
-            
             <div id = "header" >
                 <div id = "editToggle">
                     <div id = "switch">
@@ -52,18 +67,18 @@
                     <li class="icon">Z</li>
                 </ul>
                 
-                <div class="icon" id = "toggle">4</div>
+                <div class="icon" id = "toggle">3</div>
             </div>
             
             
-            <div id = "content">
+            <div id = "editPanelContent">
                 <div id = "inner">
                     <ul id = "overflow">
                         <li>    
                             
                             <ul id = "components">
             <!--                    <li class="icon" id = "missing">c</li>-->
-                                <li class="component" title="add me please :)"> <div class="icon" > a</div> <span>Image</span> </li>
+                                <li class="component" title="image"> <div class="icon" > a</div> <span>Image</span> </li>
                                 <li class="component"> <div class="icon" > b</div> <span>Image</span> </li>
                                 <li class="component"> <div class="icon" > c</div> <span>Image</span> </li>
                                 <li class="component"> <div class="icon" > d</div> <span>Image</span> </li>
@@ -107,11 +122,7 @@
             </div>
         
         </div>
-        <div id = "pagePreview">
-
-            
         
-        </div>
     </body>
 
 

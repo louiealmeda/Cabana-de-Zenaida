@@ -2,6 +2,10 @@ var editPanelVisible = false;
 var isEditing = false;
 var darkness = 1;
 
+var elementOptions = {
+    textArea : {}
+}
+
 $(function() {
     sessionCheck(false);
     
@@ -18,13 +22,23 @@ $(function() {
 
 
 $(document).ready(function(){
+
+    
+    var previewHeight = $(window).height() - $("#editPanel").height();
+    
+    $("#pagePreview").css({"height": previewHeight + "px"});
+    
     
 //    ShowEditPanel(editPanelVisible);
     
-    $.post("siteParser.php", {}, function(data){
+//    $.post("siteParser.php", {}, function(data){
+//
+//        $("#pagePreview").html(data);
+//    });
+    
+    
+    $("#pagePreview").load("Website/index.html #main");
 
-        $("#pagePreview").html(data);
-    });
     
     
     $("#editPanel #header #tabs li").click(function(){
@@ -40,7 +54,11 @@ $(document).ready(function(){
     
     $("#editToggle #switch").click(function(){
         var bullet = $("#switch #bullet");
-        if(isEditing)
+        
+        alert(getSelectionHtml());
+        
+        isEditing = !isEditing;
+        if(!isEditing)
         {   
             $(bullet).css({
                 "left":"0%",
@@ -48,6 +66,8 @@ $(document).ready(function(){
                 "border-right":"1px solid  rgba(255, 0, 0, 0.76)"
             });
             $(this).css({"box-shadow": "inset -2px 0px 5px red"});
+            
+            deactivate();
         }
         else
         {
@@ -59,9 +79,13 @@ $(document).ready(function(){
             });
             
             $(this).css({"box-shadow": "inset 3px 0px 8px green"});
+            activate();
         }
-
-        isEditing = !isEditing;
+        
+        
+        
+        
+        
     });
     
     
@@ -75,15 +99,21 @@ function ShowEditPanel(show){
     var btn = $("#editPanel #header>#toggle");
     if(!show)
     {
-        $("#editPanel #content").css({"height":"0px"}); //.css({"bottom":"-245px"});
-        $("#editPanel").css({"bottom":"-240px"});
+        var height = $("#editPanel #header").outerHeight();
+        $("#editPanel").css({"height": height + "px"}); //.css({"bottom":"-245px"});
+//        $("#editPanel").css({"bottom":"-240px"});
+        $("#pagePreview").css({"height":"+=" + (240 - height) + "px"});
+        $("#pagePreview").animate({scrollTop: "-=" + (240 - height) + "px"},500, "linear");
         $(btn).html('3');
 
     }
     else
     {
-        $("#editPanel #content").css({"height":"240px"});//css({"bottom":"0px"});
-        $("#editPanel").css({"bottom":"0px"});
+        var height = $("#editPanel #header").outerHeight();
+        $("#editPanel").css({"height":"240px"});//css({"bottom":"0px"});
+//        $("#editPanel").css({"bottom":"0px"});
+        $("#pagePreview").css({"height":"-="+ (240 - height) + "px"});
+        $("#pagePreview").animate({scrollTop: "+=" + (240 - height) + "px"},500, "linear");
         $("#editPanel #header>#toggle").html(4);
     }
     

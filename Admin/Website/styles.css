@@ -43,9 +43,10 @@ body{
     background-color:#f9f9f9;
     overflow: scroll;
     -webkit-overflow-scrolling: touch;
+    position: relative;
 }
 
-body>#loadingPage{
+body #loadingPage{
     
     width: 100%;
     height: 100%;
@@ -63,6 +64,12 @@ a{
     transition:0.5s;
     
 }
+
+#main {
+    position: relative;
+    height: 100%;
+}
+
 
 .customScroll::-webkit-scrollbar{
     width:6px;
@@ -470,6 +477,7 @@ body>#content {
     height:330px;
     background:#feb674;
     position:fixed;
+
     z-index:1000;
     box-shadow:0px 0px 8px black;
     border-radius: 8px 8px 4px 4px;
@@ -1164,7 +1172,8 @@ section .columns > div{
 }
 
 #selector{
-    
+    opacity: 0;
+    visibility: hidden;
     top: 0px;
     width: 100px;
     height: 100px;
@@ -1221,7 +1230,7 @@ section .columns > div{
     height: 100%;
     width: 50%;
     margin-left: 25%;
-    
 /*    display: inline-block;*/
-    
 }
+
+

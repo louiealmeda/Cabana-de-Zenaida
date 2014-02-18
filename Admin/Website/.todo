@@ -1,4 +1,6 @@
-#todo Connect to CMS GUI
+#todo lock selected item (disable mouse move events)
 #todo Edit Selected Element
 #todo Delete Element
-#todoReorder Element
+#todo Reorder Element
+#todo Image Upload
+#todo Image Gallery

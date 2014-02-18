@@ -1,36 +1,41 @@
-#pagePreview {
-    width:100%;
-    height:auto;
-    display:block;
-    overflow-y:scroll;
-}
-
 body, html {
     margin:0px;
     padding:0px;
     position:relative;
     height:100%;
     width:100%;
+    overflow: hidden;
 }
 
 .icon{
     font-family:Icons;
 }
 
+#pagePreview {
+    width:100%;
+    height:200px;
+    display:block;
+    overflow-y:scroll;
+/*    background-color: red;*/
+    position: relative;
+    z-index: 0;
+}
+
 #editPanel {
-    position:fixed;
-    bottom:0px;
-    height:270px;
+/*    position:relative;*/
+/*    bottom:0px;*/
+    height:30px;
     width:100%;
     display:block;
-    -webkit-transition:0.5s;
-    
+    transition:0.5s;
+    z-index: 99999;
+    overflow: hidden;
 }
 
 #editPanel *{
 /*    outline: 1px solid red;*/
     -webkit-user-select:none;
-    
+    transition: 0s;
 }
 
 #editPanel *:not(.icon){
@@ -52,6 +57,8 @@ body, html {
     border-bottom: 1px solid #6c6c6c;
 /*    border-top: 1px solid black;*/
     border-bottom: 1px solid black;
+/*    position: relative;*/
+    z-index: 0;
 }
 
 #editPanel #header #editToggle{
@@ -72,6 +79,7 @@ body, html {
     margin: 0px;
     float: left;
     text-align: center;
+
 }
 
 #editPanel #header #editToggle span:nth-child(1){
@@ -153,19 +161,21 @@ body, html {
 /*    background: -webkit-linear-gradient(#414141, #3e3e3e);*/
 }
 
-#editPanel #content {
+#editPanel #editPanelContent {
     height: 250px;
     width: 100%;
     background-color:#1c1c1c;
     overflow:hidden;
     -webkit-transition:0.5s;
+/*    z-index: 0;*/
+/*    position: relative;*/
 }
 
-#editPanel #content *{
+#editPanel #editPanelContent *{
 /*    outline: 1px solid red;   */
 }
 
-#editPanel #content #overflow {
+#editPanel #editPanelContent #overflow {
 /*    display:block;*/
     width:500%;
     height:100%;
@@ -175,13 +185,13 @@ body, html {
     
 }
 
-#editPanel #content #inner{
+#editPanel #editPanelContent #inner{
     width:100%;
     overflow:none;
     -webkit-transition:1s;
 }
 
-#editPanel #content #inner ul#overflow>li {
+#editPanel #editPanelContent #inner ul#overflow>li {
     width:20%;
     float:left;
     display:inline-block;
@@ -198,22 +208,23 @@ body, html {
 /*    background-color:black;*/
 }
 
-#editPanel #content #components {
+#editPanel #editPanelContent #components {
     margin:0px;
     padding:0px;
     list-style:none;
     padding:20px;
 /*    position:absolute;*/
+/*    z-index: 999;*/
 }
 
-#editPanel #content #filler{
+#editPanel #editPanelContent #filler{
     position:relative;
     width:100%;
     height:100%;
     display:block;
 }
 
-#editPanel #content #components span{
+#editPanel #editPanelContent #components span{
     margin:0px;
     padding:0px;
     list-style:none;
@@ -226,7 +237,7 @@ body, html {
 }
 
 
-#editPanel #content #components li {
+#editPanel #editPanelContent #components li {
     width:100px;
     height:100px;
     margin: 2px 0px;
@@ -242,7 +253,7 @@ body, html {
     cursor:move;
 }
 
-#editPanel #content #components li:active {
+#editPanel #editPanelContent #components li:active {
 /*
     width:92px;
     height:92px;

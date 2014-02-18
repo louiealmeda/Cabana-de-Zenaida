@@ -99,10 +99,6 @@ $(document).ready(function(){
             $("title").html(title);
             unreadMsgs = 0;
         }
-       
-        
-        
-
     });
     
     
@@ -124,7 +120,7 @@ $(document).ready(function(){
     
     
     
-    $("body>#loadingPage").css({ "opacity":"0", "visibility": "hidden"});
+    $("body #loadingPage").css({ "opacity":"0", "visibility": "hidden"});
 
     
     //////////Chat sending
@@ -153,7 +149,7 @@ $(document).ready(function(){
                 if(data == "ok")
                 {
                     $("#contact_us #content #overflow").css({"margin-left":"-100%"});
-                    $("#content #chat input.textbox").focus();
+                    $("#content #chat input.textbox").delay(3000).focus();
 
                 }
                 
@@ -227,8 +223,8 @@ function ComputeNavBarCenter()
     if(!pageLoaded)
         navbarWidth = $navBar.outerWidth();
     
-    navbarPosition = ($("html").outerWidth() - navbarWidth) / 2;
-    navbarPosition = navbarPosition / $("html").outerWidth() * 100;
+    navbarPosition = ($("#main").outerWidth() - navbarWidth) / 2;
+    navbarPosition = navbarPosition / $("#main").outerWidth() * 100;
     navbarTop = $("#logo_container").height();//offset().top;
     
     $navBar.css({

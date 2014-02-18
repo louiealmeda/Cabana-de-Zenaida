@@ -9,7 +9,7 @@
     
 }
 
-.slide {
+.slider .slide {
 /*    -webkit-filter:blur(4px);*/
     height:500px;
 /*    display:inline-block;*/
@@ -25,33 +25,33 @@
 
 
 
-.slides .inner>div:nth-child(1) {
+.slider .slides .inner>div:nth-child(1) {
     background-image:url(../images/slider/slide0.jpg);
 }
 
-.slides .inner>div:nth-child(2){
+.slider .slides .inner>div:nth-child(2){
       background-image:url(../images/slider/slide1.jpg);
 }
 
-.slides .inner>div:nth-child(3) {
+.slider .slides .inner>div:nth-child(3) {
       background-image:url(../images/slider/slide2.jpg);
 }
 
-.slides .inner>div:nth-child(4) {
+.slider .slides .inner>div:nth-child(4) {
      background-image:url(../images/slider/slide3.jpg);
 }
 
-.slides .inner {
+.slider .slides .inner {
     width:400%;
     line-height:0;
 }
 
-.slides .slide {
+.slider .slides .slide {
     width:25%;
     margin:0;
 }
 
-.overflow {
+.slider .overflow {
     width:100%;
     overflow:hidden;
 }
@@ -72,7 +72,7 @@
 */
 
 
-.slideControl {
+.slider .slideControl {
     z-index:10000;
 }
 
@@ -117,7 +117,7 @@
     box-shadow: 0px 0px 8px black;
 }
 
-.slides .slide #caption {
+.slider .slides .slide #caption {
     border:1px solid #DDD;
     padding:0px;
     margin:0px;
@@ -136,7 +136,7 @@
     box-shadow:0px 0px 8px black;
 }
 
-.slides .slide #caption div{
+.slider .slides .slide #caption div{
     padding:20px;
     padding-top:100px;
     text-shadow: 0px -1px 0px #d4d4d4;

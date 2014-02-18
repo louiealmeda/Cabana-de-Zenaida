@@ -1,9 +1,9 @@
 var activeElement = null;
-var isEditing = false;
+var isEditing = true;
 
 
 $(document).ready(function(){
-    
+
     //////////Hover selection
     if(isEditing)
     {
@@ -19,10 +19,10 @@ $(document).ready(function(){
     }
     
     
-    if(!isEditing)
-        $("#selector").css({"display":"none"});
+    if(isEditing)
+        activate();
     else
-        $("#selector").css({"display":"block"});
+        deactivate();
     
     
 //    $("#selector").draggable({handle:"#handle"});
@@ -32,12 +32,25 @@ $(document).ready(function(){
 //    }).disableSelection();
     
     
-    $(".element").css({"outline":"1px dashed gray"});
+    
 
     
 //    alterInlineCSS( "#handle", {"display":"block", "color":"red","float":"right", "clear":"left"} );
 
 });
+
+function activate()
+{
+    $("#selector").css({"display":"block"});
+    $(".element").css({"outline":"1px dashed gray"});
+}
+
+function deactivate()
+{
+    $("#selector").css({"display":"none"});
+    $(".element").css({"outline":"none"});
+}
+
 
 function alterInlineCSS(selector, attr)
 {

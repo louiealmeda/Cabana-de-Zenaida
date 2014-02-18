@@ -153,7 +153,7 @@ $(document).ready(function(){
                 if(data == "ok")
                 {
                     $("#contact_us #content #overflow").css({"margin-left":"-100%"});
-                    $("#content #chat input.textbox").delay(3000).focus();
+                    $("#content #chat input.textbox").focus();
 
                 }
                 

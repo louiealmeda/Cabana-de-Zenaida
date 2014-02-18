@@ -21,8 +21,10 @@
             
             <div id = "header" >
                 <div id = "editToggle">
-                    <div id = "switch">&nbsp;&nbsp;<span>On</span> &nbsp;&nbsp; <span>Off</span>
-                        <div id = "bullet"></div>
+                    <div id = "switch">
+                        <span>On</span>
+                        <span>Off</span>
+                        <div id = "bullet">:::</div>
                     </div>
                 </div>
                 <ul id = "tabs">
@@ -38,8 +40,7 @@
     -->
                 </ul>
                 <div class = "divider"></div>
-                <span class="icon"> &nbsp;&nbsp;&nbsp;</span>
-                <div class = "divider"></div>
+
                 <ul id = "options">
                     <li class="icon">S</li>
                     <li class="icon">T</li>
@@ -73,10 +74,33 @@
                             <div id = "filler">&nbsp;</div>
                         </li>
                             
-                        <li style="color:white">
-                            I am working
+                        <li>
+                            <div id = "colorPicker">
+                                <div id = "wheelContainer">
+                                    <img id = "wheel" src="images/colorWheel.png"/>
+                                    <div id = "dimmer"></div>
+                                    <input id = "darkness" type="range" onchange="darknessSlide(this);" min="0" max="255" value = "255">
+                                </div>
+                                <div id = "color"></div>
+                                <div id = "colorPalette">
+
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            Linking
+                        </li>
+                        
+                        <li>
+                            Saved Versions
+                        </li>
+                        
+                        <li>
+                            Files
                         </li>
                     </ul>
+                    
                 </div>
                 
                 

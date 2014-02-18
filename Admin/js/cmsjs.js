@@ -1,6 +1,6 @@
 var editPanelVisible = false;
 var isEditing = false;
-
+var darkness = 1;
 
 $(function() {
     sessionCheck(false);
@@ -19,7 +19,7 @@ $(function() {
 
 $(document).ready(function(){
     
-    ShowEditPanel(editPanelVisible);
+//    ShowEditPanel(editPanelVisible);
     
     $.post("siteParser.php", {}, function(data){
 
@@ -42,11 +42,23 @@ $(document).ready(function(){
         var bullet = $("#switch #bullet");
         if(isEditing)
         {   
-            $(bullet).css({"left":"0%","border-left":"none", "border-right":"1px solid  rgba(255, 0, 0, 0.76)"});
+            $(bullet).css({
+                "left":"0%",
+                "border-left":"none", 
+                "border-right":"1px solid  rgba(255, 0, 0, 0.76)"
+            });
+            $(this).css({"box-shadow": "inset -2px 0px 5px red"});
         }
         else
         {
-            $(bullet).css({"left":"50%", "border-left":"1px solid green", "border-right":"none"});
+            $(bullet).css({
+                "left":"50%",
+                "border-left":"1px solid green",
+                "border-right":"none"
+            
+            });
+            
+            $(this).css({"box-shadow": "inset 3px 0px 8px green"});
         }
 
         isEditing = !isEditing;
@@ -64,13 +76,13 @@ function ShowEditPanel(show){
     if(!show)
     {
         $("#editPanel #content").css({"height":"0px"}); //.css({"bottom":"-245px"});
-        $("#editPanel").css({"bottom":"-245px"});
+        $("#editPanel").css({"bottom":"-240px"});
         $(btn).html('3');
 
     }
     else
     {
-        $("#editPanel #content").css({"height":"245px"});//css({"bottom":"0px"});
+        $("#editPanel #content").css({"height":"240px"});//css({"bottom":"0px"});
         $("#editPanel").css({"bottom":"0px"});
         $("#editPanel #header>#toggle").html(4);
     }
@@ -78,3 +90,43 @@ function ShowEditPanel(show){
     editPanelVisible = show;
     
 }
+
+
+//////Color picker
+$(function() {
+    $("#wheel").on("dragstart", function(event) { event.preventDefault(); });
+    
+    $("#wheel").mousemove(function(e) {
+        
+        if(!this.canvas) {
+            this.canvas = $('<canvas/>').css({width:this.width + 'px', height: this.height + 'px'})[0];
+            this.canvas.height = this.height;
+            this.canvas.width = this.width;
+            this.canvas.getContext('2d').drawImage(this, 0, 0, this.width, this.height);
+        }
+         var offX  = (e.offsetX || e.clientX - $(e.target).offset().left);
+         var offY  = (e.offsetY || e.clientY - $(e.target).offset().top);
+        
+        var pixelData = this.canvas.getContext('2d').getImageData(offX, offY, 1, 1).data;
+        
+        pixelData[0] *= darkness;
+        pixelData[1] *= darkness;
+        pixelData[2] *= darkness;
+        
+        $("#color").html( darkness + '<br>R: ' + pixelData[0] + '<br>G: ' + pixelData[1] + '<br>B: ' + pixelData[2] + '<br>A: ' + pixelData[3]);
+        
+        $("#color").css({"color": "rgba(" + pixelData[0] + "," + pixelData[1] + "," +pixelData[2] + "," +pixelData[3] + ")" });
+        
+    });
+    
+    
+    
+});
+
+function darknessSlide(e)
+{
+    darkness = (e.value) / 255;
+    var opacity = (255 - e.value) / 255;
+    $("#dimmer").css({"opacity": opacity });
+}
+

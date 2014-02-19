@@ -2,12 +2,20 @@
 <html>
 
     <head>
-        <meta name="viewport" content="width=device-width, user-scalable=no">
         
-        <link rel="stylesheet" type="text/css" href="css/fontfaces.css">
+
+<!--        <meta name="viewport" content="width=device-width, user-scalable=no">-->
+        <meta charset="utf-8" />
+
+        
+        
+        
+<!--        <link rel="stylesheet" type="text/css" href="css/fontfaces.css">-->
         <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.10.4.custom.css">
         
         <link rel="stylesheet" type="text/css" href="css/cmsui.css">
+        <link rel="stylesheet" type="text/css" media="all" href="css/icons.css" />
+        
         
         <script type="text/javascript" language = "javascript" src="js/jquery-2.0.3.min.js"></script>    
         <script type="text/javascript" language = "javascript" src="js/jquery-ui-1.10.4.custom.min.js"></script>    
@@ -22,11 +30,26 @@
         <script type="text/javascript" src="Website/js/script.js"></script>
         
         
-        
+        <style type="text/css">
+  .the-icons {
+      list-style: none outside none;
+      margin-left: 0;
+  }
+  .the-icons li {
+      float: left;
+      line-height: 25px;
+      width: 25%;
+  }
+  .the-icons i:hover {
+      background-color: rgba(255, 0, 0, 0.25);
+  }
+ </style>
+
     </head>
 
     
     <body>
+        
         <div id = "pagePreview" class="customScroll">
                 
             
@@ -34,12 +57,14 @@
         </div>
         
         <div id = "editPanel">
+            
             <div id = "header" >
                 <div id = "editToggle">
                     <div id = "switch">
                         <span>On</span>
                         <span>Off</span>
                         <div id = "bullet">:::</div>
+                        
                     </div>
                 </div>
                 <ul id = "tabs">
@@ -55,10 +80,10 @@
     -->
                 </ul>
                 <div class = "divider"></div>
-
+                
                 <ul id = "options">
-                    <li class="icon">r</li>
-                    <li class="icon">S</li>
+                    <li class="icon-ok-circle"></li>
+                    <li class="icon-remove-circle"></li>
                     <li class="icon">T</li>
                     <li class="icon">U</li>
                     <li class="icon">V</li>
@@ -68,7 +93,8 @@
                     <li class="icon">Z</li>
                 </ul>
                 
-                <div class="icon" id = "toggle">3</div>
+                
+                <div class="icon-chevron-up" id = "toggle"></div>
             </div>
             
             
@@ -105,7 +131,7 @@
                         </li>
                         
                         <li>
-                            Linking
+                           
                         </li>
                         
                         <li>

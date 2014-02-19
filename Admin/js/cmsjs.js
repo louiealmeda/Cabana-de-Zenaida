@@ -109,7 +109,8 @@ function ShowEditPanel(show){
 //        $("#editPanel").css({"bottom":"-240px"});
         $("#pagePreview").css({"height":"+=" + (240 - height) + "px"});
         $("#pagePreview").animate({scrollTop: "-=" + (240 - height) + "px"},500, "linear");
-        $(btn).html('3');
+        $(btn).removeClass('icon-chevron-down');
+        $(btn).addClass('icon-chevron-up');
 
     }
     else
@@ -119,7 +120,8 @@ function ShowEditPanel(show){
 //        $("#editPanel").css({"bottom":"0px"});
         $("#pagePreview").css({"height":"-="+ (240 - height) + "px"});
         $("#pagePreview").animate({scrollTop: "+=" + (240 - height) + "px"},500, "linear");
-        $("#editPanel #header>#toggle").html(4);
+        $(btn).removeClass('icon-chevron-up');
+        $(btn).addClass('icon-chevron-down');
     }
     
     editPanelVisible = show;

@@ -3,7 +3,9 @@ var isEditing = false;
 var darkness = 1;
 
 var elementOptions = {
-    textArea : {}
+    element : [ "backgroundColor", "border", "borderRadius", "shadow", "margin", "padding", "align" ],
+    textArea : ["font", "textUp", "textDown", "textColor", "highLightColor", "bold", "italize", "underline", "strikeThrough","textShadow"],
+    column: ["columns", "spacing"]
 }
 
 $(function() {
@@ -23,7 +25,7 @@ $(function() {
 
 $(document).ready(function(){
 
-    
+
     var previewHeight = $(window).height() - $("#editPanel").height();
     
     $("#pagePreview").css({"height": previewHeight + "px"});
@@ -37,25 +39,28 @@ $(document).ready(function(){
 //    });
     
     
-    $("#pagePreview").load("Website/index.html #main");
-
+    $("#pagePreview").load("Website/index.html #main",function(){
+        $("#contact_us").css({"display":"none"});
+    });
+    
+    
     
     
     $("#editPanel #header #tabs li").click(function(){
         
-        ShowEditPanel(true);
+        if(!editPanelVisible)
+            ShowEditPanel(true);
         
         $("#editPanel #header li").removeClass("selected");
         $(this).addClass("selected");
         
-        $("#editPanel #content #overflow").animate({"margin-left": -$(this).index() * 100 + "%"});
+        $("#editPanel #editPanelContent #overflow").animate({"margin-left": -$(this).index() * 100 + "%"});
+
     });
     
     
     $("#editToggle #switch").click(function(){
         var bullet = $("#switch #bullet");
-        
-        alert(getSelectionHtml());
         
         isEditing = !isEditing;
         if(!isEditing)

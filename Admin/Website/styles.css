@@ -1174,7 +1174,8 @@ section .columns > div{
 #selector{
     opacity: 0;
     visibility: hidden;
-    top: 0px;
+    top: -100px;
+    left: -100px;
     width: 100px;
     height: 100px;
     position: absolute;

@@ -1,5 +1,5 @@
 var activeElement = null;
-var isEditing = true;
+var isEditing = false;
 
 
 $(document).ready(function(){

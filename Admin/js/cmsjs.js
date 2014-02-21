@@ -2,18 +2,14 @@ var editPanelVisible = false;
 var isEditing = false;
 var darkness = 1;
 
-var elementOptions = {
-    element : [ "backgroundColor", "border", "borderRadius", "shadow", "margin", "padding", "align" ],
-    textArea : ["font", "textUp", "textDown", "textColor", "highLightColor", "bold", "italize", "underline", "strikeThrough","textShadow"],
-    column: ["columns", "spacing"]
-}
+
 
 $(function() {
     sessionCheck(false);
     
     $(document).tooltip();
     $( ".component" ).draggable({
-      connectToSortable: "#sortable",
+      connectToSortable: ".element",
       helper: "clone",
       revert: "invalid"
     });
@@ -41,6 +37,7 @@ $(document).ready(function(){
     
     $("#pagePreview").load("Website/index.html #main",function(){
         $("#contact_us").css({"display":"none"});
+        CMSControlerLoad();
     });
     
     

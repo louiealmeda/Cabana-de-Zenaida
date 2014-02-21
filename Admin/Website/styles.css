@@ -1185,6 +1185,7 @@ section .columns > div{
     transition: 0.5s;
     outline: 5000px solid rgba(0,0,0,0.5);
     pointer-events: none;
+    box-sizing:content-box;
 /*    display: none;*/
 }
 
@@ -1225,13 +1226,24 @@ section .columns > div{
     text-shadow: 0px 1px 0px rgba(255,255,255,0.3);
 }
 
+#selector>#handle>div:nth-child(odd){
+    font-size: 0.8em;
+    line-height: 1.5em;
+    width: 25%;
+    
+}
+
 #selector #handle #move {
     cursor: pointer;
     cursor: move;
     height: 100%;
     width: 50%;
+    top: -2px;
+    position: relative;
     margin-left: 25%;
 /*    display: inline-block;*/
 }
 
-
+#selector #handle #edit {
+    
+}

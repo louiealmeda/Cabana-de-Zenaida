@@ -348,15 +348,25 @@ function onResize(){
 
 };
 
-$(window).scroll(function(){ scroll();  });
+
+$(document).ready(function(){
+    
+    var container = $("#pagePreview");
+
+    if ( $(container).height() == null)
+        container = window;
+
+    $(container).scroll(function(){ scroll(container);  });
+
+});
 
 ////////Scrolling functions//////////////
-function scroll() {
-    var delta = $(window).scrollTop();
+function scroll(container) {
+    var delta = $(container).scrollTop();
     var sliderHeight = $(".slide").css("height");
     sliderHeight = sliderHeight.substr(0,sliderHeight.length - 2);
     
-    var offset = delta / $(window).height();
+    var offset = delta / $(container).height();
     
     //slider scrolling
     $(".slide").css({

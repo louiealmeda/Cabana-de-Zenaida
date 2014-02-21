@@ -768,19 +768,20 @@ button.ui-button::-moz-focus-inner {
 	background: none;
 }
 .ui-tooltip {
+    -webkit-font-smoothing:antialiased;
     font-size: 0.8em;
 	padding: 2px 4px;
 	position: absolute;
 	z-index: 9999;
 	max-width: 300px;
 	-webkit-box-shadow: 0 0 5px black;
-	box-shadow: 0 0 5px black;
+	box-shadow: 0 0 2px black;
     font-family:Open Sans;
     color: white;
-/*    background-color:#191919;*/
-    background: -webkit-linear-gradient(#414141, #303030);
+    background-color:#414141;
+/*    background: -webkit-linear-gradient(#414141, #303030);*/
 /*    border:1px solid gray;*/
-    border-radius:5px;
+    border-radius:2px;
 }
 body .ui-tooltip {
 	border-width: 2px;

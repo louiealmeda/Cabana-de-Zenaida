@@ -143,9 +143,17 @@ body, html {
     font-size: 1.2em;
 }
 
+
+#editPanel #header ul#options li.divider {
+    float: left;
+    width: 0px;
+    padding: 0px;
+    margin: 0px;
+}
+
 #editPanel #header ul li {
     float:left;
-    line-height:30px;
+    line-height:28px;
     padding:0px 10px;
     margin:0px;
     height:100%;

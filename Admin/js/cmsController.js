@@ -1,14 +1,54 @@
 var activeElement = null;
+var activeElementStyleBackup = "";
+var isLocked = false;
+var toolbar;
+
 //var isEditing = true;
+
+var elementOptions = {
+    element : {
+        "Background Color" : ["icon-bucket", {"background-color": "colorPicker"} ],
+        "Border" : ["icon-pigpene", {"border": "toggle"} ],
+        "Border Color" : ["icon-palette-painting", {"border-color": "colorPicker"} ],
+        "Border Radius" : ["icon-roundrectangle", {"border-radius": "slider"} ],
+        "Shadow" : ["icon-subtractshape", {"box-shadow": "slider"} ],
+        "Margin" : ["icon-snaptogrid", {"margin": "slider"} ],
+        "Padding" : ["icon-canvasrulers", {"padding": "slider"} ],
+        "Align Left" : ["icon-alignleftedge", {"text-align": "left"} ],
+        "Align Center" : ["icon-alignhorizontalcenter", {"text-align": "center"} ],
+        "Align Right" : ["icon-alignrightedge", {"text-align": "right"} ]
+
+        }
+//    ,
+    
+//    "alignJustify" : ["icon-align-justify", "text-align", "justify"],
+//        "alignLeft" : ["icon-align-left", "text-align", "left"],
+//        "alignCenter" : ["icon-align-center", "text-align", "center"],
+//        "alignRight" : ["icon-align-right", "text-align", "right"]
+
+    
+//    textArea : ["font", "textUp", "textDown", "textColor", "highLightColor", "bold", "italize", "underline", "strikeThrough","textShadow"],
+//    column: ["columns", "spacing"]
+    
+    
+    
+};
 
 
 $(document).ready(function(){
-
+    
+//    var str =  JSON.stringify({"test":"boom"});
+//    var asc = JSON.parse(str);
+    
+//    JSON.stringify()
+    toolbar = $("#editPanel #header ul#options");
+    
+//    alert();  
+//    GenerateToolbar();
+    
     //////////Hover selection
-
     
-    
-    
+//    alert(elementOptions.element.alignLeft);
     
     
 //    
@@ -32,6 +72,48 @@ $(document).ready(function(){
 
 });
 
+
+function CMSControlerLoad(){
+    activate();
+    
+    $("#selector>#handle>#edit").click(function(){
+        
+        $(".element").unbind();
+        
+        if(isLocked)
+        {
+            Release(false);
+            
+        }
+        else
+        {
+            $(this).removeClass("icon-pencil");
+            $(this).addClass("icon-undo");
+            $(this).tooltip({content:"Release element without saving"}).tooltip('close').tooltip('open');
+            $(this).attr("title","Release element without saving");
+            /////////Element Selection
+            selectElement();
+            isLocked = true;
+        }
+//        alert($(this).attr("title"));
+        
+        
+    });
+    
+}
+
+function selectElement()
+{
+    
+    
+    
+//    $("#selector").css({"border":"2px solid cyan"});
+    
+    activeElementStyleBackup = $(activeElement).attr("style");
+    GenerateToolbar();
+    
+}
+
 function activate()
 {
     $("#selector").css({"opacity":"1","visibility":"visible"});//.delay(500).css({"display":"block"});
@@ -48,10 +130,9 @@ function activate()
     });
     
     
-    $("#selector>#handle>#edit").click(function(){
-//        $(".element").each(function(index){ $(this).unbind(); });
-        $(".element").unbind();
-    });
+    $(".element").sortable();
+    
+    
 }
 
 function deactivate()
@@ -62,33 +143,129 @@ function deactivate()
 }
 
 
+function GenerateToolbar()
+{
+//    
+    var editingIcons = "<li title ='Save and release element' class = 'icon-ok-circle' onclick='Release(true)'></li> <li >&nbsp;</li>";
+    
+    var classes = ["element"];//$(activeElement).attr("class").split(" , ");
+    
+    //eo = element option
+    var eo;
+    for(var i = 0; i < classes.length; i++)
+    {
+        eo = classes[i];
+
+        $.each(elementOptions[eo], function(key, value){
+        
+//            alert(key + ": " + value); 
+            
+            
+            editingIcons += "<li class = '" + value[0] + "' title ='" + key + "' onclick = \'ToolbarItemClick(" + JSON.stringify(value[1]) +")\'></li>\n"; 
+        });
+        
+    }
+    
+//    alert(editingIcons);
+               
+    $(toolbar).html(editingIcons);
+}
+
+function ToolbarItemClick(value)
+{   
+    var key;
+    var val;
+//    alert(JSON.stringify(value));
+
+    $.each(value, function(tmpKey, tmpValue){
+        key = tmpKey;
+        val = tmpValue;
+        return false;
+    });
+    
+
+//    alert(JSON.stringify(value));
+    
+    switch(val)
+    {
+        case "colorPicker":
+            value[key] = "red";
+            break;
+            
+        case "slider":
+            
+            break;
+            
+        default:
+            
+            break;
+    }
+//    alert(JSON.stringify(value));
+
+
+    $(activeElement).css(value);
+//    alert("done!");
+//    alterInlineCSS( activeElement, value );
+    
+}
+
+function Release(save)
+{
+    if(!save)
+        $(activeElement).attr("style", activeElementStyleBackup);
+    
+//    activeElementStyleBackup = "";
+    isLocked = false;
+    
+    var edit = $("#selector>#handle>#edit");
+    $(edit).addClass("icon-pencil");
+    $(edit).removeClass("icon-undo");
+    $(edit).attr("title","Edit element");
+    $(edit).tooltip({content:"Edit element"}).tooltip('close').tooltip('open');
+    
+    
+    activate();
+    $(toolbar).html("");
+}
+
 function alterInlineCSS(selector, attr)
 {
-    var style = $(selector).attr("style");
+    $(selector).css({"text-align": "center"});
+    var style = "{" + $(selector).attr("style") + "}";
 
-    style = "background-color : pink ; color : blue ; display : table ; width : 100px ;";
+//    alert(style);
     
-//    var assoc = $.parseJSON(style);
+//    style = "background-color : pink ; color : blue ; display : table ; width : 100px ;";
+    
+//    style = style.replace(/;/g, ",");
+    alert(style);
+    var current = JSON.parse(style);
+    
     
     $.each(attr, function(key, value){
         
-//        alert(key + " : " + value);
-        key = " " + key.trim() + " ";
-        value = " " + value.trim() + " ";
+        current[key] = value;
         
-        var range = getAttributeRange(style, key);
-        if(range == -1)
-            style += key + ":" + value + ";";
-        else        
-            style = replaceRange(style, value,range[0], range[1]);
+        
+//        alert(key + " : " + value);
+//        key = " " + key.trim() + " ";
+//        value = " " + value.trim() + " ";
+//        
+//        var range = getAttributeRange(style, key);
+//        if(range == -1)
+//            style += key + ":" + value + ";";
+//        else        
+//            style = replaceRange(style, value,range[0], range[1]);
     });
     
+    style = JSON.stringify(current);
+    alert(style);
     $(selector).attr("style", style);
 }
 
 function getAttributeRange(original, key)
 {
-    var range = new Array();
+    var range = [];
     
     if(original.indexOf(key) == -1)
         return -1;

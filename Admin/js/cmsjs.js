@@ -2,19 +2,18 @@ var editPanelVisible = false;
 var isEditing = false;
 var darkness = 1;
 
+var draggableComponents = {
+    "Text Area" : [ "icon-font", "element" ],
+    "Columns" :  [ "icon-twocolumnsright", "element , columns" ],
+    "Image" :  [ "icon-picture", "element , image" ],
+    "Video" : ["icon-video", "element , video"]
+};
 
 
 $(function() {
     sessionCheck(false);
     
-    $(document).tooltip();
-    $( ".component" ).draggable({
-      connectToSortable: ".element",
-      helper: "clone",
-      revert: "invalid"
-    });
-    
-    
+        
 //    $( "ul, li" ).disableSelection();
 });
 
@@ -40,6 +39,7 @@ $(document).ready(function(){
         CMSControlerLoad();
     });
     
+    GenerateComponents();
     
     
     
@@ -96,6 +96,21 @@ $(document).ready(function(){
     });
 });
 
+function GenerateComponents()
+{
+    
+    var str = "";
+    
+    $.each(draggableComponents, function(key, value){
+        
+         str = str + '<li class="component" alt = "'+ value[1] +'"> <div class="'+ value[0] +'" ></div> <span> ' + key + '</span> </li>\n';
+        
+    });
+    
+//    alert(str);
+    
+    $("#editPanel #editPanelContent #components").html(str);
+}
 
 function ShowEditPanel(show){
     var btn = $("#editPanel #header>#toggle");

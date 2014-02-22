@@ -249,7 +249,6 @@ body, html {
 /*    border:1px solid red;*/
 }
 
-
 #editPanel #editPanelContent #components li {
     width:100px;
     height:100px;
@@ -260,7 +259,7 @@ body, html {
     border-radius:5px;
     line-height:70px;
     text-align:center;
-    font-size:60px;
+    font-size:2.5em;
     color:#191919;
     cursor:pointer;
     cursor:move;
@@ -332,4 +331,16 @@ body, html {
 
 #darkness {
     width: 100%;
+}
+
+/*element states*/
+/*
+div.element.editing{
+    outline: 1px dashed gray;
+}
+*/
+
+div.element.hoveredAddingElement{
+/*    outline: 1px solid blue;*/
+    background-color: rgba(216, 255, 0, 0.31);
 }

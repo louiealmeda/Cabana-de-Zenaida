@@ -74,7 +74,16 @@ $(document).ready(function(){
 
 
 function CMSControlerLoad(){
-    activate();
+    
+    
+    $(document).tooltip();
+    $( ".component" ).draggable({
+      connectToSortable: ".element",
+      helper: "clone",
+      revert: "invalid"
+    });
+    
+    
     
     $("#selector>#handle>#edit").click(function(){
         
@@ -100,6 +109,20 @@ function CMSControlerLoad(){
         
     });
     
+    
+    $("#selector>#handle>#remove").click(function(){
+        var parentE = $(activeElement).parent();
+        focusTo(parentE);
+        $(activeElement).remove();
+        
+        activeElement = parentE;
+        
+        activate();
+    });
+    
+    activate();
+    
+    
 }
 
 function selectElement()
@@ -108,7 +131,7 @@ function selectElement()
     
     
 //    $("#selector").css({"border":"2px solid cyan"});
-    
+    activeElement.contentEditable = true;
     activeElementStyleBackup = $(activeElement).attr("style");
     GenerateToolbar();
     
@@ -116,13 +139,15 @@ function selectElement()
 
 function activate()
 {
+    deactivate();
     $("#selector").css({"opacity":"1","visibility":"visible"});//.delay(500).css({"display":"block"});
     $(".element").css({"outline":"1px dashed gray"});
-    
+//    $(".element").addClass(".editing");
     
     $(".element").each(function(index){
         $(this).bind("mousemove", function(){
 //            alert();
+
             activeElement = this;
             focusTo(activeElement);
             return false;
@@ -130,7 +155,7 @@ function activate()
     });
     
     
-    $(".element").sortable();
+    EnableDropping(true);
     
     
 }
@@ -139,9 +164,68 @@ function deactivate()
 {
     $("#selector").css({"opacity":"0", "visibility":"hidden"});//.delay(500).css({"display":"none"});
     $(".element").css({"outline":"1px dashed transparent"});
+//    $(".element").removeClass(".editing");
     $(".element").unbind();
+    EnableDropping(false);
+//    $(".element").droppable('destroy');
 }
 
+function EnableDropping(state)
+{
+    if(state)
+    {
+        $(".element").droppable({
+            greedy:true,
+    //        activeClass: "hoveredAddingElement",
+            hoverClass: "hoveredAddingElement",
+            drop: function( event, ui ) {
+                $( this ).find( ".component" ).remove();
+                SpawnElement(this,ui.draggable);
+
+                activate();
+            }
+        });
+//        $(".element").draggable( "enable" );
+    }
+    else
+    {
+//        $(".element").droppable( "disable" );
+    }
+}
+
+function SpawnElement(containingE, draggedE)
+{
+    
+    var elementClasses = draggedE.attr("alt");
+    
+    alert(elementClasses);
+    
+    var content = "Insert text or element here";
+    var elementType = "div";
+    var initialAttributes = "";
+    var elementString = "";
+    
+    
+    if(elementClasses.indexOf("columns") != -1)
+        content = "<div class = 'element'> Insert text or element here </div>\n<div class = 'element'> Insert text or element here </div>";
+    
+    elementString = "<" + elementType + " " +  initialAttributes + +" class = '" + elementClasses  + "'>"+content+"</" + elementType +">" ;
+    
+    
+    
+    if(elementClasses.indexOf("image") != -1)
+    {
+        elementType = "img";
+        initialAttributes = "src = 'images/slide0.jpg' height='100px'" ;
+        content = "test";
+        elementString = "<" + elementType + " " +  initialAttributes + " class = '" + elementClasses  + "'/>" ;
+    }
+    
+    alert(elementString);
+    
+    $( containingE ).append( elementString );
+    
+}
 
 function GenerateToolbar()
 {
@@ -217,12 +301,13 @@ function Release(save)
 //    activeElementStyleBackup = "";
     isLocked = false;
     
+    activeElement.contentEditable = false;
+    
     var edit = $("#selector>#handle>#edit");
     $(edit).addClass("icon-pencil");
     $(edit).removeClass("icon-undo");
     $(edit).attr("title","Edit element");
-    $(edit).tooltip({content:"Edit element"}).tooltip('close').tooltip('open');
-    
+    $(edit).tooltip({content:"Edit element"}).tooltip('close').tooltip('open').tooltip('close');
     
     activate();
     $(toolbar).html("");

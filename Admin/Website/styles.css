@@ -1092,6 +1092,14 @@ section .tablizer>.inner{
 /*    outline: 1px dashed blue;*/
 }
 
+section .image{
+    height: 150px;
+    width: 300px;
+    background-position: center;
+    background-size: cover;
+}
+
+
 section .columns>div{
     height: 100%;
 }

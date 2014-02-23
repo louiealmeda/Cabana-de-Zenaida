@@ -241,7 +241,7 @@ body, html {
     margin:0px;
     padding:0px;
     list-style:none;
-    font-size:20px;
+    font-size:15px;
     line-height:20px;
     display:block;
     position:relative;
@@ -259,7 +259,7 @@ body, html {
     border-radius:5px;
     line-height:70px;
     text-align:center;
-    font-size:2.5em;
+    font-size:2.3em;
     color:#191919;
     cursor:pointer;
     cursor:move;
@@ -343,4 +343,64 @@ div.element.editing{
 div.element.hoveredAddingElement{
 /*    outline: 1px solid blue;*/
     background-color: rgba(216, 255, 0, 0.31);
+}
+#inputDialogue {
+    width: 20px;
+    height: 100px;
+    border-radius: 4px;
+    background-color: #1c1c1c;
+    position: fixed;
+    top: 100px;
+/*    bottom: 100px;*/
+    left: 100px;
+    z-index: 99999;
+    box-shadow: 2px 2px 4px black;
+    color: white;
+    font-family: "open sans";
+    border-top: 1px solid rgba(255,255,255,0.2);
+    border-left: 1px solid rgba(255,255,255,0.2);
+/*    margin: 15px;*/
+    padding: 15px;
+}
+
+#inputDialogue>#overflow{
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+/*    border: 1px solid red;*/
+    
+}
+
+#inputDialogue>.icon-psup{
+    position: absolute;
+    font-size: 30px;
+    bottom: -15px;
+    left: 0px;
+    width: 100%;
+    text-align: center;
+    color: #1c1c1c;
+    z-index: -1;
+}
+
+#inputDialogue #range1 {
+    -webkit-appearance: slider-vertical;
+    height: 80%;
+    width: 100%;
+    position: relative;
+    display: inline-block;
+    left: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+
+#inputDialogue #currentValue{
+/*    border: 1px solid red;*/
+    width: 100%;
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+    position: absolute;
+/*    top: -5px;*/
+    left: 0px;
+    font-size: 0.8em;
 }

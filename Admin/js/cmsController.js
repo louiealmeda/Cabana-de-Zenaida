@@ -162,11 +162,16 @@ function activate()
 
 function deactivate()
 {
+    
+    Release(false);
     $("#selector").css({"opacity":"0", "visibility":"hidden"});//.delay(500).css({"display":"none"});
     $(".element").css({"outline":"1px dashed transparent"});
 //    $(".element").removeClass(".editing");
     $(".element").unbind();
     EnableDropping(false);
+    
+    
+    
 //    $(".element").droppable('destroy');
 }
 
@@ -198,7 +203,7 @@ function SpawnElement(containingE, draggedE)
     
     var elementClasses = draggedE.attr("alt");
     
-    alert(elementClasses);
+//    alert(elementClasses);
     
     var content = "Insert text or element here";
     var elementType = "div";
@@ -209,16 +214,17 @@ function SpawnElement(containingE, draggedE)
     if(elementClasses.indexOf("columns") != -1)
         content = "<div class = 'element'> Insert text or element here </div>\n<div class = 'element'> Insert text or element here </div>";
     
-    elementString = "<" + elementType + " " +  initialAttributes + +" class = '" + elementClasses  + "'>"+content+"</" + elementType +">" ;
+    elementString = "<" + elementType + " " +  initialAttributes +" class = '" + elementClasses  + "'>"+content+"</" + elementType +">" ;
     
     
     
     if(elementClasses.indexOf("image") != -1)
     {
-        elementType = "img";
-        initialAttributes = "src = 'images/slide0.jpg' height='100px'" ;
+        initialAttributes = " height='200px' width='300px' style='background-image:url(images/slide0.jpg)'" ;
         content = "test";
-        elementString = "<" + elementType + " " +  initialAttributes + " class = '" + elementClasses  + "'/>" ;
+        
+        elementString = "<" + elementType + " " +  initialAttributes + " class = '" + elementClasses + " '>"+content+" </" + elementType +">" ;
+        
     }
     
     alert(elementString);
@@ -236,6 +242,7 @@ function GenerateToolbar()
     
     //eo = element option
     var eo;
+    var index = 0;
     for(var i = 0; i < classes.length; i++)
     {
         eo = classes[i];
@@ -245,7 +252,9 @@ function GenerateToolbar()
 //            alert(key + ": " + value); 
             
             
-            editingIcons += "<li class = '" + value[0] + "' title ='" + key + "' onclick = \'ToolbarItemClick(" + JSON.stringify(value[1]) +")\'></li>\n"; 
+            editingIcons += "<li id = '" + index + "' class = '" + value[0] + "' title ='" + key + "' onclick = \'ToolbarItemClick(" + JSON.stringify(value[1]) + "," + index + ")\'></li>\n"; 
+            
+            index++;
         });
         
     }
@@ -255,10 +264,13 @@ function GenerateToolbar()
     $(toolbar).html(editingIcons);
 }
 
-function ToolbarItemClick(value)
+function ToolbarItemClick(value,index)
 {   
     var key;
     var val;
+    
+    var target = $("#editPanel #header ul#options li#" + index);
+    
 //    alert(JSON.stringify(value));
 
     $.each(value, function(tmpKey, tmpValue){
@@ -266,6 +278,7 @@ function ToolbarItemClick(value)
         val = tmpValue;
         return false;
     });
+    
     
 
 //    alert(JSON.stringify(value));
@@ -277,17 +290,17 @@ function ToolbarItemClick(value)
             break;
             
         case "slider":
-            
+            ShowInputDialog("slider",target);
             break;
             
         default:
-            
+            $(activeElement).css(value);
             break;
     }
 //    alert(JSON.stringify(value));
 
 
-    $(activeElement).css(value);
+    
 //    alert("done!");
 //    alterInlineCSS( activeElement, value );
     
@@ -295,22 +308,25 @@ function ToolbarItemClick(value)
 
 function Release(save)
 {
-    if(!save)
-        $(activeElement).attr("style", activeElementStyleBackup);
-    
-//    activeElementStyleBackup = "";
-    isLocked = false;
-    
-    activeElement.contentEditable = false;
-    
-    var edit = $("#selector>#handle>#edit");
-    $(edit).addClass("icon-pencil");
-    $(edit).removeClass("icon-undo");
-    $(edit).attr("title","Edit element");
-    $(edit).tooltip({content:"Edit element"}).tooltip('close').tooltip('open').tooltip('close');
-    
-    activate();
-    $(toolbar).html("");
+    if(isLocked)
+    {
+        if(!save)
+            $(activeElement).attr("style", activeElementStyleBackup);
+
+    //    activeElementStyleBackup = "";
+        isLocked = false;
+
+        activeElement.contentEditable = false;
+
+        var edit = $("#selector>#handle>#edit");
+        $(edit).addClass("icon-pencil");
+        $(edit).removeClass("icon-undo");
+        $(edit).attr("title","Edit element");
+        $(edit).tooltip({content:"Edit element"}).tooltip('close').tooltip('open').tooltip('close');
+
+        activate();
+        $(toolbar).html("");
+    }
 }
 
 function alterInlineCSS(selector, attr)
@@ -369,6 +385,46 @@ function replaceRange(original, str, start, end)
     return original.substring(0,start) + str + original.substring(end, original.length);
 }
 
+
+function ShowInputDialog(inputType, target, attr, minValue, maxValue)
+{
+//    alert(inputType + ", " + target);
+    minValue = minValue || 0;
+    maxValue = maxValue || 0;
+    
+//    alert($(target).offset().top);
+    
+    var dialogue = $("#inputDialogue");
+    
+    $(dialogue).css({"top": $(target).offset().top - $(dialogue).outerHeight() - 15 + "px", "left": $(target).offset().left - ($(dialogue).outerWidth()/2 - $(target).outerWidth()/2) + "px"});
+    
+    
+    
+    switch( inputType )
+    {
+        case "slider":
+            
+            break;
+            
+        case "colorPicker":
+            
+            break;
+    }
+    
+    
+    
+    $("#inputDialogue #currentValue").onchange(function(){
+//        $("#inputDialogue #range1").val = currentValue;
+        alert($("#inputDialogue #currentValue").html());
+    });
+    
+}
+
+function UpdateCurrentValue(value)
+{
+//    alert(value);
+    $("#inputDialogue #currentValue").html(value);
+}
 
 function focusTo(element)
 {

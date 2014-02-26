@@ -95,17 +95,7 @@
                         </li>
                             
                         <li>
-                            <div id = "colorPicker">
-                                <div id = "wheelContainer">
-                                    <img id = "wheel" src="images/colorWheel.png"/>
-                                    <div id = "dimmer"></div>
-                                    <input id = "darkness" type="range" onchange="darknessSlide(this);" min="0" max="255" value = "255">
-                                </div>
-                                <div id = "color"></div>
-                                <div id = "colorPalette">
-
-                                </div>
-                            </div>
+                            
                         </li>
                         
                         <li>
@@ -129,9 +119,36 @@
         </div>
         
         <div id = "inputDialogue">
-            <div id = "overflow">
-                <input type="range" id = "range1" onchange="UpdateCurrentValue( this.value );">
-                <div id = "currentValue">00</div>
+            <div id = "inner">
+                <div id = "overflow">
+                    <div id = "range">
+                        <input type="range" id = "range1" onchange="UpdateCurrentValue( this.value );" orient="vertical">
+                        <input type="text" id = "currentValue" value="0">
+                    </div>
+                    <div id = "colorPicker">
+                        <div id = "wheelContainer">
+                            <input id = "transparency" type="range" orient="vertical" onchange="transparencySlide(this);" min="0" max="255" value = "255">
+                            <img id = "wheel" src="images/colorWheel.png"/>
+
+                            <div id = "dimmer"></div>
+                            <div id = "selected"></div>
+                            <input id = "darkness" type="range" onchange="darknessSlide(this);" min="0" max="255" value = "255">
+
+                        </div>
+    <!--                                <div id = "color"></div>-->
+                        <ul id = "colorPalette" class="bevelInset">
+                            <li><div></div></li>
+                            <li><div></div></li>
+                            <li><div></div></li>
+                            <li><div></div></li>
+
+                            <li id = "add"><div><div class="icon-plus"></div></div></li>
+                        </ul>
+                        <input type="text" class="bevelInset" id = "currentValue" value="0">
+                        <div id = "currentColor"> </div>
+                    </div>
+
+                </div>
             </div>
             <div class = "icon-psup"></div>
         </div>

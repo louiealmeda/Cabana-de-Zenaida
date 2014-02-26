@@ -209,12 +209,12 @@ function Update()
 
 setInterval(function(){ if(pageLoaded)Update();}, 1000);
 
-//setInterval(function(){
-//
-//    if(!sliderWaitForUser)
-//        ScrollSlider((sliderIndex + 1) % sliderSlideCount, sliderIndex);
-//    
-//}, 10000);
+setInterval(function(){
+
+    if(!sliderWaitForUser)
+        ScrollSlider((sliderIndex + 1) % sliderSlideCount, sliderIndex);
+    
+}, 10000);
 
 function ComputeNavBarCenter()
 {
@@ -265,8 +265,8 @@ function ScrollSlider( index, prevIndex )
 //    .animate({left:"0%", width: "0%"}, "fast")
 //    .animate({opacity: "0"}, "fast")
 //    ;
-    
-    setTimeout(function(){
+//    alert();
+//    setTimeout(function(){
     
         $(".slider .slides .inner").css({
                 "margin-left": -index * 100 + "%"
@@ -282,7 +282,7 @@ function ScrollSlider( index, prevIndex )
 //        .animate({left:"10%", width: "30%"}, "fast")
 //        ;
         
-    },500);
+//    },500);
 }
 
 

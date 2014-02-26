@@ -1072,7 +1072,9 @@ section *{
 }
 section {
     display: block;
-    height: 400px;   
+    height: auto;
+    
+/*    height: auto;*/
 /*    margin: 1%;*/
 /*    padding: 1%;*/
     position: inherit;
@@ -1082,6 +1084,7 @@ section .tablizer{
     display: table;
     width: 100%;
     height: 100%;
+    padding: 170px 0px;
 }
 
 section .tablizer>.inner{

@@ -1,6 +1,9 @@
 var editPanelVisible = false;
 var isEditing = false;
 var darkness = 1;
+var opacity = 1;
+var activeColor = {"Red": 0, "Green":0, "Blue": 0, "Alpha": 0};
+
 
 var draggableComponents = {
     "Text Area" : [ "icon-font", "element" ],
@@ -91,6 +94,14 @@ $(document).ready(function(){
     });
     
     
+    $("#colorPalette li#add").click(function(){
+        $(this).before("<li><div></div></li>\n");
+    });
+    
+    $("#colorPalette li:not(#add)").click(function(){
+        $(this).css({"outline":"1px solid red"});
+    });
+    
     $("#editPanel #header>#toggle").click(function(){        
         ShowEditPanel(!editPanelVisible);
     });
@@ -145,6 +156,10 @@ function ShowEditPanel(show){
 $(function() {
     $("#wheel").on("dragstart", function(event) { event.preventDefault(); });
     
+    var selector = $("#colorPicker #selected");
+    var offX;
+    var offY;
+    var tmpActiveColor = {"Red": 0, "Green":0, "Blue": 0, "Alpha": 0};
     $("#wheel").mousemove(function(e) {
         
         if(!this.canvas) {
@@ -153,21 +168,60 @@ $(function() {
             this.canvas.width = this.width;
             this.canvas.getContext('2d').drawImage(this, 0, 0, this.width, this.height);
         }
-         var offX  = (e.offsetX || e.clientX - $(e.target).offset().left);
-         var offY  = (e.offsetY || e.clientY - $(e.target).offset().top);
+         offX  = (e.offsetX || e.clientX - $(e.target).offset().left);
+         offY  = (e.offsetY || e.clientY - $(e.target).offset().top);
         
         var pixelData = this.canvas.getContext('2d').getImageData(offX, offY, 1, 1).data;
         
-        pixelData[0] *= darkness;
-        pixelData[1] *= darkness;
-        pixelData[2] *= darkness;
+        tmpActiveColor.Red = Math.round( pixelData[0] * darkness );
+        tmpActiveColor.Green = Math.round( pixelData[1] * darkness );
+        tmpActiveColor.Blue = Math.round( pixelData[2] * darkness );
+        tmpActiveColor.Alpha = Math.round( pixelData[3] * opacity );
         
-        $("#color").html( darkness + '<br>R: ' + pixelData[0] + '<br>G: ' + pixelData[1] + '<br>B: ' + pixelData[2] + '<br>A: ' + pixelData[3]);
+        var color;
+        var rgbaColor;
+        if(pixelData[3] != 0)
+        {
+            color = "#" +  (tmpActiveColor.Red.toString(16) + tmpActiveColor.Green.toString(16) + tmpActiveColor.Blue.toString(16)).toUpperCase();
+
+            rgbaColor = "rgba(" + tmpActiveColor.Red + "," + tmpActiveColor.Green + "," +tmpActiveColor.Blue + "," +tmpActiveColor.Alpha + ")";      
+        }
+        else
+        {
+            color = "#" +  (activeColor.Red.toString(16) + activeColor.Green.toString(16) + activeColor.Blue.toString(16)).toUpperCase();
+
+            rgbaColor = "rgba(" + activeColor.Red + "," + activeColor.Green + "," +activeColor.Blue + "," +activeColor.Alpha + ")";
+        }
         
-        $("#color").css({"color": "rgba(" + pixelData[0] + "," + pixelData[1] + "," +pixelData[2] + "," +pixelData[3] + ")" });
-        
+        $("#inputDialogue #colorPicker #currentColor").css({"background-color": rgbaColor });
+        $("#inputDialogue #colorPicker #currentValue").val( color );
     });
     
+    $("#wheel").mouseleave(function(e) {
+        var color = "#" +  (activeColor.Red.toString(16) + activeColor.Green.toString(16) + activeColor.Blue.toString(16)).toUpperCase();
+
+        var rgbaColor = "rgba(" + activeColor.Red + "," + activeColor.Green + "," +activeColor.Blue + "," +activeColor.Alpha + ")";
+        $("#inputDialogue #colorPicker #currentColor").css({"background-color": rgbaColor });
+        $("#inputDialogue #colorPicker #currentValue").val( color );
+    });
+    
+    $("#wheel").click(function(){
+       
+        if(tmpActiveColor.Alpha != 0)
+        {
+            $(selector).css({"left":(offX + 20) + "px", "top":offY - 1+ "px"}); 
+
+            activeColor = tmpActiveColor;
+
+            
+            tmpActiveColor = {"Red": 0, "Green":0, "Blue": 0, "Alpha": 0};
+            
+            
+            UpdateCurrentValue("rgba(" +activeColor.Red + ", " +  activeColor.Green + ", " + activeColor.Blue + ", " +activeColor.Alpha + ") " );
+
+            
+        }
+    });
     
     
 });
@@ -179,3 +233,11 @@ function darknessSlide(e)
     $("#dimmer").css({"opacity": opacity });
 }
 
+function transparencySlide(e)
+{
+    opacity = (e.value) / 255;
+}
+
+function isNumber (o) {
+  return ! isNaN (o-0) && o !== null && o.replace(/^\s\s*/, '') !== "" && o !== false;
+}

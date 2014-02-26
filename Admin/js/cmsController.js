@@ -1,14 +1,15 @@
 var activeElement = null;
+var activeAttribute = { key:"", value: "", attribute: {"":""} };
 var activeElementStyleBackup = "";
 var isLocked = false;
 var toolbar;
-
+var inputDialogue = {"shown":false, "target":null};
 //var isEditing = true;
 
 var elementOptions = {
     element : {
         "Background Color" : ["icon-bucket", {"background-color": "colorPicker"} ],
-        "Border" : ["icon-pigpene", {"border": "toggle"} ],
+        "Border" : ["icon-pigpene", {"border-width": "slider"} ],
         "Border Color" : ["icon-palette-painting", {"border-color": "colorPicker"} ],
         "Border Radius" : ["icon-roundrectangle", {"border-radius": "slider"} ],
         "Shadow" : ["icon-subtractshape", {"box-shadow": "slider"} ],
@@ -69,7 +70,7 @@ $(document).ready(function(){
 
     
 //    alterInlineCSS( "#handle", {"display":"block", "color":"red","float":"right", "clear":"left"} );
-
+    
 });
 
 
@@ -120,9 +121,9 @@ function CMSControlerLoad(){
         activate();
     });
     
-    activate();
+//    activate();
     
-    
+//    ShowInputDialog("colorPicker",$("#editPanel"));
 }
 
 function selectElement()
@@ -266,34 +267,54 @@ function GenerateToolbar()
 
 function ToolbarItemClick(value,index)
 {   
-    var key;
-    var val;
-    
     var target = $("#editPanel #header ul#options li#" + index);
     
+
+    if(inputDialogue.shown && $(inputDialogue.target).attr("id") == $(target).attr("id"))
+    {
+        HideInputDialog();
+        return;
+    }
+    
+    
+    inputDialogue.target = target;
+        
 //    alert(JSON.stringify(value));
 
-    $.each(value, function(tmpKey, tmpValue){
-        key = tmpKey;
-        val = tmpValue;
+    $.each(value, function(key, value){
+        activeAttribute.key = key;
+        activeAttribute.value = value;
         return false;
     });
     
     
+    
 
 //    alert(JSON.stringify(value));
     
-    switch(val)
+    switch(activeAttribute.value)
     {
         case "colorPicker":
-            value[key] = "red";
+            activeAttribute.value = $(activeElement).css(activeAttribute.key);
+//            $(activeElement).css( { activeAttribute.key : "red" } );
+            var key = activeAttribute.key;
+            if(key.indexOf("border") != -1)
+                $(activeElement).css({"border-style": "solid"});
+//            $(activeElement).css({key:"red"});
+
+            
+            ShowInputDialog("colorPicker",target);
             break;
             
         case "slider":
+            activeAttribute.value = $(activeElement).css(activeAttribute.key);
             ShowInputDialog("slider",target);
             break;
             
         default:
+            
+            
+            
             $(activeElement).css(value);
             break;
     }
@@ -326,6 +347,7 @@ function Release(save)
 
         activate();
         $(toolbar).html("");
+        HideInputDialog();
     }
 }
 
@@ -385,53 +407,92 @@ function replaceRange(original, str, start, end)
     return original.substring(0,start) + str + original.substring(end, original.length);
 }
 
+function HideInputDialog()
+{
+    var dialogue = $("#inputDialogue");
+    
+    $(dialogue).css({"visibility":"hidden", "height": "0px", "width":"0px", "top": "+=" + $(dialogue).outerHeight() + "px", "left": "+=" + $(dialogue).outerWidth() / 2 + "px", "opacity": 0});
+    
+    inputDialogue.shown = false;
+}
 
 function ShowInputDialog(inputType, target, attr, minValue, maxValue)
 {
+    inputDialogue.shown = true;
 //    alert(inputType + ", " + target);
     minValue = minValue || 0;
-    maxValue = maxValue || 0;
+    maxValue = maxValue || 100;
     
 //    alert($(target).offset().top);
     
     var dialogue = $("#inputDialogue");
+    var width = 30;
+    var height = 100;
     
-    $(dialogue).css({"top": $(target).offset().top - $(dialogue).outerHeight() - 15 + "px", "left": $(target).offset().left - ($(dialogue).outerWidth()/2 - $(target).outerWidth()/2) + "px"});
-    
-    
-    
+    var offset = 0;
     switch( inputType )
     {
         case "slider":
+            width = 30;
+            height = 100;
+            offset = 0;
+            
             
             break;
             
         case "colorPicker":
-            
+            width = 280;
+            height = 180;
+            offset = -100;
             break;
     }
     
     
+    $("#inputDialogue #inner #overflow").css({"margin-left":offset + "%"});
+//    alert($("#inputDialogue #inner #overflow").html());
+    var padding = parseInt( $(dialogue).css("padding").replace("px","") ) * 2;
+    //position popup
+    $(dialogue).css({ "visibility":"visible", "opacity":1, "height": height + "px", "width":width +"px", "top": $(target).offset().top - height - padding - 15 + "px", "left": $(target).offset().left - ( (width + padding) /2 - $(target).outerWidth()/2) + "px"});
     
-    $("#inputDialogue #currentValue").onchange(function(){
-//        $("#inputDialogue #range1").val = currentValue;
-        alert($("#inputDialogue #currentValue").html());
-    });
+    
     
 }
 
 function UpdateCurrentValue(value)
 {
+    
+    
+    focusTo(activeElement);
+
+    if( isNumber( value) )
+    {
+        var textbox = $("#inputDialogue #currentValue")[0];
+        $(textbox).val(value);
+        value = value + "px";
+    }
 //    alert(value);
-    $("#inputDialogue #currentValue").html(value);
+    activeAttribute.value = value;
+//    activeAttribute.attribute[key] = activeAttribute.value;
+    
+
+    $(activeElement).css(activeAttribute.key, activeAttribute.value );
+    
+    
+//    alert($(activeElement).css(activeAttribute.key));
+//    alert( activeAttribute.key + ", " + activeAttribute.value + "px \n" + $(activeElement).css(activeAttribute.value) );
 }
+
+setInterval(function(){
+    if(activeElement)
+        focusTo(activeElement);
+},100)
 
 function focusTo(element)
 {
 //    alert($("#pagePreview").scrollTop());
     $("#selector").css({
         left:$(element).offset().left + "px", 
-        top:$(element).offset().top + $("#pagePreview").scrollTop() + "px",
+        top:$(element).offset().top + $("#pagePreview").scrollTop() + $(window).scrollTop() + "px",
         width: $(element).outerWidth() + "px",
         height: $(element).outerHeight() + "px",
         "z-index": parseInt($(element).css("z-index")) + 1

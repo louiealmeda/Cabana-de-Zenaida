@@ -1,6 +1,7 @@
-#todo fix on drop of components 
+#todo fade away value selectors on click out and others
+#todo fix on drop of components - disable dropping when locked 
 #todo update column on new child
-#todo value selectors
+#todo Parallax Layers
 #todo use new images
 #todo Reorder Element
 #todo Image Upload

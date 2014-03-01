@@ -1,0 +1,38 @@
+#todo change Theme Color
+#todo Parallax Layers
+
+#add Sections
+#tabs reordering
+
+#auto update input dialogue current value
+#image resizing
+
+#fix footer
+#todo use new images
+#todo Reorder Element
+#todo Image Upload
+#todo Image Gallery
+
+#todo integrate chat in admin
+
+#todo Fix dialogue structure
+
+
+#todo Vicinity Map Gallery
+
+#todo User Reviews through email
+#todo    -Admin reply
+#todo Paypal reservation system
+#todo    -Email notification
+#todo Reserved Clients info [database] 
+
+#todo Admin ability to add remove reservations 
+
+
+
+//////////////
+Theme color changing logic:
+-> embed current website css to internal css style tag
+-> change everything inside, take not of the selected colors
+-> put to database
+-> on publish, write to website styles

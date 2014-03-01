@@ -1067,6 +1067,8 @@ body>#content {
 /*    margin:5px;*/
     padding:5px;
 /*    margin:10px 0px;*/
+    background-position: center;
+    background-size: cover;
 }
 
 .shadowed{

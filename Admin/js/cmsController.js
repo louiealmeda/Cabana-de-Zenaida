@@ -23,7 +23,7 @@ var elementOptions = {
     text : {
         "Text Color" : ["icon-crayon", {"color": "colorPicker"} ],
         "Font Size" : ["icon-text-height", {"font-size": "slider"} ],
-        "Shadow" : ["icon-subtractshape", {"text-shadow": "slider"} ],
+        "Text Shadow" : ["icon-fontcase", {"text-shadow": "slider"} ],
         "Align Left" : ["icon-align-left", {"text-align": "left"} ],
         "Align Center" : ["icon-align-center", {"text-align": "center"} ],
         "Align Right" : ["icon-align-right", {"text-align": "right"} ],
@@ -31,17 +31,8 @@ var elementOptions = {
         }
 //    ,
     
-//    "alignJustify" : ["icon-align-justify", "text-align", "justify"],
-//        "alignLeft" : ["icon-align-left", "text-align", "left"],
-//        "alignCenter" : ["icon-align-center", "text-align", "center"],
-//        "alignRight" : ["icon-align-right", "text-align", "right"]
-
-    
 //    textArea : ["font", "textUp", "textDown", "textColor", "highLightColor", "bold", "italize", "underline", "strikeThrough","textShadow"],
 //    column: ["columns", "spacing"]
-    
-    
-    
 };
 
 
@@ -262,24 +253,28 @@ function SpawnElement(containingE, draggedE)
 
 function GenerateToolbar()
 {
-//    
-    var editingIcons = "<li title ='Save and release element' class = 'icon-ok-circle' onclick='Release(true)'></li> <li >&nbsp;</li>";
+//  
+    var invalidClasses = ["ui-droppable"];
+    var editingIcons = "<li title ='Save and release element' class = 'icon-ok-circle' onclick='Release(true)'>";
     
-//    var classes = $(activeElement).attr("class").split(" ");
-    var classes = ["element", "text"];//
+    var classes = $(activeElement).attr("class").split(" ");
+    
+    classes.splice(classes.indexOf(invalidClasses[0]),1);
+//    var classes = ["element", "text"];//
     //eo = element option
     var eo;
     var index = 0;
     for(var i = 0; i < classes.length; i++)
     {
         eo = classes[i];
-//        alert(eo);
+        editingIcons += "<li class = 'divider'></div>";
         $.each(elementOptions[eo], function(key, value){
 //            alert(key + ": " + value); 
             editingIcons += "<li id = '" + index + "' class = '" + value[0] + "' title ='" + key + "' onclick = \'ToolbarItemClick(" + JSON.stringify(value[1]) + "," + index + ")\'></li>\n"; 
             
             index++;
         });
+        
         
     }
     

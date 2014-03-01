@@ -14,7 +14,13 @@ var chatStarted = false;
 
 $(document).ready(function(){
          
-   
+    var container = $("#pagePreview");
+
+    if ( $(container).height() == null)
+        container = window;
+
+    $(container).scroll(function(){ scroll(container);  });
+
     
     $.post("clientBackend.php", {method:"VisitorSessionCheck"},function(data){
 //        $("title").html(data);
@@ -33,6 +39,7 @@ $(document).ready(function(){
     $("body").css({ "overflow":"auto"});
     
     onResize();
+    scroll(container);
     NavBarClick();
     
 //    ComputeNavBarCenter();
@@ -322,8 +329,8 @@ function onResize(){
     if($(window).width() < 500)
         sliderRatioApplied *= 2;
     
-    
-    $(".slide").css({"height": $(window).width() * sliderRatioApplied + "px"});
+//    $(".slide").css({"height": $(window).width() * sliderRatioApplied + "px"});
+    $(".slide").css({"height": $(window).height() * 0.8 + "px"});
     
     
 //////////////reflowing elements/////////////////
@@ -351,13 +358,7 @@ function onResize(){
 
 $(document).ready(function(){
     
-    var container = $("#pagePreview");
-
-    if ( $(container).height() == null)
-        container = window;
-
-    $(container).scroll(function(){ scroll(container);  });
-
+   
 });
 
 ////////Scrolling functions//////////////

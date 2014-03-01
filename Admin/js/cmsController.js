@@ -141,6 +141,11 @@ function selectElement()
 function activate()
 {
     deactivate();
+    
+    $("#pagePreview").click(function(){
+        HideInputDialog();
+    });
+    
     $("#selector").css({"opacity":"1","visibility":"visible"});//.delay(500).css({"display":"block"});
     $(".element").css({"outline":"1px dashed gray"});
 //    $(".element").addClass(".editing");
@@ -155,8 +160,9 @@ function activate()
         });
     });
     
-    
+    $(".component").css({"pointer-events":"all"});
     EnableDropping(true);
+    
     
     
 }
@@ -170,7 +176,7 @@ function deactivate()
 //    $(".element").removeClass(".editing");
     $(".element").unbind();
     EnableDropping(false);
-    
+    $(".component").css({"pointer-events":"none"});
     
     
 //    $(".element").droppable('destroy');
@@ -190,6 +196,10 @@ function EnableDropping(state)
 
                 activate();
             }
+        });
+        
+        $("#components").droppable({
+            
         });
 //        $(".element").draggable( "enable" );
     }
@@ -228,9 +238,16 @@ function SpawnElement(containingE, draggedE)
         
     }
     
-    alert(elementString);
+//    alert(elementString);
     
     $( containingE ).append( elementString );
+    
+    if($(containingE).hasClass("columns"))
+    {
+        $(containingE).removeClass(); 
+        $(containingE).addClass("element columns " + "c" + $(containingE).children().length);
+        
+    }
     
 }
 

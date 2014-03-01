@@ -16,7 +16,6 @@ var draggableComponents = {
 $(function() {
     sessionCheck(false);
     
-        
 //    $( "ul, li" ).disableSelection();
 });
 

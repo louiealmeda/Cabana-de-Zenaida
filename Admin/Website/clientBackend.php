@@ -89,6 +89,7 @@ function ChatSend($visitorID, $isOutgoing, $msg)
         
         $_SESSION['lastMessageSent'] = $current;
         
+        /// blocks message
         if( $current - $time < 2)
                 return;
         
@@ -102,7 +103,7 @@ function ChatSend($visitorID, $isOutgoing, $msg)
             if(!$ret)
                 die(mysql_error());
             
-//            echo "<div class = 'out'><span>$msg</span></div>";
+            echo "<div class = 'out'><span>$msg</span></div>";
         }
     }
 

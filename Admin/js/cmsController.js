@@ -15,10 +15,19 @@ var elementOptions = {
         "Shadow" : ["icon-subtractshape", {"box-shadow": "slider"} ],
         "Margin" : ["icon-snaptogrid", {"margin": "slider"} ],
         "Padding" : ["icon-canvasrulers", {"padding": "slider"} ],
-        "Align Left" : ["icon-alignleftedge", {"text-align": "left"} ],
-        "Align Center" : ["icon-alignhorizontalcenter", {"text-align": "center"} ],
-        "Align Right" : ["icon-alignrightedge", {"text-align": "right"} ]
+        "Align Left" : ["icon-alignleftedge", {"float": "left"} ],
+        "Align Center" : ["icon-alignhorizontalcenter", {"float": "none"} ],
+        "Align Right" : ["icon-alignrightedge", {"float": "right"} ]
 
+        },
+    text : {
+        "Text Color" : ["icon-crayon", {"color": "colorPicker"} ],
+        "Font Size" : ["icon-text-height", {"font-size": "slider"} ],
+        "Shadow" : ["icon-subtractshape", {"text-shadow": "slider"} ],
+        "Align Left" : ["icon-align-left", {"text-align": "left"} ],
+        "Align Center" : ["icon-align-center", {"text-align": "center"} ],
+        "Align Right" : ["icon-align-right", {"text-align": "right"} ],
+        "Justify" : ["icon-align-justify", {"text-align": "justify"} ]
         }
 //    ,
     
@@ -256,20 +265,17 @@ function GenerateToolbar()
 //    
     var editingIcons = "<li title ='Save and release element' class = 'icon-ok-circle' onclick='Release(true)'></li> <li >&nbsp;</li>";
     
-    var classes = ["element"];//$(activeElement).attr("class").split(" , ");
-    
+//    var classes = $(activeElement).attr("class").split(" ");
+    var classes = ["element", "text"];//
     //eo = element option
     var eo;
     var index = 0;
     for(var i = 0; i < classes.length; i++)
     {
         eo = classes[i];
-
+//        alert(eo);
         $.each(elementOptions[eo], function(key, value){
-        
 //            alert(key + ": " + value); 
-            
-            
             editingIcons += "<li id = '" + index + "' class = '" + value[0] + "' title ='" + key + "' onclick = \'ToolbarItemClick(" + JSON.stringify(value[1]) + "," + index + ")\'></li>\n"; 
             
             index++;

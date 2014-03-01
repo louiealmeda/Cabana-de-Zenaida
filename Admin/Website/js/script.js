@@ -138,9 +138,12 @@ $(document).ready(function(){
 
             $.post("clientBackend.php", {method:"ChatSend", msg:this.value}, function(data){
 //                $("#content #chatbox").append(data);
-                Update();
-                
-                $("#chat #textChat").val("");
+                if(data != "")
+                {
+                    Update();
+
+                    $("#chat #textChat").val("");
+                }
             });
         }
         

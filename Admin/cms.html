@@ -139,7 +139,29 @@
                         </li>
                         
                         <li>
-                            Files
+                            <div id = "imageManager">
+                                <ul>
+                                    
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                </ul>
+                                <input type="range" id = "zoom" style="display:inline-block;" onchange="zoomImageLibrary(this.value)" min = "50" max = "150" value="60">
+                                <form id="form-upload" style="display:inline-block">
+                                    <input type="hidden" name = "method" value="uploadImage">
+                                    <input type="file" name="upload" id="upload" accept='image/*' multiple>
+                                </form>
+                            </div>
                         </li>
                     </ul>
                     

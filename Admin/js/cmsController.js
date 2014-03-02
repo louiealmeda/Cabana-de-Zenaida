@@ -89,29 +89,9 @@ function CMSControlerLoad(){
     
     
     
-    $("#selector>#handle>#edit").click(function(){
-        
-        $(".element").unbind();
-        
-        if(isLocked)
-        {
-            Release(false);
-            
-        }
-        else
-        {
-            $(this).removeClass("icon-pencil");
-            $(this).addClass("icon-undo");
-            $(this).tooltip({content:"Release element without saving"}).tooltip('close').tooltip('open');
-            $(this).attr("title","Release element without saving");
-            /////////Element Selection
-            selectElement();
-            isLocked = true;
-        }
-//        alert($(this).attr("title"));
-        
-        
-    });
+    
+    
+    $("#selector>#handle>#edit").click(LockElement);
     
     $("#pagePreview").click(function(){
         HideInputDialog();
@@ -130,6 +110,28 @@ function CMSControlerLoad(){
 //    activate();
     
 //    ShowInputDialog("shadow",$("#editPanel"));
+}
+
+function LockElement()
+{
+    var e = $("#selector>#handle>#edit");
+    $(".element").unbind();
+        
+    if(isLocked)
+    {
+        Release(false);
+
+    }
+    else
+    {
+        $(e).removeClass("icon-pencil");
+        $(e).addClass("icon-undo");
+        $(e).tooltip({content:"Release element without saving"}).tooltip('close').tooltip('open');
+        $(e).attr("title","Release element without saving");
+        /////////Element Selection
+        selectElement();
+        isLocked = true;
+    }
 }
 
 function selectElement()
@@ -164,6 +166,10 @@ function activate()
             focusTo(activeElement.Object);
             return false;
         });
+    });
+    
+    $(".element").dblclick(function(){
+        LockElement();
     });
     
     $(".component").css({"pointer-events":"all"});

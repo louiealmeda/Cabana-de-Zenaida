@@ -4,6 +4,9 @@ var darkness = 1;
 var opacity = 1;
 var activeColor = {"Red": 0, "Green":0, "Blue": 0, "Alpha": 0};
 
+var pixelData;
+var offX;
+var offY;
 
 var draggableComponents = {
     "Text Area" : [ "icon-font", "element" ],
@@ -110,6 +113,40 @@ $(document).ready(function(){
     $("#editPanel #header>#toggle").click(function(){        
         ShowEditPanel(!editPanelVisible);
     });
+    
+    
+    
+    
+    $('#upload').bind("change", function(){
+    var formData = new FormData($("#form-upload")[0]);
+    //loop for add $_FILES["upload"+i] to formData
+    for (var i = 0, len = document.getElementById('upload').files.length; i < len; i++) {
+        formData.append("upload"+(i+1), document.getElementById('upload').files[i]);
+    }
+    //send formData to server-side
+    $.ajax({
+        url : "dbManager.php",
+        type : 'post',
+        data : formData,
+//        dataType : 'json',
+        async : true,
+        processData: false,  // tell jQuery not to process the data
+        contentType: false,   // tell jQuery not to set contentType
+        error : function(request){
+            console.log(request.responseText);
+        },
+        success : function(data){
+            //place your code here
+//            alert(json);
+            alert(data);
+            $("#imageManager>ul").html(data);
+            
+        }
+    }); 
+});  
+    
+    
+    
 });
 
 function GenerateComponents()
@@ -161,10 +198,9 @@ function ShowEditPanel(show){
 $(function() {
     $("#wheel").on("dragstart", function(event) { event.preventDefault(); });
     
-    var selector = $("#colorPicker #selected");
-    var offX;
-    var offY;
+    
     var tmpActiveColor = {"Red": 0, "Green":0, "Blue": 0, "Alpha": 0};
+    
     $("#wheel").mousemove(function(e) {
         
         if(!this.canvas) {
@@ -176,7 +212,7 @@ $(function() {
          offX  = (e.offsetX || e.clientX - $(e.target).offset().left);
          offY  = (e.offsetY || e.clientY - $(e.target).offset().top);
         
-        var pixelData = this.canvas.getContext('2d').getImageData(offX, offY, 1, 1).data;
+        pixelData = this.canvas.getContext('2d').getImageData(offX, offY, 1, 1).data;
         
         tmpActiveColor.Red = Math.round( pixelData[0] * darkness );
         tmpActiveColor.Green = Math.round( pixelData[1] * darkness );
@@ -185,6 +221,7 @@ $(function() {
 
         var color;
         var rgbaColor;
+        
         if(pixelData[3] != 0)
         {
             color = "#" +  (tmpActiveColor.Red.toString(16) + tmpActiveColor.Green.toString(16) + tmpActiveColor.Blue.toString(16)).toUpperCase();
@@ -211,36 +248,64 @@ $(function() {
     });
     
     $("#wheel").click(function(){
-       
-        if(tmpActiveColor.Alpha != 0)
+        var selector = $("#colorPicker #selected");
+        if(pixelData[3] != 0)
         {
             $(selector).css({"left":(offX + 20) + "px", "top":offY - 1+ "px"}); 
 
             activeColor = tmpActiveColor;
 
-            
+
             tmpActiveColor = {"Red": 0, "Green":0, "Blue": 0, "Alpha": 0};
-            
-            
+
+
             UpdateCurrentValue("rgba(" +activeColor.Red + ", " +  activeColor.Green + ", " + activeColor.Blue + ", " +activeColor.Alpha + ") " );
 
-            
-        }
+
+        } 
     });
     
     
 });
+
+function zoomImageLibrary(value)
+{
+    $("#editPanel #editPanelContent #overflow #imageManager>ul>li").css({"width":value + "px", "height":value + "px"});
+}
+
+
+
+
+
+
+////////////Color picker///////
+
+function selectColor()
+{
+    
+}
+
 
 function darknessSlide(e)
 {
     darkness = (e.value) / 255;
     var opacity = (255 - e.value) / 255;
     $("#dimmer").css({"opacity": opacity });
+//    activeColor.Red = Math.round( pixelData[0] * darkness );
+//    activeColor.Green = Math.round( pixelData[1] * darkness );
+//    activeColor.Blue = Math.round( pixelData[2] * darkness );
+//    
+//    UpdateCurrentValue("rgba(" +activeColor.Red + ", " +  activeColor.Green + ", " + activeColor.Blue + ", " +activeColor.Alpha + ") " );
+    //    selectColor();
 }
 
 function transparencySlide(e)
 {
     opacity = (e.value) / 255;
+    
+//    activeColor.Alpha = opacity;
+//    UpdateCurrentValue("rgba(" +activeColor.Red + ", " +  activeColor.Green + ", " + activeColor.Blue + ", " +activeColor.Alpha + ") " );
+    //    selectColor();
 }
 
 function isNumber (o) {

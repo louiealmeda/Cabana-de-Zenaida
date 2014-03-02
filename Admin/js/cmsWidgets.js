@@ -72,10 +72,10 @@ function UpdateComponentValue(v, index)
         switch(index)
         {
             case 0:
-                $(activeElement.Object).css({"width":v * 2 + "%"});
+                $(activeElement.Object).css({"min-width":v * 2 + "%"});
                 break;
             case 1:
-                $(activeElement.Object).css({"height":v * 10 + "px"});
+                $(activeElement.Object).css({"min-height":v * 10 + "px"});
                 break;
             case 2:
                 $(activeElement.Object).css({"transform": "rotate(" + v + "deg)"});

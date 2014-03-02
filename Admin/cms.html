@@ -18,16 +18,22 @@
         <script type="text/javascript" language = "javascript" src="js/jquery-2.0.3.min.js"></script>    
         <script type="text/javascript" language = "javascript" src="js/jquery-ui-1.10.4.custom.min.js"></script>    
         <script type="text/javascript" language = "javascript" src="utilities.js"></script>  
-        
+
+<!--[[[[[[[[[[CMS]]]]]]]]]]-->        
+        <script type="text/javascript" src="js/cmsWidgets.js"></script>
         <script type="text/javascript" src="js/cmsController.js"></script>
         <script language = "javascript" src="js/cmsjs.js"></script>
         
-        
-        <link class = "websiteStyle" type="text/css" rel="stylesheet" href="Website/styles.css">
-        <link class = "websiteStyle" type="text/css" rel="stylesheet" href="Website/css/sliderStyles.css">
+<!--[[[[[[[[[[Website]]]]]]]]]]-->
+<!--        <link type="text/css" rel="stylesheet" href="Website/styles.css">-->
+<!--        <link class = "websiteStyle" type="text/css" rel="stylesheet" href="Website/css/sliderStyles.css">-->
         
         <script type="text/javascript" src="Website/js/script.js"></script>
         
+        
+        <style id = "currentTheme">
+            
+        </style>
         
 
     </head>
@@ -56,7 +62,7 @@
                     <li class = "selected"> Sections</li>
                     <li >Colors</li>
                     <li>Linking</li>
-                    <li>Saved Versions</li>
+                    <li>History</li>
                     <li>Files</li>
     <!--
                     <li class="icon">A</li>
@@ -96,15 +102,40 @@
                         </li>
                             
                         <li>
-                            
+                            <div id = "colors">
+                                <select id = "themes">
+                                    <option>Default</option>
+                                    <option>Inverted</option>
+                                    <option>Aqua</option>
+                                    <option>Custom</option>
+                                </select>
+                                <div class="icon-chevron-down" style="display: inline-block; position: relative; top: 2px; left: -25px; pointer-events: none;" ></div>
+                                <br>
+                                Primary Color:<div class="colorPalette bevelInset" id = "primary" onclick="changeThemeColor(this,0);" ></div><br>
+                                Secondary Color:<div class ="colorPalette bevelInset" id = "secondary"onclick="changeThemeColor(this,1);" ></div><br>
+                                Background Color:<div class ="colorPalette bevelInset" id = "background"onclick="changeThemeColor(this,2);" ></div>
+                            </div>
                         </li>
                         
                         <li>
-                           
+                           Linking
                         </li>
                         
                         <li>
-                            Saved Versions
+                            <div id = "historyPane">
+                                <ul class="bevelInset">
+                                    <li>test</li>
+                                    <li>The</li>
+                                    <li>quick brown fox</li>
+                                    <li>Jumps over the </li>
+                                    <li>lazy dog</li>
+                                    <li>test</li>
+                                    <li>The</li>
+                                    <li>quick brown fox</li>
+                                    <li>Jumps over the </li>
+                                    <li>lazy dog</li>
+                                </ul>
+                            </div>
                         </li>
                         
                         <li>
@@ -147,6 +178,16 @@
                         </ul>
                         <input type="text" class="bevelInset" id = "currentValue" value="0">
                         <div id = "currentColor"> </div>
+                    </div>
+                    <div id = "shadow">
+                        <input type="range" id = "range1" onchange="UpdateComponentValue( this.value, 0 );" orient="vertical" max="50">
+                        <input type="range" id = "range2" onchange="UpdateComponentValue( this.value, 1 );" orient="vertical" max="50">
+                        <input type="range" id = "range3" onchange="UpdateComponentValue( this.value, 2 );" orient="vertical">
+<!--
+                        <input type="text" id = "currentValue" value="0">
+                        <input type="text" id = "currentValue" value="0">
+                        <input type="text" id = "currentValue" value="0">
+-->
                     </div>
 
                 </div>

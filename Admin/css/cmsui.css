@@ -203,6 +203,53 @@ body, html {
     
 }
 
+
+#editPanel #editPanelContent #overflow #historyPane {
+    padding: 20px;
+}
+
+#editPanel #editPanelContent #overflow #historyPane>ul {
+    list-style: none;
+    width: 300px;
+    padding: 0px;
+/*    border: 1px solid red;*/
+    height: 160px;
+    overflow-y: scroll;
+}
+
+#editPanel #editPanelContent #overflow #historyPane>ul>li {
+    padding:2px 15px;
+    border-top: 1px solid black;
+    cursor: pointer;
+    cursor: hand;
+}
+
+#editPanel #editPanelContent #overflow #historyPane>ul>li:hover{
+    background-color: gray;
+}
+
+#editPanel #editPanelContent #overflow #colors {
+/*    background-color: pink;*/
+    padding: 20px;
+    padding-left: 30px;
+    font-size: 0.9em;
+}
+
+#editPanel #editPanelContent #overflow #colors #themes {
+    background: transparent;
+    
+    width: 150px;
+    padding: 5px;
+    font-size: 0.9em;
+    line-height: 1;
+    border: 1px solid gray;
+    box-shadow: 0px 0px 3px rgba(0,0,0,0.5);
+    border-radius: 2px;
+    height:auto;
+    color: white;
+    -webkit-appearance: none;
+}
+
 #editPanel #editPanelContent #inner{
     width:100%;
     overflow:none;
@@ -223,6 +270,8 @@ body, html {
     display:inline-block;
     width:0px;
     height:100%;
+    padding: 0px;
+    margin: 0px;
 /*    background-color:black;*/
 }
 
@@ -444,6 +493,7 @@ body, html {
 }
 
 
+/*#inputDialogue input[type="text"]{*/
 #inputDialogue #colorPicker #currentValue{
     font-size: 0.9em;
     width: 55px;
@@ -477,6 +527,11 @@ body, html {
 
 div.element{
 /*    border-bottom-style: solid;*/
+    border-width: 1px;
+    border-color: transparent;
+    border-style: solid;
+    background-position: center;
+    background-size: cover;
 }
 /*element states*/
 /*
@@ -536,7 +591,7 @@ div.element.hoveredAddingElement{
 
 #inputDialogue #overflow{
     height: 100%;
-    width: 200%;
+    width: 300%;
     z-index: 1;
     margin-left: 0%;
     overflow: hidden;
@@ -550,15 +605,30 @@ div.element.hoveredAddingElement{
 
 #inputDialogue #overflow>div{
 /*    outline: 1px solid red;*/
-    width: 50%;
+    width: 33.33333%;
     overflow: hidden;
     float: left;
     margin: 0px;
     padding: 0px 0px;
+    height: 100%;
 }
 #inputDialogue #overflow>div#range{
     position: relative;
     height: 100%;
+}
+
+#inputDialogue #overflow #shadow input[type="range"]{
+    -webkit-appearance: slider-vertical;
+    height: 85%;
+    width: 30px;
+    position: relative;
+    top: 10px;
+    display: inline-block;
+    left: 0px;
+    margin: 0px;
+    padding: 0px;
+    float: left;
+    
 }
 
 #inputDialogue>.icon-psup{
@@ -597,4 +667,17 @@ div.element.hoveredAddingElement{
     background-color: transparent !important;
     color: white;
     border: none !important;
+}
+
+.colorPalette {
+    display: inline-block;
+    width: 35px;
+    height: 20px;
+/*    background-color: blue;*/
+    border-radius: 5px;
+    cursor: pointer;
+    cursor: hand;
+    position: relative;
+    top: 5px;
+    margin: 0px 5px;
 }

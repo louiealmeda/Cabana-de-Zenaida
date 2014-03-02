@@ -36,11 +36,17 @@ $(document).ready(function(){
 //    });
     
     
-    $("#pagePreview").load("Website/index.html #main",function(){
-        $("#contact_us").css({"display":"none"});
-        CMSControlerLoad();
-    });
+
+    $.post("dbManager.php", {method:"getStyleSheet"}, function(data){
+        $("#currentTheme").html(data);
+//        alert(data);
     
+        $("#pagePreview").load("Website/index.html #main",function(){
+            $("#contact_us").css({"display":"none"});
+            CMSControlerLoad();
+        });
+    
+    });
     GenerateComponents();
     
     
@@ -175,8 +181,8 @@ $(function() {
         tmpActiveColor.Red = Math.round( pixelData[0] * darkness );
         tmpActiveColor.Green = Math.round( pixelData[1] * darkness );
         tmpActiveColor.Blue = Math.round( pixelData[2] * darkness );
-        tmpActiveColor.Alpha = Math.round( pixelData[3] * opacity );
-        
+        tmpActiveColor.Alpha = Math.round(  opacity );
+
         var color;
         var rgbaColor;
         if(pixelData[3] != 0)

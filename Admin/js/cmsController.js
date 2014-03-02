@@ -1,9 +1,9 @@
-var activeElement = null;
-var activeAttribute = { key:"", value: "", attribute: {"":""} };
-var activeElementStyleBackup = "";
+//var activeElement = null;
+//var activeElement.ActiveAttribute = { key:"", value: "", attribute: {"":""} };
+//var activeElementStyleBackup = "";
 var isLocked = false;
 var toolbar;
-var inputDialogue = {"shown":false, "target":null};
+var InputDialogue = {"Shown":false, "Target":null};
 //var isEditing = true;
 
 var elementOptions = {
@@ -12,23 +12,26 @@ var elementOptions = {
         "Border" : ["icon-pigpene", {"border-width": "slider"} ],
         "Border Color" : ["icon-palette-painting", {"border-color": "colorPicker"} ],
         "Border Radius" : ["icon-roundrectangle", {"border-radius": "slider"} ],
-        "Shadow" : ["icon-subtractshape", {"box-shadow": "slider"} ],
+        "Shadow" : ["icon-subtractshape", {"box-shadow": "triSlider"} ],
         "Margin" : ["icon-snaptogrid", {"margin": "slider"} ],
         "Padding" : ["icon-canvasrulers", {"padding": "slider"} ],
+        "Transform" : ["icon-transform", {"transform": "triSlider"} ],
         "Align Left" : ["icon-alignleftedge", {"float": "left"} ],
         "Align Center" : ["icon-alignhorizontalcenter", {"float": "none"} ],
         "Align Right" : ["icon-alignrightedge", {"float": "right"} ]
-
         },
     text : {
         "Text Color" : ["icon-crayon", {"color": "colorPicker"} ],
         "Font Size" : ["icon-text-height", {"font-size": "slider"} ],
-        "Text Shadow" : ["icon-fontcase", {"text-shadow": "slider"} ],
+        "Text Shadow" : ["icon-fontcase", {"text-shadow": "triSlider"} ],
         "Align Left" : ["icon-align-left", {"text-align": "left"} ],
         "Align Center" : ["icon-align-center", {"text-align": "center"} ],
         "Align Right" : ["icon-align-right", {"text-align": "right"} ],
         "Justify" : ["icon-align-justify", {"text-align": "justify"} ]
-        }
+        },
+    image: {
+        
+    }
 //    ,
     
 //    textArea : ["font", "textUp", "textDown", "textColor", "highLightColor", "bold", "italize", "underline", "strikeThrough","textShadow"],
@@ -110,20 +113,23 @@ function CMSControlerLoad(){
         
     });
     
+    $("#pagePreview").click(function(){
+        HideInputDialog();
+    });
     
     $("#selector>#handle>#remove").click(function(){
-        var parentE = $(activeElement).parent();
+        var parentE = $(activeElement.Object).parent();
         focusTo(parentE);
-        $(activeElement).remove();
+        $(activeElement.Object).remove();
         
-        activeElement = parentE;
+        activeElement.Object = parentE;
         
         activate();
     });
     
 //    activate();
     
-//    ShowInputDialog("colorPicker",$("#editPanel"));
+//    ShowInputDialog("shadow",$("#editPanel"));
 }
 
 function selectElement()
@@ -132,8 +138,8 @@ function selectElement()
     
     
 //    $("#selector").css({"border":"2px solid cyan"});
-    activeElement.contentEditable = true;
-    activeElementStyleBackup = $(activeElement).attr("style");
+    activeElement.Object.contentEditable = true;
+    activeElement.BackupStyle = $(activeElement.Object).attr("style");
     GenerateToolbar();
     
 }
@@ -154,8 +160,8 @@ function activate()
         $(this).bind("mousemove", function(){
 //            alert();
 
-            activeElement = this;
-            focusTo(activeElement);
+            activeElement.Object = this;
+            focusTo(activeElement.Object);
             return false;
         });
     });
@@ -254,12 +260,10 @@ function SpawnElement(containingE, draggedE)
 function GenerateToolbar()
 {
 //  
-    var invalidClasses = ["ui-droppable"];
     var editingIcons = "<li title ='Save and release element' class = 'icon-ok-circle' onclick='Release(true)'>";
     
-    var classes = $(activeElement).attr("class").split(" ");
+    var classes = $(activeElement.Object).attr("class").split(" ");
     
-    classes.splice(classes.indexOf(invalidClasses[0]),1);
 //    var classes = ["element", "text"];//
     //eo = element option
     var eo;
@@ -267,14 +271,18 @@ function GenerateToolbar()
     for(var i = 0; i < classes.length; i++)
     {
         eo = classes[i];
-        editingIcons += "<li class = 'divider'></div>";
-        $.each(elementOptions[eo], function(key, value){
-//            alert(key + ": " + value); 
-            editingIcons += "<li id = '" + index + "' class = '" + value[0] + "' title ='" + key + "' onclick = \'ToolbarItemClick(" + JSON.stringify(value[1]) + "," + index + ")\'></li>\n"; 
-            
-            index++;
-        });
         
+        
+        if(eo in elementOptions)
+        {
+            editingIcons += "<li class = 'divider'></div>";
+            $.each(elementOptions[eo], function(key, value){
+    //            alert(key + ": " + value); 
+                editingIcons += "<li id = '" + index + "' class = '" + value[0] + "' title ='" + key + "' onclick = \'ToolbarItemClick(" + JSON.stringify(value[1]) + "," + index + ")\'></li>\n"; 
+
+                index++;
+            });
+        }
         
     }
     
@@ -285,64 +293,90 @@ function GenerateToolbar()
 
 function ToolbarItemClick(value,index)
 {   
+    
+    
+    
+    
     var target = $("#editPanel #header ul#options li#" + index);
     
-
-    if(inputDialogue.shown && $(inputDialogue.target).attr("id") == $(target).attr("id"))
+    if(inputDialogue.Shown && $(inputDialogue.Target).attr("id") == $(target).attr("id"))
     {
         HideInputDialog();
         return;
     }
-    
-    
-    inputDialogue.target = target;
+
+    InputDialogue.Target = target;
         
 //    alert(JSON.stringify(value));
 
     $.each(value, function(key, value){
-        activeAttribute.key = key;
-        activeAttribute.value = value;
+        activeElement.ActiveAttribute.key = key;
+        activeElement.ActiveAttribute.value = value;
         return false;
     });
-    
-    
     
 
 //    alert(JSON.stringify(value));
     
-    switch(activeAttribute.value)
+    switch(activeElement.ActiveAttribute.value)
     {
         case "colorPicker":
-            activeAttribute.value = $(activeElement).css(activeAttribute.key);
-//            $(activeElement).css( { activeAttribute.key : "red" } );
-            var key = activeAttribute.key;
+            
+            
+            activeElement.ActiveAttribute.value = $(activeElement.Object).css(activeElement.ActiveAttribute.key);
+            var key = activeElement.ActiveAttribute.key;
             if(key.indexOf("border") != -1)
-                $(activeElement).css({"border-style": "solid"});
-//            $(activeElement).css({key:"red"});
-
+                $(activeElement.Object).css({"border-style": "solid"});
+            
             
             ShowInputDialog("colorPicker",target);
             break;
             
         case "slider":
-            activeAttribute.value = $(activeElement).css(activeAttribute.key);
+            activeElement.ActiveAttribute.value = $(activeElement.Object).css(activeElement.ActiveAttribute.key);
+            
             ShowInputDialog("slider",target);
+            
+            break;
+            
+        case "triSlider":
+            activeElement.ActiveAttribute.value = $(activeElement.Object).css(activeElement.ActiveAttribute.key);
+            ShowInputDialog("triSlider",target);
             break;
             
         default:
             
-            
-            
-            $(activeElement).css(value);
+            $(activeElement.Object).css(value);
             break;
     }
-//    alert(JSON.stringify(value));
-
-
     
-//    alert("done!");
-//    alterInlineCSS( activeElement, value );
     
+    
+}
+
+function changeThemeColor(sender, index)
+{
+    ShowInputDialog("colorPicker",sender, function(value){
+        var prev = $(sender).css("background-color");
+        value = value.substr(0, value.lastIndexOf(',')) + ")";
+        value = value.replace('a',"");
+        
+//        $(sender).css({"background-color":value});
+        
+        
+        ModifyTheme(prev, value);
+    } );
+} 
+
+function ModifyTheme(prev, value)
+{
+//    alert(prev + "|" + value);
+//    $("#currentTheme").html(function(index, html){
+//        return html.replace(prev, value); 
+//    });
+    var html = $("#currentTheme").html();
+    $("#currentTheme").html(html.split(prev).join(value));//.replace(prev, value));
+//    alert(prev + "|" + value + "\n" + $("#currentTheme").html());
 }
 
 function Release(save)
@@ -350,12 +384,12 @@ function Release(save)
     if(isLocked)
     {
         if(!save)
-            $(activeElement).attr("style", activeElementStyleBackup);
+            $(activeElement.Object).attr("style", activeElement.BackupStyle);
 
     //    activeElementStyleBackup = "";
         isLocked = false;
 
-        activeElement.contentEditable = false;
+        activeElement.Object.contentEditable = false;
 
         var edit = $("#selector>#handle>#edit");
         $(edit).addClass("icon-pencil");
@@ -425,84 +459,10 @@ function replaceRange(original, str, start, end)
     return original.substring(0,start) + str + original.substring(end, original.length);
 }
 
-function HideInputDialog()
-{
-    var dialogue = $("#inputDialogue");
-    
-    $(dialogue).css({"visibility":"hidden", "height": "0px", "width":"0px", "top": "+=" + $(dialogue).outerHeight() + "px", "left": "+=" + $(dialogue).outerWidth() / 2 + "px", "opacity": 0});
-    
-    inputDialogue.shown = false;
-}
-
-function ShowInputDialog(inputType, target, attr, minValue, maxValue)
-{
-    inputDialogue.shown = true;
-//    alert(inputType + ", " + target);
-    minValue = minValue || 0;
-    maxValue = maxValue || 100;
-    
-//    alert($(target).offset().top);
-    
-    var dialogue = $("#inputDialogue");
-    var width = 30;
-    var height = 100;
-    
-    var offset = 0;
-    switch( inputType )
-    {
-        case "slider":
-            width = 30;
-            height = 100;
-            offset = 0;
-            
-            
-            break;
-            
-        case "colorPicker":
-            width = 280;
-            height = 180;
-            offset = -100;
-            break;
-    }
-    
-    
-    $("#inputDialogue #inner #overflow").css({"margin-left":offset + "%"});
-//    alert($("#inputDialogue #inner #overflow").html());
-    var padding = parseInt( $(dialogue).css("padding").replace("px","") ) * 2;
-    //position popup
-    $(dialogue).css({ "visibility":"visible", "opacity":1, "height": height + "px", "width":width +"px", "top": $(target).offset().top - height - padding - 15 + "px", "left": $(target).offset().left - ( (width + padding) /2 - $(target).outerWidth()/2) + "px"});
-    
-    
-    
-}
-
-function UpdateCurrentValue(value)
-{
-    
-    
-    focusTo(activeElement);
-
-    if( isNumber( value) )
-    {
-        var textbox = $("#inputDialogue #currentValue")[0];
-        $(textbox).val(value);
-        value = value + "px";
-    }
-//    alert(value);
-    activeAttribute.value = value;
-//    activeAttribute.attribute[key] = activeAttribute.value;
-    
-
-    $(activeElement).css(activeAttribute.key, activeAttribute.value );
-    
-    
-//    alert($(activeElement).css(activeAttribute.key));
-//    alert( activeAttribute.key + ", " + activeAttribute.value + "px \n" + $(activeElement).css(activeAttribute.value) );
-}
 
 setInterval(function(){
-    if(activeElement)
-        focusTo(activeElement);
+    if(activeElement.Object)
+        focusTo(activeElement.Object);
 },100)
 
 function focusTo(element)

@@ -1,18 +1,13 @@
-
+/*==============Rules for Slider=============*/
 .slider {
-/*    border:1px solid red;*/
-    /*    z-index:1000;*/
     width:100%;
     height:auto;
-/*    background:black;*/
     position:relative;
     
 }
 
 .slider .slide {
-/*    -webkit-filter:blur(4px);*/
     height:500px;
-/*    display:inline-block;*/
     float:left;
     background-repeat:no-repeat;
     background-size:cover;
@@ -20,7 +15,6 @@
     background-position-x:center;
     background-position-y:100%;
     transition: background-position 0s, height 0.5s;
-/*    -webkit-transition-timing-function:ease-in-out;*/
 }
 
 
@@ -61,17 +55,6 @@
     margin:0px;
 }
 
-
-
-/*
-#slide1:checked ~ .slides .inner { margin-left:0; }
-#slide2:checked ~ .slides .inner { margin-left:-100%; }
-#slide3:checked ~ .slides .inner { margin-left:-200%; }
-#slide4:checked ~ .slides .inner { margin-left:-300%; }
-#slide5:checked ~ .slides .inner { margin-left:-400%; }
-*/
-
-
 .slider .slideControl {
     z-index:10000;
 }
@@ -81,13 +64,7 @@
     display:table;
     width:auto;
     height:auto;
-/*    top:20px;*/
-/*    background-color:red;*/
-/*    border-radius:20px 20px 0px 0px;*/
-/*    display:inline-block;*/
     position:relative;
-/*    bottom:0px; */
-/*    -webkit-transform: perspective(100px) rotateX(50deg);*/
 }
 
 
@@ -96,8 +73,6 @@
     width:100%;
     position:absolute;
     bottom:0px;
-/*    height:20px;*/
-/*    background-color:blue;*/
 }
 
 .slider #container ul#sliderControls li{
@@ -109,7 +84,6 @@
     display:inline-block;
     border-radius:50%;
     margin:2px;
-/*    box-shadow: inset 0px 0px 8px black;*/
 }
 .slider #container ul#sliderControls li.selected{
     
@@ -145,4 +119,4 @@
 }
 
 
-
+/*==============End of rules for Slider=============*/

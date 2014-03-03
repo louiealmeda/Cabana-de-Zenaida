@@ -3,7 +3,7 @@ var isEditing = false;
 var darkness = 1;
 var opacity = 1;
 var activeColor = {"Red": 0, "Green":0, "Blue": 0, "Alpha": 0};
-
+//var tmpActiveColor = {"Red": 0, "Green":0, "Blue": 0, "Alpha": 0};
 var pixelData;
 var offX;
 var offY;
@@ -114,7 +114,7 @@ $(document).ready(function(){
         ShowEditPanel(!editPanelVisible);
     });
     
-    
+    NavBarClick();
     
     
     $('#upload').bind("change", function(){
@@ -199,7 +199,7 @@ $(function() {
     $("#wheel").on("dragstart", function(event) { event.preventDefault(); });
     
     
-    var tmpActiveColor = {"Red": 0, "Green":0, "Blue": 0, "Alpha": 0};
+     tmpActiveColor = {"Red": 0, "Green":0, "Blue": 0, "Alpha": 0};
     
     $("#wheel").mousemove(function(e) {
         
@@ -214,29 +214,8 @@ $(function() {
         
         pixelData = this.canvas.getContext('2d').getImageData(offX, offY, 1, 1).data;
         
-        tmpActiveColor.Red = Math.round( pixelData[0] * darkness );
-        tmpActiveColor.Green = Math.round( pixelData[1] * darkness );
-        tmpActiveColor.Blue = Math.round( pixelData[2] * darkness );
-        tmpActiveColor.Alpha = Math.round(  opacity );
-
-        var color;
-        var rgbaColor;
+        hoverColor();
         
-        if(pixelData[3] != 0)
-        {
-            color = "#" +  (tmpActiveColor.Red.toString(16) + tmpActiveColor.Green.toString(16) + tmpActiveColor.Blue.toString(16)).toUpperCase();
-
-            rgbaColor = "rgba(" + tmpActiveColor.Red + "," + tmpActiveColor.Green + "," +tmpActiveColor.Blue + "," +tmpActiveColor.Alpha + ")";      
-        }
-        else
-        {
-            color = "#" +  (activeColor.Red.toString(16) + activeColor.Green.toString(16) + activeColor.Blue.toString(16)).toUpperCase();
-
-            rgbaColor = "rgba(" + activeColor.Red + "," + activeColor.Green + "," +activeColor.Blue + "," +activeColor.Alpha + ")";
-        }
-        
-        $("#inputDialogue #colorPicker #currentColor").css({"background-color": rgbaColor });
-        $("#inputDialogue #colorPicker #currentValue").val( color );
     });
     
     $("#wheel").mouseleave(function(e) {
@@ -247,23 +226,7 @@ $(function() {
         $("#inputDialogue #colorPicker #currentValue").val( color );
     });
     
-    $("#wheel").click(function(){
-        var selector = $("#colorPicker #selected");
-        if(pixelData[3] != 0)
-        {
-            $(selector).css({"left":(offX + 20) + "px", "top":offY - 1+ "px"}); 
-
-            activeColor = tmpActiveColor;
-
-
-            tmpActiveColor = {"Red": 0, "Green":0, "Blue": 0, "Alpha": 0};
-
-
-            UpdateCurrentValue("rgba(" +activeColor.Red + ", " +  activeColor.Green + ", " + activeColor.Blue + ", " +activeColor.Alpha + ") " );
-
-
-        } 
-    });
+    $("#wheel").click(selectColor);
     
     
 });
@@ -280,9 +243,51 @@ function zoomImageLibrary(value)
 
 ////////////Color picker///////
 
+function hoverColor()
+{
+//    alert(pixelData);
+//    alert(tmpActiveColor.Red);
+    tmpActiveColor.Red = Math.round( pixelData[0] * darkness );
+    
+    tmpActiveColor.Green = Math.round( pixelData[1] * darkness );
+    tmpActiveColor.Blue = Math.round( pixelData[2] * darkness );
+    tmpActiveColor.Alpha = Math.round(  opacity );
+    
+    var color;
+    var rgbaColor;
+
+    if(pixelData[3] != 0)
+    {
+        color = "#" +  (tmpActiveColor.Red.toString(16) + tmpActiveColor.Green.toString(16) + tmpActiveColor.Blue.toString(16)).toUpperCase();
+
+        rgbaColor = "rgba(" + tmpActiveColor.Red + "," + tmpActiveColor.Green + "," +tmpActiveColor.Blue + "," +tmpActiveColor.Alpha + ")";      
+    }
+    else
+    {
+        color = "#" +  (activeColor.Red.toString(16) + activeColor.Green.toString(16) + activeColor.Blue.toString(16)).toUpperCase();
+
+        rgbaColor = "rgba(" + activeColor.Red + "," + activeColor.Green + "," +activeColor.Blue + "," +activeColor.Alpha + ")";
+    }
+
+    $("#inputDialogue #colorPicker #currentColor").css({"background-color": rgbaColor });
+    $("#inputDialogue #colorPicker #currentValue").val( color );
+}
+
 function selectColor()
 {
     
+    var selector = $("#colorPicker #selected");
+    if(pixelData[3] != 0)
+    {
+        $(selector).css({"left":(offX + 20) + "px", "top":offY - 1+ "px"}); 
+
+        activeColor = tmpActiveColor;
+
+
+        tmpActiveColor = {"Red": 0, "Green":0, "Blue": 0, "Alpha": 0};
+
+        UpdateCurrentValue("rgba(" +activeColor.Red + ", " +  activeColor.Green + ", " + activeColor.Blue + ", " +activeColor.Alpha + ") " );
+    } 
 }
 
 
@@ -291,6 +296,8 @@ function darknessSlide(e)
     darkness = (e.value) / 255;
     var opacity = (255 - e.value) / 255;
     $("#dimmer").css({"opacity": opacity });
+    hoverColor();
+    selectColor();
 //    activeColor.Red = Math.round( pixelData[0] * darkness );
 //    activeColor.Green = Math.round( pixelData[1] * darkness );
 //    activeColor.Blue = Math.round( pixelData[2] * darkness );
@@ -302,7 +309,8 @@ function darknessSlide(e)
 function transparencySlide(e)
 {
     opacity = (e.value) / 255;
-    
+    hoverColor();
+    selectColor();
 //    activeColor.Alpha = opacity;
 //    UpdateCurrentValue("rgba(" +activeColor.Red + ", " +  activeColor.Green + ", " + activeColor.Blue + ", " +activeColor.Alpha + ") " );
     //    selectColor();

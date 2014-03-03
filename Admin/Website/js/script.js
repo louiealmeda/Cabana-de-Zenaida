@@ -12,10 +12,11 @@ var contactUsShown = false;
 var title = "Cabana de Zenaida";
 var chatStarted = false;
 
+
 $(document).ready(function(){
          
+ 
     var container = $("#pagePreview");
-
     if ( $(container).height() == null)
         container = window;
 
@@ -248,21 +249,31 @@ function ComputeNavBarCenter()
 function NavBarClick()
 {
     
-    $("#mi1").click(function(){
-        $("html, body").animate({ scrollTop:  "0px" });
-    })
+    $("#menu_item_container>li").bind("click", function(){
+        
+        var target = "html, body, #pagePreview";
+//        alert()
+//        if($("#pagePreview").html != "")
+//            target = "#pagePreview";
+        $(target).animate({ scrollTop: $(this).index() * 500 +  "px" });
+        
+    });
     
-    $("#mi2").click(function(){
-        $("html, body").animate({ scrollTop:  "300px" });
-    });
-        
-    $("#mi3").click(function(){
-        $("html, body").animate({ scrollTop:  "600px" });
-    });
-        
-    $("#mi4").click(function(){
-        $("html, body").animate({ scrollTop:  "900px" });
-    });
+//    $("#mi1").click(function(){
+//        $("html, body").animate({ scrollTop:  "0px" });
+//    })
+//    
+//    $("#mi2").click(function(){
+//        $("html, body").animate({ scrollTop:  "300px" });
+//    });
+//        
+//    $("#mi3").click(function(){
+//        $("html, body").animate({ scrollTop:  "600px" });
+//    });
+//        
+//    $("#mi4").click(function(){
+//        $("html, body").animate({ scrollTop:  "900px" });
+//    });
 }
 
 function ScrollSlider( index, prevIndex )
@@ -357,12 +368,6 @@ function onResize(){
 //    alert( $(elements[0]).width() );
 
 };
-
-
-$(document).ready(function(){
-    
-   
-});
 
 ////////Scrolling functions//////////////
 function scroll(container) {

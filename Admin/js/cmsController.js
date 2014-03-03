@@ -168,6 +168,16 @@ function activate()
         });
     });
     
+    
+    $("#menu_item_container").sortable({
+        cancel: "#searchBarContainer",
+        axis: "x"
+    });
+    
+//     $("#menu_item_container li").draggable({
+//         
+//     });
+    
     $(".element").dblclick(function(){
         LockElement();
     });

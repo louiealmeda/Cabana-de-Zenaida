@@ -114,7 +114,7 @@ function UpdateCurrentValue(value)
 //    alert( activeElement.ActiveAttribute.key + ", " + activeElement.ActiveAttribute.value + "px \n" + $(activeElement.Object).css(activeElement.ActiveAttribute.value) );
 }
 
-function ShowInputDialog(inputType, target, callback ,attr, minValue, maxValue)
+function ShowInputDialog(inputType, target, callback, minValue, maxValue)
 {
     
 //    callback = callback || null;
@@ -129,11 +129,18 @@ function ShowInputDialog(inputType, target, callback ,attr, minValue, maxValue)
     minValue = minValue || 0;
     maxValue = maxValue || 100;
     
+    minValue = parseInt(minValue);
+    maxValue = parseInt(maxValue);
+    
 //    alert($(target).offset().top);
     
     var dialogue = $("#inputDialogue");
     var width = 30;
     var height = 100;
+    var range = $("#inputDialogue #overflow>div#range #range1");
+    
+    $(range).attr("max",maxValue);
+    $(range).attr("min",minValue);
     
     var offset = 0;
     switch( inputType )

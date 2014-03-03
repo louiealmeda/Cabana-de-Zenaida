@@ -9,22 +9,22 @@ var InputDialogue = {"Shown":false, "Target":null};
 var elementOptions = {
     element : {
         "Transform" : ["icon-transform", {"transform": "triSlider"} ],
-        "Margin" : ["icon-snaptogrid", {"margin": "slider"} ],
-        "Padding" : ["icon-canvasrulers", {"padding": "slider"} ],
+        "Move Vertical" : ["icon-resize-vertical", {"top": "slider|0|300"} ],
+        "Move Horizontal" : ["icon-resize-horizontal", {"left": "slider|0|300"} ],
+        "Margin" : ["icon-snaptogrid", {"margin": "slider|0|100"} ],
+        "Padding" : ["icon-canvasrulers", {"padding": "slider|0|100"} ],
         "Background Color" : ["icon-bucket", {"background-color": "colorPicker"} ],
-        "Border" : ["icon-pigpene", {"border-width": "slider"} ],
+        "Border" : ["icon-pigpene", {"border-width": "slider|0|100"} ],
         "Border Color" : ["icon-palette-painting", {"border-color": "colorPicker"} ],
-        "Border Radius" : ["icon-roundrectangle", {"border-radius": "slider"} ],
+        "Border Radius" : ["icon-roundrectangle", {"border-radius": "slider|0|100"} ],
         "Shadow" : ["icon-subtractshape", {"box-shadow": "triSlider"} ],
         "Align Left" : ["icon-alignleftedge", {"float": "left"} ],
         "Align Center" : ["icon-alignhorizontalcenter", {"float": "none"} ],
-        "Align Right" : ["icon-alignrightedge", {"float": "right"} ],
-        "Move Vertical" : ["icon-resize-vertical", {"top": "slider"} ],
-        "Move Horizontal" : ["icon-resize-horizontal", {"left": "slider"} ]
+        "Align Right" : ["icon-alignrightedge", {"float": "right"} ]
         },
     text : {
         "Text Color" : ["icon-crayon", {"color": "colorPicker"} ],
-        "Font Size" : ["icon-text-height", {"font-size": "slider"} ],
+        "Font Size" : ["icon-text-height", {"font-size": "slider|5|100"} ],
         "Text Shadow" : ["icon-fontcase", {"text-shadow": "triSlider"} ],
         "Align Left" : ["icon-align-left", {"text-align": "left"} ],
         "Align Center" : ["icon-align-center", {"text-align": "center"} ],
@@ -336,11 +336,13 @@ function ToolbarItemClick(value,index)
 
 //    alert(JSON.stringify(value));
     
+    var inputType = activeElement.ActiveAttribute.value.split("|");
+    
+    activeElement.ActiveAttribute.value = inputType[0];
+    
     switch(activeElement.ActiveAttribute.value)
     {
         case "colorPicker":
-            
-            
             activeElement.ActiveAttribute.value = $(activeElement.Object).css(activeElement.ActiveAttribute.key);
             var key = activeElement.ActiveAttribute.key;
             if(key.indexOf("border") != -1)
@@ -353,7 +355,7 @@ function ToolbarItemClick(value,index)
         case "slider":
             activeElement.ActiveAttribute.value = $(activeElement.Object).css(activeElement.ActiveAttribute.key);
             
-            ShowInputDialog("slider",target);
+            ShowInputDialog("slider",target,null, inputType[1], inputType[2]);
             
             break;
             

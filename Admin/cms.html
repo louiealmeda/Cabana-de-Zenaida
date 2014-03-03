@@ -103,17 +103,18 @@
                             
                         <li>
                             <div id = "colors">
-                                <select id = "themes">
-                                    <option value="['rgb(127, 77, 53)','rgb(254, 182, 116)', 'rgb(249, 249, 249)']">Default</option>
+                                <select id = "themes" onchange="changeTheme(this);">
+                                    <option>Default</option>
                                     <option>Inverted</option>
                                     <option>Aqua</option>
                                     <option>Custom</option>
                                 </select>
                                 <div class="icon-chevron-down" style="display: inline-block; position: relative; top: 2px; left: -25px; pointer-events: none;" ></div>
                                 <br>
-                                Primary Color:<div class="colorPalette bevelInset" id = "primary" onclick="changeThemeColor(this,0);" ></div><br>
-                                Secondary Color:<div class ="colorPalette bevelInset" id = "secondary"onclick="changeThemeColor(this,1);" ></div><br>
-                                Background Color:<div class ="colorPalette bevelInset" id = "background"onclick="changeThemeColor(this,2);" ></div>
+                                Primary Color:<div class="colorPalette bevelInset" id = "primary" onclick="changeThemeColor(this);" ></div><br>
+                                Secondary Color:<div class ="colorPalette bevelInset" id = "secondary"onclick="changeThemeColor(this);" ></div><br>
+                                Background Color:<div class ="colorPalette bevelInset" id = "background"onclick="changeThemeColor(this);" ></div><br>
+                                Text Color:<div class ="colorPalette bevelInset" id = "text" onclick="changeThemeColor(this);" ></div>
                             </div>
                         </li>
                         
@@ -123,7 +124,7 @@
                         
                         <li>
                             <div id = "historyPane">
-                                <ul class="bevelInset">
+                                <ul class="bevelInset" style="border-radius: 5px;">
                                     <li>test</li>
                                     <li>The</li>
                                     <li>quick brown fox</li>

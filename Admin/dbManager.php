@@ -1,8 +1,8 @@
 <?php 
 
-//    require_once("dbconn.php");
-//    $db = new db();
-//    $db->connect();
+    require_once("dbconn.php");
+    $db = new db();
+    $db->connect();
 //    echo "test";
     switch($_POST['method'])
     {
@@ -30,6 +30,25 @@
                     echo "<li style='background-image:url(images/library/$f)'></li>";
                 }
             }
+            break;
+        
+        case "getThemes":
+            
+            $query = "SELECT * FROM theme";
+        
+            $ret = mysql_query($query);
+        
+            if($ret)
+            {
+                while($row = mysql_fetch_assoc($ret))
+                {
+                    $values = implode("|",$row);
+                    echo "<option value = '$values' >{$row['name']}</option>";
+                }
+            }
+            else
+                die(mysql_error());
+            
             break;
     }
     

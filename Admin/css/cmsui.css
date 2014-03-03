@@ -210,8 +210,13 @@ body, html {
 
 #editPanel #editPanelContent #overflow #imageManager>ul {
     height: 155px;
-    border: 1px solid red;
-    padding: 0px;
+/*    border: 1px solid red;*/
+    box-shadow: inset 0px 0px 8px black;
+    border-radius: 5px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid rgba(0,0,0,0.1);
+    
+    padding: 3px;
     list-style: none;
     overflow-y: scroll;
 }
@@ -230,6 +235,7 @@ body, html {
 
 #editPanel #editPanelContent #overflow #historyPane {
     padding: 20px;
+    b
 }
 
 #editPanel #editPanelContent #overflow #historyPane>ul {
@@ -570,7 +576,7 @@ div.element.hoveredAddingElement{
 }
 
 .bevelInset{
-    border-bottom: 1px solid rgba(255,255,255,0.3);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
     border-top: 1px solid rgba(0,0,0,0.5);
     border-left: 1px solid rgba(255,255,255,0.1);
     border-right: 1px solid rgba(255,255,255,0.1);

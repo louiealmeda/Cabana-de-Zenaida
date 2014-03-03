@@ -9,10 +9,10 @@ var offX;
 var offY;
 
 var draggableComponents = {
-    "Text Area" : [ "icon-font", "element" ],
-    "Columns" :  [ "icon-twocolumnsright", "element , columns" ],
-    "Image" :  [ "icon-picture", "element , image" ],
-    "Video" : ["icon-video", "element , video"]
+    "Text Area" : [ "icon-font", "element text" ],
+    "Columns" :  [ "icon-twocolumnsright", "element text columns" ],
+    "Image" :  [ "icon-picture", "element text image" ],
+    "Video" : ["icon-video", "element text video"]
 };
 
 
@@ -64,6 +64,11 @@ $(document).ready(function(){
         
         $("#editPanel #editPanelContent #overflow").animate({"margin-left": -$(this).index() * 100 + "%"});
 
+//        if($(this).index() == 1)
+//        {
+//            
+//        }
+        
     });
     
     
@@ -94,13 +99,12 @@ $(document).ready(function(){
             $(this).css({"box-shadow": "inset 3px 0px 8px green"});
             activate();
         }
-        
-        
-        
-        
-        
     });
     
+    /////////Themes loader
+    $.post("dbManager.php",{method:"getThemes"},function(data){
+        $("#editPanel #editPanelContent #overflow #colors #themes").html(data);
+    });
     
     $("#colorPalette li#add").click(function(){
         $(this).before("<li><div></div></li>\n");
@@ -115,7 +119,6 @@ $(document).ready(function(){
     });
     
     NavBarClick();
-    
     
     $('#upload').bind("change", function(){
     var formData = new FormData($("#form-upload")[0]);
@@ -155,12 +158,8 @@ function GenerateComponents()
     var str = "";
     
     $.each(draggableComponents, function(key, value){
-        
          str = str + '<li class="component" alt = "'+ value[1] +'"> <div class="'+ value[0] +'" ></div> <span> ' + key + '</span> </li>\n';
-        
     });
-    
-//    alert(str);
     
     $("#editPanel #editPanelContent #components").html(str);
 }
@@ -176,7 +175,7 @@ function ShowEditPanel(show){
         $("#pagePreview").animate({scrollTop: "-=" + (240 - height) + "px"},500, "linear");
         $(btn).removeClass('icon-chevron-down');
         $(btn).addClass('icon-chevron-up');
-
+//        $("#editPanel #header li").removeClass("selected");
     }
     else
     {

@@ -8,17 +8,19 @@ var InputDialogue = {"Shown":false, "Target":null};
 
 var elementOptions = {
     element : {
+        "Transform" : ["icon-transform", {"transform": "triSlider"} ],
+        "Margin" : ["icon-snaptogrid", {"margin": "slider"} ],
+        "Padding" : ["icon-canvasrulers", {"padding": "slider"} ],
         "Background Color" : ["icon-bucket", {"background-color": "colorPicker"} ],
         "Border" : ["icon-pigpene", {"border-width": "slider"} ],
         "Border Color" : ["icon-palette-painting", {"border-color": "colorPicker"} ],
         "Border Radius" : ["icon-roundrectangle", {"border-radius": "slider"} ],
         "Shadow" : ["icon-subtractshape", {"box-shadow": "triSlider"} ],
-        "Margin" : ["icon-snaptogrid", {"margin": "slider"} ],
-        "Padding" : ["icon-canvasrulers", {"padding": "slider"} ],
-        "Transform" : ["icon-transform", {"transform": "triSlider"} ],
         "Align Left" : ["icon-alignleftedge", {"float": "left"} ],
         "Align Center" : ["icon-alignhorizontalcenter", {"float": "none"} ],
-        "Align Right" : ["icon-alignrightedge", {"float": "right"} ]
+        "Align Right" : ["icon-alignrightedge", {"float": "right"} ],
+        "Move Vertical" : ["icon-resize-vertical", {"top": "slider"} ],
+        "Move Horizontal" : ["icon-resize-horizontal", {"left": "slider"} ]
         },
     text : {
         "Text Color" : ["icon-crayon", {"color": "colorPicker"} ],
@@ -243,7 +245,7 @@ function SpawnElement(containingE, draggedE)
     var initialAttributes = "";
     var elementString = "";
     
-    
+
     if(elementClasses.indexOf("columns") != -1)
         content = "<div class = 'element'> Insert text or element here </div>\n<div class = 'element'> Insert text or element here </div>";
     
@@ -370,8 +372,32 @@ function ToolbarItemClick(value,index)
     
 }
 
+function changeTheme(sender)
+{
+    var colors = new Array();
+    colors = sender.value.split('|');
+    
+    var palettes = $(".colorPalette");
+//    alert(palettes[1]);
+    
+//    alert($(palettes[0]).css("background-color"));
+//    alert($(palettes[1]).css("background-color"));
+//    alert($(palettes[2]).css("background-color"));
+    
+    for(var i = 1; i < colors.length; i++)
+    {
+        
+//        alert($(palettes[i-1]).css("background-color") + "|" + colors[i]);
+        ModifyTheme($(palettes[i-1]).css("background-color"), colors[i]);
+        
+    }
+    
+//    sender.value 
+}
+
 function changeThemeColor(sender, index)
 {
+    
     ShowInputDialog("colorPicker",sender, function(value){
         var prev = $(sender).css("background-color");
         value = value.substr(0, value.lastIndexOf(',')) + ")";
@@ -390,6 +416,7 @@ function ModifyTheme(prev, value)
 //    $("#currentTheme").html(function(index, html){
 //        return html.replace(prev, value); 
 //    });
+//    alert(prev + ", " + value);
     var html = $("#currentTheme").html();
     $("#currentTheme").html(html.split(prev).join(value));//.replace(prev, value));
 //    alert(prev + "|" + value + "\n" + $("#currentTheme").html());

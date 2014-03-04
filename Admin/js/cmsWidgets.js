@@ -14,6 +14,14 @@ var InputDialog = {
     Callback: null
 };
 
+var pixelData;
+var offX;
+var offY;
+var darkness = 1;
+var opacity = 1;
+var activeColor = {"Red": 0, "Green":0, "Blue": 0, "Alpha": 0};
+
+
 function HideInputDialog()
 {
     var dialogue = $("#inputDialogue");
@@ -21,6 +29,7 @@ function HideInputDialog()
     $(dialogue).css({"visibility":"hidden", "height": "0px", "width":"0px", "top": "+=" + $(dialogue).outerHeight() + "px", "left": "+=" + $(dialogue).outerWidth() / 2 + "px", "opacity": 0});
     
     InputDialogue.Shown = false;
+    disableColorPicker();
 }
 
 function UpdateComponentValue(v, index)
@@ -165,6 +174,7 @@ function ShowInputDialog(inputType, target, callback, minValue, maxValue)
             width = 280;
             height = 180;
             offset = -100;
+            enableColorPicker();
             break;
     }
     
@@ -174,8 +184,134 @@ function ShowInputDialog(inputType, target, callback, minValue, maxValue)
     var padding = parseInt( $(dialogue).css("padding").replace("px","") ) * 2;
     //position popup
     $(dialogue).css({ "visibility":"visible", "opacity":1, "height": height + "px", "width":width +"px", "top": $(target).offset().top - height - padding - 15 + "px", "left": $(target).offset().left - ( (width + padding) /2 - $(target).outerWidth()/2) + "px"});   
+}
+
+
+
+//////Color picker
+function enableColorPicker() {
     
     
-   
     
+    $("#colorPalette li#add").click(function(){
+        $(this).before("<li><div></div></li>\n");
+    });
+    
+    $("#colorPalette li:not(#add)").click(function(){
+        $(this).css({"outline":"1px solid red"});
+    });
+    
+    $("#wheel").on("dragstart", function(event) { event.preventDefault(); });
+    
+    
+     tmpActiveColor = {"Red": 0, "Green":0, "Blue": 0, "Alpha": 0};
+    
+    $("#wheel").mousemove(function(e) {
+        
+        if(!this.canvas) {
+            this.canvas = $('<canvas/>').css({width:this.width + 'px', height: this.height + 'px'})[0];
+            this.canvas.height = this.height;
+            this.canvas.width = this.width;
+            this.canvas.getContext('2d').drawImage(this, 0, 0, this.width, this.height);
+        }
+         offX  = (e.offsetX || e.clientX - $(e.target).offset().left);
+         offY  = (e.offsetY || e.clientY - $(e.target).offset().top);
+        
+        pixelData = this.canvas.getContext('2d').getImageData(offX, offY, 1, 1).data;
+        
+        hoverColor();
+        
+    });
+    
+    $("#wheel").mouseleave(function(e) {
+        var color = "#" +  (activeColor.Red.toString(16) + activeColor.Green.toString(16) + activeColor.Blue.toString(16)).toUpperCase();
+
+        var rgbaColor = "rgba(" + activeColor.Red + "," + activeColor.Green + "," +activeColor.Blue + "," +activeColor.Alpha + ")";
+        $("#inputDialogue #colorPicker #currentColor").css({"background-color": rgbaColor });
+        $("#inputDialogue #colorPicker #currentValue").val( color );
+    });
+    
+    $("#wheel").click(selectColor);
+};
+
+function disableColorPicker()
+{
+    $("#wheel").unbind();
+    $("#colorPalette li").unbind();
+}
+
+
+////////////Color picker///////
+
+function hoverColor()
+{
+//    alert(pixelData);
+//    alert(tmpActiveColor.Red);
+    tmpActiveColor.Red = Math.round( pixelData[0] * darkness );
+    
+    tmpActiveColor.Green = Math.round( pixelData[1] * darkness );
+    tmpActiveColor.Blue = Math.round( pixelData[2] * darkness );
+    tmpActiveColor.Alpha = Math.round(  opacity );
+    
+    var color;
+    var rgbaColor;
+
+    if(pixelData[3] != 0)
+    {
+        color = "#" +  (tmpActiveColor.Red.toString(16) + tmpActiveColor.Green.toString(16) + tmpActiveColor.Blue.toString(16)).toUpperCase();
+
+        rgbaColor = "rgba(" + tmpActiveColor.Red + "," + tmpActiveColor.Green + "," +tmpActiveColor.Blue + "," +tmpActiveColor.Alpha + ")";      
+    }
+    else
+    {
+        color = "#" +  (activeColor.Red.toString(16) + activeColor.Green.toString(16) + activeColor.Blue.toString(16)).toUpperCase();
+
+        rgbaColor = "rgba(" + activeColor.Red + "," + activeColor.Green + "," +activeColor.Blue + "," +activeColor.Alpha + ")";
+    }
+
+    $("#inputDialogue #colorPicker #currentColor").css({"background-color": rgbaColor });
+    $("#inputDialogue #colorPicker #currentValue").val( color );
+}
+
+function selectColor()
+{
+    
+    var selector = $("#colorPicker #selected");
+    if(pixelData[3] != 0)
+    {
+        $(selector).css({"left":(offX + 20) + "px", "top":offY - 1+ "px"}); 
+
+        activeColor = tmpActiveColor;
+
+
+        tmpActiveColor = {"Red": 0, "Green":0, "Blue": 0, "Alpha": 0};
+
+        UpdateCurrentValue("rgba(" +activeColor.Red + ", " +  activeColor.Green + ", " + activeColor.Blue + ", " +activeColor.Alpha + ") " );
+    } 
+}
+
+
+function darknessSlide(e)
+{
+    darkness = (e.value) / 255;
+    var opacity = (255 - e.value) / 255;
+    $("#dimmer").css({"opacity": opacity });
+    hoverColor();
+    selectColor();
+//    activeColor.Red = Math.round( pixelData[0] * darkness );
+//    activeColor.Green = Math.round( pixelData[1] * darkness );
+//    activeColor.Blue = Math.round( pixelData[2] * darkness );
+//    
+//    UpdateCurrentValue("rgba(" +activeColor.Red + ", " +  activeColor.Green + ", " + activeColor.Blue + ", " +activeColor.Alpha + ") " );
+    //    selectColor();
+}
+
+function transparencySlide(e)
+{
+    opacity = (e.value) / 255;
+    hoverColor();
+    selectColor();
+//    activeColor.Alpha = opacity;
+//    UpdateCurrentValue("rgba(" +activeColor.Red + ", " +  activeColor.Green + ", " + activeColor.Blue + ", " +activeColor.Alpha + ") " );
+    //    selectColor();
 }

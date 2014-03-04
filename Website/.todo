@@ -1,0 +1,49 @@
+#theme selection
+#add Sections
+#tabs linking
+
+#content Positioning
+#content styles
+
+#todo Parallax Layers
+
+#fix admin side chat
+
+#auto update input dialogue current value
+#image resizing
+
+#fix footer
+#todo use new images
+#todo Reorder Element
+
+#image resize thumbs
+#todo Image Gallery
+
+#todo integrate chat in admin
+
+#todo Fix dialogue structure
+
+#history
+
+#website gaining weight over time
+#search implementation
+----------------------
+
+#todo Vicinity Map Gallery
+
+#todo User Reviews through email
+#todo    -Admin reply
+#todo Paypal reservation system
+#todo    -Email notification
+#todo Reserved Clients info [database] 
+
+#todo Admin ability to add remove reservations 
+
+
+
+//////////////
+Theme color changing logic:
+-> embed current website css to internal css style tag
+-> change everything inside, take not of the selected colors
+-> put to database
+-> on publish, write to website styles

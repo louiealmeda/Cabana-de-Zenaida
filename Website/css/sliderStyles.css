@@ -20,19 +20,19 @@
 
 
 .slider .slides .inner>div:nth-child(1) {
-    background-image:url(images/slider/slide0.jpg);
+    background-image:url(../images/slider/slide0.jpg);
 }
 
 .slider .slides .inner>div:nth-child(2){
-      background-image:url(images/slider/slide1.jpg);
+      background-image:url(../images/slider/slide1.jpg);
 }
 
 .slider .slides .inner>div:nth-child(3) {
-      background-image:url(images/slider/slide2.jpg);
+      background-image:url(../images/slider/slide2.jpg);
 }
 
 .slider .slides .inner>div:nth-child(4) {
-     background-image:url(images/slider/slide3.jpg);
+     background-image:url(../images/slider/slide3.jpg);
 }
 
 .slider .slides .inner {

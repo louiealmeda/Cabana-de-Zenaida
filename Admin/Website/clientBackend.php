@@ -79,19 +79,19 @@ function ChatSend($visitorID, $isOutgoing, $msg)
     {
         
 //        $msg = ;
-        $current = getdate()['seconds'];
-        $time = 0;
-        session_start();
-        if(isset($_SESSION['lastMessageSent']))
-        {
-            $time = $_SESSION['lastMessageSent'];
-        }
-        
-        $_SESSION['lastMessageSent'] = $current;
-        
-        /// blocks message
-        if( $current - $time < 2)
-                return;
+//        $current = getdate()['seconds'];
+//        $time = 0;
+//        session_start();
+//        if(isset($_SESSION['lastMessageSent']))
+//        {
+//            $time = $_SESSION['lastMessageSent'];
+//        }
+//        
+//        $_SESSION['lastMessageSent'] = $current;
+//        
+//        /// blocks message
+//        if( $current - $time < 2)
+//                return;
         
         if( strlen( trim($msg) ) > 0 )
         {

@@ -440,6 +440,15 @@ a{
     box-shadow:inset 0px 0px 8px black;
 }
 
+.menu_itemPlaceholder
+{
+/*    box-sizing: content-box;*/
+    background-color: rgb(127, 77, 53);
+    opacity: 0.5;
+    height: 100%;
+/*    width: 50px;*/
+}
+
 /*.menu_item:hover .submenu{
     left:35%;
 }*/

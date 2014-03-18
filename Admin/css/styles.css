@@ -206,6 +206,8 @@ html, body{
     border-right:1px solid black;
 /*    float:left;*/
     display:table-cell;
+    position: relative;
+    z-index: 0;
 }
 
 #navPane *{
@@ -452,3 +454,25 @@ html, body{
 
 
 
+
+#profile>span{
+    position: absolute;
+    right: 0px;
+    padding: 0px 10px;
+    z-index: -1;
+    font-size: 0.8em;
+}
+
+#profile>span:hover{
+    color: #0AF;
+}
+
+#profile{
+    transition: 0.5s;
+    z-index: 1;
+    background-color: #303030;
+}
+
+#profile:hover {
+    margin-left: -70px;
+}

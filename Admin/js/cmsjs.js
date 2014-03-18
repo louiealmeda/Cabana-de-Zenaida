@@ -8,8 +8,8 @@ var activeToolbar;
 var draggableComponents = {
     "Text Area" : [ "icon-font", "element text" ],
     "Columns" :  [ "icon-twocolumnsright", "element text columns" ],
-    "Image" :  [ "icon-picture", "element text image" ],
-    "Video" : ["icon-video", "element text video"]
+    "Image" :  [ "icon-picture", "element text image" ]
+//    "Video" : ["icon-video", "element text video"]
 };
 
 
@@ -71,26 +71,30 @@ $(document).ready(function(){
 //        isEditing = !isEditing;
         if(isEditing)
         {   
-            $(bullet).css({
-                "left":"0%",
-                "border-left":"none", 
-                "border-right":"1px solid  rgba(255, 0, 0, 0.76)"
-            });
-            $(this).css({"box-shadow": "inset -2px 0px 5px red"});
+            if(deactivate())
+            {
+                $(bullet).css({
+                    "left":"0%",
+                    "border-left":"none", 
+                    "border-right":"1px solid  rgba(255, 0, 0, 0.76)"
+                });
+                $(this).css({"box-shadow": "inset -2px 0px 5px red"});
+            }
             
-            deactivate();
         }
         else
         {
-            $(bullet).css({
-                "left":"50%",
-                "border-left":"1px solid green",
-                "border-right":"none"
+            if(activate()){
+                
+            }
+                $(bullet).css({
+                    "left":"50%",
+                    "border-left":"1px solid green",
+                    "border-right":"none"
+
+                });
+                $(this).css({"box-shadow": "inset 3px 0px 8px green"});
             
-            });
-            
-            $(this).css({"box-shadow": "inset 3px 0px 8px green"});
-            activate();
         }
     });
     
@@ -182,7 +186,7 @@ function LoadLibraryImage(value)
 
         ///////Image picker////////
         var gridSelector = "#inputDialogue #imagePicker #inner>#grid>#pickerOverflow";
-        $(gridSelector).html("");
+        $(gridSelector).html("<li style='background-image:url()'></li>");
         ///////Image Library////////
         $("#imageManager>ul").html("");
 

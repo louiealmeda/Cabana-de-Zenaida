@@ -9,6 +9,23 @@
     switch($_POST['method'])
     {
         
+        case "publish":
+            
+            $frame = file_get_contents("frame.html");
+            
+            $frame = implode( $_POST['html'], explode("[<Content goes here>]", $frame));
+            
+            $file = fopen("../Website/styles.css", "w+");
+            fwrite($file, $_POST['css']);
+            fclose($file);
+        
+            $file = fopen("../Website/index.html", "w+");
+            fwrite($file, $frame);
+            fclose($file);
+            
+            echo $frame;
+        break;
+        
         case "getStyleSheet":
             $content = file_get_contents("Website/styles.css");
             

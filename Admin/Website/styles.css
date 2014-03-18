@@ -696,7 +696,7 @@ body>#content {
 #contact_us #title_bottom {
     height:3px;
     width:100%;
-    background-color: #643d2a;
+    background-color: rgb(127, 77, 53);
 }
 
 #contact_us #content {
@@ -884,12 +884,13 @@ body>#content {
     
 }
 #contact_us #content .textbox::-webkit-input-placeholder {
-    color: #ce7e58;
+    color: #rgb(254, 182, 116);
+    filter:alpha(opacity=40);
     
 }
 #contact_us #content .textbox:focus {
     outline: none !important;
-    border:1px solid #ef9a70;
+    border:1px solid rgb(254, 182, 116);
     
 }
 

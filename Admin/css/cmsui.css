@@ -992,3 +992,90 @@ div.element.hoveredAddingElement{
 #selector #handle #edit {
     
 }
+
+#notificationBG* {
+    font-family: sans-serif !important;
+}
+
+#notificationBG {
+    -webkit-user-select:none;
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 999999999;
+}
+
+#notificationBG *:not(#title){
+    font-size: 0.98em;
+}
+
+
+#notificationBG>div#window{
+    background-color: #BBB;
+/*    background-color: #2057b6;*/
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px black;
+    height: auto;
+    min-height: 110px;
+    min-width: 250px;
+    max-width: 400px;
+    width: auto;
+    left: 50%;
+    top:50%;
+    position: absolute;
+
+    display: table;
+    overflow: hidden;
+}
+
+
+#notificationBG>div#window>#title{
+    display: table-row;
+    background:-webkit-linear-gradient(#EEE,#BBB);
+    padding: 8px;
+    text-indent: 6px;
+    font-size: 1em;
+}
+
+#notificationBG>div#window>#content{
+    display: table-row;
+    overflow-y: scroll;
+    text-align: center;
+}
+
+#notificationBG>div#window>#content #spacer{
+    padding: 20px;
+    padding-top:15px;
+}
+
+#notificationBG>div#window>#content #message{
+    margin: 5px;
+    text-align: center;
+    vertical-align: center;
+}
+
+#notificationBG>div#window>#content .button{
+/*    background:-webkit-linear-gradient(#3877ca,#2057b6);*/
+    background-color: #2057b6;
+    display: inline-block;
+    text-align: center;
+    padding: 2px 10px;
+    min-width: 50px;
+    border-radius: 5px;
+    color: white;
+    margin: 2px;
+    cursor: pointer;
+    cursor: hand;
+    -webkit-user-select:none;
+}
+
+#notificationBG>div#window>#content .button:hover{
+    background-color: #3877ca;
+    color: black;
+}

@@ -69,7 +69,38 @@ function LoadAllHistoryStates()
 
 function publish()
 {
+    if(isEditing)
+        deactivate();
     
+    
+    var selector = $("#selector").html();
+    $("#contact_us").css({"display":"inline-block"});
+    
+    $("#selector").remove();
+    var html = $("#pagePreview").clone();
+    var css = $("#currentTheme").html();
+    
+    $("#pagePreview").append(selector);
+    $("#contact_us").css({"display":"none"});
+    
+    html = $(html).html();
+    html = html.split("ui-droppable").join("").split('contenteditable="true"').join("");
+    
+    
+//    alert(html);
+//    alert(css);
+    MessageBox.Show("Publish", "Please input your password to publish this version", [{"title":"cancel", "callBack": function(){}},{"title":"next","callBack":function(){}}]);
+    
+    $.post("dbManager.php", {method: "publish", html:html, css: css}, function(data){
+        alert(data);
+    });
+    
+}
+
+function removeElements(text, selector) {
+    var wrapped = $("<div>" + text + "</div>");
+    $(wrapped).find(selector).remove();
+    return $(wrapped).html();
 }
 
 function revertToHistoryState(id, callback)
@@ -93,6 +124,10 @@ function revertToHistoryState(id, callback)
         });
         if(callback!= null)
             callback();
+        
+        
+        ResetDragDrop();
+//        activate();
     });
     
 }

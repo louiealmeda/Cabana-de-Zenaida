@@ -153,6 +153,7 @@ function activate()
 //        alert("Before deactivation");
         deactivate();
     }
+    
     $("#pagePreview").click(function(){
         HideInputDialog();
     });
@@ -194,17 +195,22 @@ function activate()
         
 //        alert(activeElement.Object.html());
 //        $(this).tooltip('remove');
+         MessageBox.Show("Delete Element", "Are you sure you want to delete this element?", [{"title":"cancel", "callBack": 
+                function(){MessageBox.Hide()}},{"title":"DELETE","callBack":function(){
+            var parentE = $(activeElement.Object).parent();
         
-        var parentE = $(activeElement.Object).parent();
-        
-        focusTo(parentE);
-        $(activeElement.Object).remove();
+            focusTo(parentE);
+            $(activeElement.Object).remove();
 
-        activeElement.Object = parentE;
+            activeElement.Object = parentE;
+
+            SaveHistory("element", "Delete");
+
+            activate(); 
+            MessageBox.Hide();
+         }}]);
+    
         
-        SaveHistory("element", "Delete");
-        
-        activate();
     });
     
     
@@ -217,8 +223,28 @@ function activate()
 
 function deactivate()
 {
+    var cancel = false;
+    if(isLocked)
+    {
+        MessageBox.Show("Discard", "Are you sure you want to discard changes to this element?", [{"title":"cancel", "callBack": 
+                function(){MessageBox.Hide(); return false;}},{"title":"DISCARD","callBack":function(){
+            MessageBox.Hide();
+            continueDeactivation();
+            
+            return true;
+         }}]);
+        
+        
+    }else
+    {
+        continueDeactivation();
     
-    
+        return true;
+    }
+}
+
+function continueDeactivation()
+{
     $(".element").css({"outline":"1px dashed transparent"});
     $("#selector").css({"opacity":"0", "visibility":"hidden"});//.delay(500).css({"display":"none"});
     $("#footer")[0].contentEditable = false;
@@ -251,18 +277,19 @@ function deactivate()
     isEditing = false;
     
     Release(false,true);
-    
+    return true;
 }
 
 function ResetDragDrop()
 {
     if(isElementDroppable)
     {
-        $(".element").droppable('disable');   
+//        $(".element").droppable('disable');   
 //        $(".element").unbind();    
+        
     }
     
-    
+//    alert();
     $(".element").droppable({
         greedy:true,
         accept: ".component",
@@ -420,8 +447,13 @@ function ToolbarItemClick(value,index)
             break;
             
         default:
+            
+            
+            
+            
+            $(activeElement.Object).css(activeElement.ActiveAttribute.key, activeElement.ActiveAttribute.value);
+            alert();
             HideInputDialog();
-            $(activeElement.Object).css(value);
             break;
     }
     

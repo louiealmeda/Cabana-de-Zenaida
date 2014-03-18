@@ -11,15 +11,17 @@ var loadedMsgs = 0;
 var contactUsShown = false;
 var title = "Cabana de Zenaida";
 var chatStarted = false;
-
+var container;
 
 $(document).ready(function(){
          
  
-    var container = $("#pagePreview");
+    container = $("#pagePreview");
+    
     if ( $(container).height() == null)
+    {
         container = window;
-
+    }
     $(container).scroll(function(){ scroll(container);  });
 
     
@@ -209,7 +211,7 @@ function Update()
 
 
 
-setInterval(function(){ if(pageLoaded)Update();}, 1000);
+setInterval(function(){ if(pageLoaded) Update();}, 1000);
 
 setInterval(function(){
 
@@ -218,12 +220,21 @@ setInterval(function(){
     
 }, 10000);
 
-function ComputeNavBarCenter()
+function ComputeNavBarCenter(force)
 {
+    force = force || false;
     $navBar = $("#menu_item_container");
     
-    if(!pageLoaded)
-        navbarWidth = $navBar.outerWidth();
+    if(!pageLoaded || force){
+        navbarWidth = $navBar.innerWidth();
+        navbarWidth = 0;
+        $("#menu_item_container>li").each(function(index,e){
+//            alert($(e).outerWidth());
+            navbarWidth += $(e).outerWidth();
+        });
+        
+//        alert(navbarWidth);
+    }
     
     navbarPosition = ($("#main").outerWidth() - navbarWidth) / 2;
     navbarPosition = navbarPosition / $("#main").outerWidth() * 100;
@@ -232,6 +243,7 @@ function ComputeNavBarCenter()
     $navBar.css({
         "margin": "0px " + ( navbarPosition ) + "%",
         "-webkit-transition": "0s"
+//        "width": navbarWidth + "px"
     });
     
     
@@ -240,15 +252,15 @@ function ComputeNavBarCenter()
 function NavBarClick()
 {
     
-    $("#menu_item_container>li").bind("click", function(){
-        
-        var target = "html, body, #pagePreview";
-//        alert()
-//        if($("#pagePreview").html != "")
-//            target = "#pagePreview";
-        $(target).animate({ scrollTop: $(this).index() * 500 +  "px" });
-        
-    });
+//    $("#menu_item_container>li").bind("click", function(){
+//        
+//        var target = "html, body, #pagePreview";
+////        alert()
+////        if($("#pagePreview").html != "")
+////            target = "#pagePreview";
+//        $(target).animate({ scrollTop: $(this).index() * 500 +  "px" });
+//        
+//    });
     
 //    $("#mi1").click(function(){
 //        $("html, body").animate({ scrollTop:  "0px" });
@@ -267,6 +279,24 @@ function NavBarClick()
 //    });
 }
 
+
+function scrollToSection(id)
+{
+    
+    $("section").each(function(index, e){
+        
+        if($(e).attr("id") == id)
+        {
+//            alert($(container).html());
+//            alert($(e).offset().top);
+            $("html, body").animate({ scrollTop: $("html, body").scrollTop() + $(e).offset().top +  "px" });
+//            alert();
+        }
+
+    });
+    
+}
+
 function ScrollSlider( index, prevIndex )
 {
     
@@ -280,12 +310,22 @@ function ScrollSlider( index, prevIndex )
 //    alert();
 //    setTimeout(function(){
     
-        $(".slider .slides .inner").css({
-                "margin-left": -index * 100 + "%"
-            });
-        $( ".slider #container ul#sliderControls li" ).removeClass("selected");
-        $( ".slider #container ul#sliderControls li:nth-child("+ (index + 1) +")").addClass("selected");
-        sliderIndex = index;
+    $(".slider .slides .inner").css({
+            "margin-left": -index * 100 + "%"
+        });
+    
+    var buttons = null;
+    if(buttons == null)
+        buttons = $( ".slider #container ul#sliderControls li" );
+    
+    $(buttons).removeClass("selected");
+    
+    buttons[index].setAttribute("class","selected");
+    
+//    $(buttons[index]).attr("class","selected");
+    
+//    $( ".slider #container ul#sliderControls li:nth-child("+ (index + 1) +")").addClass("selected");
+    sliderIndex = index;
         
 //        $(".slides .slide:nth-child("+ (index + 1) +") #caption")
 ////        .delay(60)
@@ -324,7 +364,7 @@ function onResize(){
     {
         $("#header #nav_bar>ul#smallScreen>li #search_bar").css({"width":"40px"});
         $("#nav_bar #smallScreen").css({display:"none"});
-        $("#menu_item_container").css({display:"block"});
+        $("#menu_item_container").css({display:"inline-block"});
         
     }
     
@@ -403,10 +443,10 @@ function scroll(container) {
                 "position":"relative"
             });
             
-            $("#menu_item_container").css({
-                "margin": "0px " + navbarPosition + "%",
-                "-webkit-transition": "0.5s"
-            });
+//            $("#menu_item_container").css({
+//                "margin": "0px " + navbarPosition + "%",
+//                "-webkit-transition": "0.5s"
+//            });
             
             $("#nav_bar_filler").css({
                 "display":"none"

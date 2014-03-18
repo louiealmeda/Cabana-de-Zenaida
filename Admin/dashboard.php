@@ -10,6 +10,12 @@
         case "GetWeekRange":
             GetWeekRange();    
             break;
+        
+        case "logout":
+            session_start();
+            session_destroy();
+            echo "index.html";
+            break;
     }
 
 

@@ -17,7 +17,10 @@ $(document).ready(function(){
             case 4:
                 
                 break;
-                 
+            case 3:     
+                alert();
+                window.open("chatpane.html",'popUpWindow','height=400,width=200,left=100, top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no, status=yes');
+                break;
             case 7:
                 window.location.replace("cms.html");
                 break;
@@ -86,7 +89,12 @@ function UpdateBarGraph(sender)
     
 }
 
-
+function Logout()
+{
+    $.post("dashboard.php", {method:"logout"}, function(data){
+        location.replace(data);
+    });
+}
 
 function loadStatistics()
 {

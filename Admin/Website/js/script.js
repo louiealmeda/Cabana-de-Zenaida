@@ -11,12 +11,12 @@ var loadedMsgs = 0;
 var contactUsShown = false;
 var title = "Cabana de Zenaida";
 var chatStarted = false;
-
+var container;
 
 $(document).ready(function(){
          
  
-    var container = $("#pagePreview");
+    container = $("#pagePreview");
     if ( $(container).height() == null)
         container = window;
 

@@ -14,6 +14,7 @@ var InputDialog = {
     Callback: null
 };
 
+var previousActiveElement;
 var pixelData;
 var offX;
 var offY;

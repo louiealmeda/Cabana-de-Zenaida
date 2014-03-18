@@ -7,6 +7,8 @@ var InputDialogue = {"Shown":false, "Target":null};
 //var isEditing = true;
 var isElementDroppable = false;
 
+var revertedHistory = false;
+
 var elementOptions = {
     element : {
         "Transform" : ["icon-transform", {"transform": "triSlider"} ],
@@ -73,7 +75,7 @@ $(document).ready(function(){
 //    }).disableSelection();
     
 //    LoadLibraryImage();
-    ShowInputDialog("imagePicker", $("#editPanel") );
+//    ShowInputDialog("imagePicker", $("#editPanel") );
     
     
 //    alterInlineCSS( "#handle", {"display":"block", "color":"red","float":"right", "clear":"left"} );
@@ -129,7 +131,7 @@ function LockElement()
         selectElement();
         isLocked = true;
         
-        $("#selector").css({"outline-color":"rgba(40,0,0,0.7)"});
+//        $("#selector").css({"outline-color":"rgba(40,0,0,0.7)"});
         
     }
 }
@@ -146,8 +148,11 @@ function selectElement()
 
 function activate()
 {
-    deactivate();
-    
+    if(!revertedHistory)
+    {
+//        alert("Before deactivation");
+        deactivate();
+    }
     $("#pagePreview").click(function(){
         HideInputDialog();
     });
@@ -165,8 +170,7 @@ function activate()
             return false;
         });
     });
-    
-    
+
     $("#menu_item_container").sortable({
         cancel: "#searchBarContainer",
         axis: "x",
@@ -185,22 +189,27 @@ function activate()
 //    EnableDropping(true);
     
     
-    $("#selector>#handle>#remove").click(function(){
-        $(this).tooltip('close');
+    $("#selector>#handle>#remove").bind("click", function(){
+        
+//        alert(activeElement.Object.html());
+//        $(this).tooltip('remove');
+        
         var parentE = $(activeElement.Object).parent();
+        
         focusTo(parentE);
         $(activeElement.Object).remove();
 
         activeElement.Object = parentE;
-
+        
+        SaveHistory("element", "Delete");
+        
         activate();
     });
     
     
     $("#selector>#handle>#edit").click(LockElement);
     
-    
-    
+    revertedHistory = false;
     
     isEditing = true;
 }
@@ -222,8 +231,7 @@ function deactivate()
     if($("#menu_item_container").attr("alt") == '1')
     {
         $("#menu_item_container").sortable('destroy');
-        $("#menu_item_container").attr("alt",'0');
-        
+        $("#menu_item_container").attr("alt",'0');   
     }
     
     if(isEditing)
@@ -322,7 +330,7 @@ function SpawnElement(containingE, draggedE)
 function GenerateToolbar()
 {
 //  
-    var editingIcons = "<li title ='Save and release element' class = 'icon-ok-circle' onclick='Release(true)'>";
+    var editingIcons = "<li title ='Save and release element' class = 'icon-ok-circle'  onclick=' SaveHistory(\"element\"); Release(true); '>";
     
     var classes = $(activeElement.Object).attr("class").split(" ");
     
@@ -419,10 +427,15 @@ function ToolbarItemClick(value,index)
     
 }
 
-function changeTheme(sender)
+function changeTheme(sender, stringAlready)
 {
+    stringAlready = stringAlready || false;
+    
     var colors = new Array();
-    colors = sender.value.split('|');
+    if(!stringAlready)
+        colors = sender.value.split('|');
+    else
+        colors = sender.split('|');
     
     var palettes = $(".colorPalette");
 //    alert(palettes[1]);
@@ -439,6 +452,9 @@ function changeTheme(sender)
         
     }
     
+    if(!revertedHistory)
+        SaveHistory("color", "Changed Theme");
+    
 //    sender.value 
 }
 
@@ -454,7 +470,10 @@ function changeThemeColor(sender, index)
         
         
         ModifyTheme(prev, value);
+        SaveHistory("color", "Changed Single Theme Color");
     } );
+    
+    
 } 
 
 function ModifyTheme(prev, value)
@@ -481,7 +500,7 @@ function Release(save, mainSwitched)
         isLocked = false;
 
         activeElement.Object.contentEditable = false;
-
+        previousActiveElement = activeElement;
         var edit = $("#selector>#handle>#edit");
         $(edit).addClass("icon-pencil");
         $(edit).removeClass("icon-undo");
@@ -490,11 +509,11 @@ function Release(save, mainSwitched)
 
         if(!mainSwitched)
         {
-            activate();
-            
+            activate();   
         }
         else
             $(".element").css({"outline":"1px dashed transparent"});
+        
         $(toolbar).html("");
         HideInputDialog();
         $("#selector").css({"outline-color":"rgba(0,0,0,0.5)"});

@@ -29,7 +29,12 @@ $(document).ready(function(){
     
         $("#pagePreview").load("Website/index.html #main",function(){
             $("#contact_us").css({"display":"none"});
-            CMSControlerLoad();
+            
+            revertToHistoryState("last",function(){
+                LoadSectionsManager();
+                CMSControlerLoad();
+            });
+            
         });
     
     });

@@ -144,10 +144,23 @@ body, html {
     text-shadow: none;
 }
 
-#editPanel #header ul#options {
-    font-size: 1.2em;
-    overflow-y: scroll;
+#editPanel #header #outer {
+    
+    display: inline-block;
+    overflow-x: scroll;
     max-width: 55%;
+    height: 100%;
+    
+}
+#editPanel #header ul#options {
+/*    width: 200%;*/
+    overflow-x: scroll;
+    max-width: 44%;
+    font-size: 1.2em;
+}
+
+#editPanel #header ul#options:::-webkit-scrollbar { 
+    display: none; 
 }
 
 
@@ -197,17 +210,98 @@ body, html {
 
 #editPanel #editPanelContent #overflow {
 /*    display:block;*/
-    width:500%;
+    width:600%;
     height:100%;
     list-style:none;
     padding:0px;
     margin:0px;
-    
+/*    position: relative;*/
+/*    IMPORTANT! Do not add position relative*/
 }
 
 
+#editPanel #editPanelContent>#inner>ul#overflow>li {
+    width:16.666666666%;
+    float:left;
+    display:inline-block;
+    height: 100%;
+    color: white;
+}
+
 #editPanel #editPanelContent #overflow #imageManager {
     padding: 10px;
+}
+
+#editPanel #editPanelContent #overflow #sectionsManager {
+    padding: 10px;
+    height: 100%;
+    min-height: 100%;
+    
+/*    background-color: blue;*/
+}
+
+#editPanel #editPanelContent #overflow #sectionsManager #tabsSections{
+    width: 350px;
+/*    background-color: green;*/
+    height: 185px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-right: 10px;
+}
+
+#editPanel #editPanelContent #overflow #sectionsManager #tabsSections>ul{
+    float: left;
+    list-style: none;
+/*    font-size: 0.8em;*/
+    margin: 0px;
+    padding: 0px;
+    width: 50%;
+/*    outline: 2px solid black;*/
+}
+
+#editPanel #editPanelContent #overflow #sectionsManager #tabsSections> #sections>li{
+/*    padding-left: 5px;*/
+/*    outline: 1px solid black;*/
+    margin: 2px 0px;
+    background-color: black;
+    font-size: 0.9em;
+}
+
+#editPanel #editPanelContent #overflow #sectionsManager #tabsSections> #sections>li#addNew{
+    cursor: pointer;
+    text-align: center;
+}
+
+#editPanel #editPanelContent #overflow #sectionsManager #tabsSections> #sections>li:hover{
+    background-color: #135;
+}
+
+#editPanel #editPanelContent #overflow #sectionsManager #tabsSections> ul>li>.handle{
+    width: 25px;
+    height: 100%;
+    padding: 0px 8px;
+/*    background-color: gray;*/
+    margin: 0px 1px;
+    color: gray;
+    font-size: 0.8em;
+    cursor: -webkit-grab; cursor: -moz-grab;
+    -webkit-smoothing: antialias;
+    float: none;
+}
+
+#editPanel #editPanelContent #overflow #sectionsManager #tabsSections> ul>li>span{
+    color: gray;
+    font-size: 0.6em;
+    float: right;
+/*    padding: 3px;*/
+    margin: 4px;
+    padding-right: 3px;
+    cursor: pointer;
+}
+
+#editPanel #editPanelContent #overflow #sectionsManager #tabsSections> #tabs>li{
+    text-align:right;
+/*    padding-right: 5px;*/
 }
 
 #editPanel #editPanelContent #overflow #imageManager>ul {
@@ -237,7 +331,6 @@ body, html {
 
 #editPanel #editPanelContent #overflow #historyPane {
     padding: 20px;
-    b
 }
 
 #editPanel #editPanelContent #overflow #historyPane>ul {
@@ -249,15 +342,22 @@ body, html {
     overflow-y: scroll;
 }
 
+#editPanel #editPanelContent #overflow #historyPane>ul>li>span{
+    color: #555;
+}
+
 #editPanel #editPanelContent #overflow #historyPane>ul>li {
     padding:2px 15px;
     border-top: 1px solid black;
     cursor: pointer;
     cursor: hand;
+    font-size: 0.8em;
+    color: #0AF;
+    word-wrap: break-word;
 }
 
 #editPanel #editPanelContent #overflow #historyPane>ul>li:hover{
-    background-color: gray;
+    background-color: #222;
 }
 
 #editPanel #editPanelContent #overflow #colors {
@@ -288,13 +388,6 @@ body, html {
     -webkit-transition:1s;
 }
 
-#editPanel #editPanelContent #inner ul#overflow>li {
-    width:20%;
-    float:left;
-    display:inline-block;
-    height: 100%;
-    color: white;
-}
 
 #editPanel #header .divider {
     border-left:1px solid gray;
@@ -366,6 +459,13 @@ body, html {
 }
 
 
+
+#editPanel #header>#savedStatus {
+    float:right;
+    line-height:30px;
+    margin-right: 10px;
+/*    width: 30px;*/
+}
 
 #editPanel #header>#toggle {
     float:right;

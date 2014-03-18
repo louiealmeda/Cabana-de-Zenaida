@@ -19,16 +19,20 @@
         <script type="text/javascript" language = "javascript" src="js/jquery-ui-1.10.4.custom.min.js"></script>    
         <script type="text/javascript" language = "javascript" src="utilities.js"></script>  
 
-<!--[[[[[[[[[[CMS]]]]]]]]]]-->        
-        <script type="text/javascript" src="js/cmsWidgets.js"></script>
-        <script type="text/javascript" src="js/cmsController.js"></script>
-        <script language = "javascript" src="js/cmsjs.js"></script>
         
 <!--[[[[[[[[[[Website]]]]]]]]]]-->
 <!--        <link type="text/css" rel="stylesheet" href="Website/styles.css">-->
 <!--        <link class = "websiteStyle" type="text/css" rel="stylesheet" href="Website/css/sliderStyles.css">-->
         
         <script type="text/javascript" src="Website/js/script.js"></script>
+        
+        
+<!--[[[[[[[[[[CMS]]]]]]]]]]-->        
+        <script type="text/javascript" src="js/cmsWidgets.js"></script>
+        <script type="text/javascript" src="js/cmsController.js"></script>
+        <script type="text/javascript" src="js/cmsHistoryManager.js"></script>
+        <script language = "javascript" src="js/cmsjs.js"></script>
+        <script type="text/javascript" src="js/sectionsManager.js"></script>
         
         
         <style id = "currentTheme">
@@ -63,10 +67,10 @@
                 <ul id = "tabs">
                     <li class = "selected"> Components</li>
                     <li>Colors</li>
-                    <li>Linking</li>
+                    <li>Sections and Linking</li>
                     <li>History</li>
                     <li>Files</li>
-                    <li>Sections</li>
+                    <li>Publish</li>
     <!--
                     <li class="icon">A</li>
                     <li class="icon">@</li>
@@ -74,13 +78,15 @@
     -->
                 </ul>
                 <div class = "divider"></div>
-                
-                <ul id = "options">
-                    
-                </ul>
+<!--                <div id = "outer">-->
+                    <ul id = "options">
+                        
+                    </ul>
+<!--                </div>-->
                 
                 
                 <div class="icon-chevron-up" id = "toggle"></div>
+                <div id = "savedStatus" title="Last Saved"></div>
             </div>
             
             
@@ -121,22 +127,33 @@
                         </li>
                         
                         <li>
-                           Linking
+                            <div id = "sectionsManager">
+                                <div id = "tabsSections">
+                                    <ul id = "tabs">
+                                        <li>Home<span class = "handle icon-menu"></span></li>
+                                        <li>&nbsp; <span class = "icon-plus"></span></li>
+                                        <li>Reserve<span class = "handle icon-menu"></span></li>
+                                        <li>Rates<span class = "handle icon-menu"></span></li>
+                                    </ul>
+                                    
+                                    <ul id = "sections">
+                                        <li><span class = "handle icon-menu"></span>Features<span class = "icon-search"> <span class = "icon-eye-close"></span> <span class = "icon-remove"></span></li>
+                                        <li><span class = "handle icon-menu"></span>Features<span class = "icon-search"> <span class = "icon-eye-close"></span> <span class = "icon-remove"></span></li>
+                                        <li><span class = "handle icon-menu"></span>Features<span class = "icon-search"> <span class = "icon-eye-close"></span> <span class = "icon-remove"></span></li>
+                                        <li><span class = "handle icon-menu"></span>Features<span class = "icon-search"> <span class = "icon-eye-close"></span> <span class = "icon-remove"></span></li>
+                                        <li><span class = "handle icon-menu"></span>Features<span class = "icon-search"> <span class = "icon-eye-close"></span> <span class = "icon-remove"></span></li>
+                                        <li><span class = "handle icon-menu"></span>Features<span class = "icon-search"> <span class = "icon-eye-close"></span> <span class = "icon-remove"></span></li>
+                                        
+                                        <li id = "addNew">add</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </li>
                         
                         <li>
                             <div id = "historyPane">
                                 <ul class="bevelInset" style="border-radius: 5px;">
-                                    <li>test</li>
-                                    <li>The</li>
-                                    <li>quick brown fox</li>
-                                    <li>Jumps over the </li>
-                                    <li>lazy dog</li>
-                                    <li>test</li>
-                                    <li>The</li>
-                                    <li>quick brown fox</li>
-                                    <li>Jumps over the </li>
-                                    <li>lazy dog</li>
+                                    
                                 </ul>
                             </div>
                         </li>
@@ -144,7 +161,6 @@
                         <li>
                             <div id = "imageManager">
                                 <ul>
-                                    
                                     <li></li>
                                     <li></li>
                                     <li></li>
@@ -165,6 +181,9 @@
                                     <input type="file" name="upload" id="upload" accept='image/*' multiple>
                                 </form>
                             </div>
+                        </li>
+                        <li>
+                            Publishing
                         </li>
                     </ul>
                     

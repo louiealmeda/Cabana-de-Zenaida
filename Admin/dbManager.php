@@ -1,6 +1,8 @@
 <?php 
 
     require_once("dbconn.php");
+    require_once("imageManipulator.php");
+    
     $db = new db();
     $db->connect();
 //    echo "test";
@@ -15,22 +17,33 @@
             break;
         
         case "getImageLibrary":
-             scandir("/images");
+            $files = scandir("images/thumbs/");
+            $newFiles = [];
+            foreach($files as $f)
+            {
+                if(stripos($f,"png"))
+                {
+                    $newFiles[count($newFiles)] = "images/thumbs/" . $f;
+                }
+            }
+        
+            echo json_encode($newFiles);
             break;
         
         case "uploadImage":
             
 //            $files = $_FILES[;
             uploadImage();
-            $files = scandir("images/library/");
-            foreach($files as $f)
-            {
-                if(stripos($f, "png") || stripos($f, "jpg") || stripos($f, "jpeg") || stripos($f, "gif") )
-                {
-                    echo "<li style='background-image:url(images/library/$f)'></li>";
-                }
-            }
-            break;
+            
+//            $files = scandir("images/library/");
+//            foreach($files as $f)
+//            {
+//                if(stripos($f, "png") || stripos($f, "jpg") || stripos($f, "jpeg") || stripos($f, "gif") )
+//                {
+//                    echo "<li style='background-image:url(images/library/$f)'></li>";
+//                }
+//            }
+//            break;
         
         case "getThemes":
             
@@ -64,35 +77,30 @@
 
             if( strpos($f["type"], "image") >= 0)
             {
-                $name = $f["name"];
+                $name = explode(".", $f["name"])[0] . ".png";
                 $from = $f["tmp_name"];
                 
-                move_uploaded_file($from, $library.$name);
+                imagepng(imagecreatefromstring(file_get_contents($from)), $library . $name);
+                createThumb($library . $name);
+                
+                getImageLibrary();
+//                move_uploaded_file($from, $library.$name);
 //                resize($from,$thumbs.$name, 120);
             }
         }
 
     }
 
-    function resize($name, $destination, $width)
-    {
-        
-        echo $name;
-//        $thumb = new Imagick($name);
     
-        
-        $size = GetimageSize($name);
-        
-        
-        $height= round($width*$size[1]/$size[0]);
-        
-        
-        $thumb = new Imagick();
-        $thumb->readImage($name);
-        $thumb->resizeImage($width,$height,Imagick::FILTER_CATROM,1);
-        $thumb->writeImage($destination);
 
-        $thumb->destroy(); 
+    function createThumb($name)
+    {
+        $image = new ImageMan();
+        $image->load($name);
+        $image->resizeToWidth(150);
+        $fileName = explode("/", $name);
+        $fileName = $fileName[count($fileName) -1];
+        $image->save("images/thumbs/". $fileName);
     }
     
 

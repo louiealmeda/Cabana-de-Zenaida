@@ -21,6 +21,9 @@ body{
 #chatPane #inner {
     height: 100%;
     width: 100%;
+    display: table-cell;
+    vertical-align: middle;
+    padding: 10px;
 }
 
 

@@ -21,6 +21,7 @@ var darkness = 1;
 var opacity = 1;
 var activeColor = {"Red": 0, "Green":0, "Blue": 0, "Alpha": 0};
 
+var availableImages = ["images/library/IMG_5285.JPG"];
 
 function HideInputDialog()
 {
@@ -29,7 +30,8 @@ function HideInputDialog()
     $(dialogue).css({"visibility":"hidden", "height": "0px", "width":"0px", "top": "+=" + $(dialogue).outerHeight() + "px", "left": "+=" + $(dialogue).outerWidth() / 2 + "px", "opacity": 0});
     
     InputDialogue.Shown = false;
-    disableColorPicker();
+    EnableImagePicker(false);
+//    disableColorPicker();
 }
 
 function UpdateComponentValue(v, index)
@@ -95,7 +97,7 @@ function UpdateComponentValue(v, index)
 
 function UpdateCurrentValue(value)
 {
-    
+
     if(InputDialog.Callback == null)
     {
     
@@ -174,8 +176,17 @@ function ShowInputDialog(inputType, target, callback, minValue, maxValue)
             width = 280;
             height = 180;
             offset = -100;
-            enableColorPicker();
+//            enableColorPicker();
             break;
+            
+        case "imagePicker":
+            offset = -300;
+            width = 350;
+            height: 200;
+            EnableImagePicker(true);
+            break;
+            
+        
     }
     
     
@@ -190,8 +201,6 @@ function ShowInputDialog(inputType, target, callback, minValue, maxValue)
 
 //////Color picker
 function enableColorPicker() {
-    
-    
     
     $("#colorPalette li#add").click(function(){
         $(this).before("<li><div></div></li>\n");
@@ -314,4 +323,51 @@ function transparencySlide(e)
 //    activeColor.Alpha = opacity;
 //    UpdateCurrentValue("rgba(" +activeColor.Red + ", " +  activeColor.Green + ", " + activeColor.Blue + ", " +activeColor.Alpha + ") " );
     //    selectColor();
+}
+
+
+function EnableImagePicker(state)
+{
+    
+    var gridSelector = "#inputDialogue #imagePicker #inner>#grid>#pickerOverflow";
+    if(state)
+    {
+        
+        
+        $(gridSelector + ">li").bind("click", SelectImage);       
+        $(gridSelector + ">li").bind("mouseenter",PreviewImage);
+        $(gridSelector).bind("mouseleave", revertToSelectedImage);
+        
+        
+    }
+    else
+    {
+        $(tileSelector).unbind();
+    }
+    
+}
+
+function SelectImage()
+{
+    var tileSelector = "#inputDialogue #imagePicker #inner>#grid>#pickerOverflow>li";
+    $(tileSelector+".selected").removeClass("selected");
+    $(this).addClass("selected");
+//    $(activeElement.Object.css({"background-image":$(this).css("background-image")}));
+    UpdateCurrentValue( $(this).css("background-image").replace("thumbs", "library") );
+}
+
+function revertToSelectedImage()
+{
+    var previewSelector = "#inputDialogue #imagePicker #inner>#preview";
+    var tileSelector = "#inputDialogue #imagePicker #inner>#grid>#pickerOverflow>li";
+    $(previewSelector).css({"background-image":$(tileSelector+".selected").css("background-image")});
+    
+}
+
+function PreviewImage()
+{
+    var tileSelector = "#inputDialogue #imagePicker #inner>#grid>#pickerOverflow>li";
+    var previewSelector = "#inputDialogue #imagePicker #inner>#preview";
+    
+    $(previewSelector).css({"background-image":$(this).css("background-image")});
 }

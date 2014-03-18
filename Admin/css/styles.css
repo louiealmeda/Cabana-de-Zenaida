@@ -272,15 +272,183 @@ html, body{
     width:100%;
     height:100%;
     background-color: #303030;
-    display:inline-block;
     float:left;
-    display:table-cell;
+    display:block;
     border-left:1px solid #464646;
     overflow:hidden;
+    position: relative;
 }
-#contentPane>div{
-    width:100%;
-    height:100%;
-    padding:20px;
+
+#contentPane #selfCentered{
+    margin: auto;
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    bottom: 0; 
+    right: 0;
+    width: 80%;
+    height: 300px;
 }
+
+#contentPane #tablizer>#inner{
+    display: table-cell;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
+
+
+.style-inset {
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 4px;
+    box-shadow:inset 0px 0px 4px black;
+    
+    border-bottom:1px solid rgba(255,255,255,0.15);
+    border-top:1px solid rgba(0,0,0,0.5);
+}
+
+#graph *{
+    transition: 0.5s;
+}
+
+#graph{
+    height: 90%;
+    width: 90%;
+    position: relative;
+    display: inline-block;
+    padding: 0px;
+    margin: 0px;
+}
+
+#graph>ul {
+    
+    list-style: none;
+    display: block;
+    height: 100%;
+    margin: 0px 10px;
+    padding: 0px;
+}
+
+#graph>ul>li{
+/*    margin: 0px 2px;*/
+    top: 10%;
+    width: 14.2857%;
+    height: 90%;
+/*    position: absolute;*/
+/*    bottom: 0px;*/
+/*    display: inline-block;*/
+    float: left;
+    position: relative;
+    text-align: center;
+}
+
+#graph>ul>li>div{
+    
+    bottom: 5px;
+    height: 100%;
+    position: absolute;
+    background-color: #0DD;
+    width: 90%;
+    left: 5%;
+    border-radius: 2px 2px 0px 0px;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.5);
+/*    box-shadow: 0px -8px 0px #258686;*/
+    
+    border-top: 1px solid rgba(255,255,255,0.7);
+    border-bottom: 1px solid rgba(0,0,0,0.5);
+    
+/*    overflow: hidden;*/
+}
+
+#graph>ul>li>span#label{
+    bottom: -25px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    left: 0px;
+    color: gray;
+    text-shadow:0px -1px 0px black;
+    font-size: 0.6em;
+}
+
+#graph>ul>li>div>span#value{
+    top: -24px;
+    position: relative;
+    color: #0DD;
+    font-size: 0.8em;
+    text-shadow: 0px 0px 8px rgba(0,0,0,0.5);
+}
+
+
+#values {
+    display: inline-block;
+    width: 8%;
+    height: 90%;
+    float: left;
+    top: -15px;
+    position: relative;
+    text-align: right;
+    padding: 0px 1%;
+    padding-bottom: 10%;
+    color: gray;
+    text-shadow:0px -1px 0px black;
+    text-align: bottom;
+    list-style: none;
+}
+
+#values>li {
+    margin: 20px 0px;
+}
+
+#ranges {
+    margin-top: 20px;
+    width: 90%;
+    height: 10%;
+    display: inline-block;
+}
+
+#ranges #statRange{
+    width: 100%;
+}
+
+#selfCentered #perMonth {
+/*    background-color: blue;*/
+    height: 80px;
+    margin-left: 10%;
+    margin-bottom: 10px;
+    margin-top: -100px;
+    position: relative;
+    background-color: transparent;
+}
+
+#selfCentered #perMonth ul li{
+    position: relative;
+}
+
+#selfCentered #perMonth ul li #label {
+    width: 100%;
+    bottom: 0px;
+    position: absolute;
+    left: 0px;
+    font-size: 0.7em;
+}
+
+
+#selfCentered #perMonth ul{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    position: relative;
+}
+
+#selfCentered #perMonth ul>li{
+    float: left;
+    width: 30px;
+    height: 100%;
+    margin: 0px 2px;
+    background-color: blue;
+}
+
+
 

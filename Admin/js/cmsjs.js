@@ -103,7 +103,7 @@ $(document).ready(function(){
     
     NavBarClick();
     
-    
+    LoadLibraryImage();
     
     
     
@@ -147,12 +147,15 @@ function loadToolbar(index)
                     processData: false, 
                     contentType: false,
                     error : function(request){
-                        console.log(request.responseText);
+//                        alert(request.responseText + "error");
+                        LoadLibraryImage();
                     },
                     success : function(data){
-                        alert(data);
-                        $("#imageManager>ul").html(data);
-
+//                        alert(data);
+//                        $("#imageManager>ul").html(data);
+//                        alert();
+                        LoadLibraryImage();
+                        
                     }
                 }); 
             });  
@@ -162,6 +165,33 @@ function loadToolbar(index)
     }
 }
 
+
+function LoadLibraryImage(value)
+{
+    
+    $.post("dbManager.php",{method:"getImageLibrary"}, function(data){
+        availableImages = JSON.parse(data);
+
+
+
+        ///////Image picker////////
+        var gridSelector = "#inputDialogue #imagePicker #inner>#grid>#pickerOverflow";
+        $(gridSelector).html("");
+        ///////Image Library////////
+        $("#imageManager>ul").html("");
+
+        availableImages.forEach(function(e,index){
+            $(gridSelector).append("<li style = 'background-image: url("+e+")'></li>");
+            $("#imageManager>ul").append("<li style= 'background-image: url("+e+")'></li>");
+        });
+
+    });
+
+    
+    
+    
+    
+}
 
 function GenerateComponents()
 {

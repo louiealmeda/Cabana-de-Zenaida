@@ -32,6 +32,7 @@ function SessionCheck()
 }
 
 
+
 function GetUserIP()
 {
     $client  = @$_SERVER['HTTP_CLIENT_IP'];

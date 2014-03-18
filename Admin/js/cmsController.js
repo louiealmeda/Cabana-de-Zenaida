@@ -5,6 +5,7 @@ var isLocked = false;
 var toolbar;
 var InputDialogue = {"Shown":false, "Target":null};
 //var isEditing = true;
+var isElementDroppable = false;
 
 var elementOptions = {
     element : {
@@ -14,6 +15,7 @@ var elementOptions = {
         "Margin" : ["icon-snaptogrid", {"margin": "slider|0|100"} ],
         "Padding" : ["icon-canvasrulers", {"padding": "slider|0|100"} ],
         "Background Color" : ["icon-bucket", {"background-color": "colorPicker"} ],
+        "Image" : ["icon-picture", {"background-image": "imagePicker"} ],
         "Border" : ["icon-pigpene", {"border-width": "slider|0|100"} ],
         "Border Color" : ["icon-palette-painting", {"border-color": "colorPicker"} ],
         "Border Radius" : ["icon-roundrectangle", {"border-radius": "slider|0|100"} ],
@@ -70,9 +72,9 @@ $(document).ready(function(){
 ////        cursorAt: { top:  $(window).scrollTop(), left: 0 }
 //    }).disableSelection();
     
+//    LoadLibraryImage();
+    ShowInputDialog("imagePicker", $("#editPanel") );
     
-    
-
     
 //    alterInlineCSS( "#handle", {"display":"block", "color":"red","float":"right", "clear":"left"} );
     
@@ -90,12 +92,18 @@ function CMSControlerLoad(){
     });
     
     
-   
+   ResetDragDrop();
     
     
     
+    $( ".component" ).draggable({
+      connectToSortable: ".element",
+      helper: "clone",
+      revert: "invalid"
+    });
     
     
+    enableColorPicker();
     
 //    activate();
     
@@ -110,8 +118,6 @@ function LockElement()
     if(isLocked)
     {
         Release(false);
-        
-        
     }
     else
     {
@@ -123,6 +129,7 @@ function LockElement()
         selectElement();
         isLocked = true;
         
+        $("#selector").css({"outline-color":"rgba(40,0,0,0.7)"});
         
     }
 }
@@ -175,7 +182,7 @@ function activate()
     });
     
     $(".component").css({"pointer-events":"all"});
-    EnableDropping(true);
+//    EnableDropping(true);
     
     
     $("#selector>#handle>#remove").click(function(){
@@ -193,23 +200,7 @@ function activate()
     $("#selector>#handle>#edit").click(LockElement);
     
     
-    $(".element").droppable({
-        greedy:true,
-//        activeClass: "hoveredAddingElement",
-        hoverClass: "hoveredAddingElement",
-        drop: function( event, ui ) {
-            $( this ).find( ".component" ).remove();
-            SpawnElement(this,ui.draggable);
-
-            activate();
-        }
-    });
     
-    $( ".component" ).draggable({
-      connectToSortable: ".element",
-      helper: "clone",
-      revert: "invalid"
-    });
     
     isEditing = true;
 }
@@ -217,12 +208,13 @@ function activate()
 function deactivate()
 {
     
-    Release(false);
-    $("#selector").css({"opacity":"0", "visibility":"hidden"});//.delay(500).css({"display":"none"});
+    
     $(".element").css({"outline":"1px dashed transparent"});
+    $("#selector").css({"opacity":"0", "visibility":"hidden"});//.delay(500).css({"display":"none"});
+    
 //    $(".element").removeClass(".editing");
     $(".element").unbind();
-    EnableDropping(false);
+//    EnableDropping(false);
     $(".component").css({"pointer-events":"none"});
     
     $("#selector>#handle>#edit").unbind();
@@ -237,8 +229,8 @@ function deactivate()
     if(isEditing)
     {
         
-        $(".element").droppable('destroy');
-        $( ".component" ).draggable('destroy');
+//        $(".element").droppable('destroy');
+//        $( ".component" ).draggable('destroy');
     }
     
     $("#selector>#handle>#remove").unbind();
@@ -248,10 +240,40 @@ function deactivate()
 //    $(".element").droppable('destroy');
     
     isEditing = false;
+    
+    Release(false,true);
+    
+}
+
+function ResetDragDrop()
+{
+    if(isElementDroppable)
+    {
+        $(".element").droppable('disable');   
+//        $(".element").unbind();    
+    }
+    
+    
+    $(".element").droppable({
+        greedy:true,
+//        activeClass: "hoveredAddingElement",
+        hoverClass: "hoveredAddingElement",
+        drop: function( event, ui ) {
+            $(".element").css({"outline":"1px dashed gray"});
+            $( this ).find( ".component" ).remove();
+            SpawnElement(this,ui.draggable);
+            activate();
+            ResetDragDrop();
+        }
+    });
+    
+    isElementDroppable = true;
 }
 
 function EnableDropping(state)
 {
+    
+    
 }
 
 function SpawnElement(containingE, draggedE)
@@ -291,8 +313,9 @@ function SpawnElement(containingE, draggedE)
     {
         $(containingE).removeClass(); 
         $(containingE).addClass("element columns " + "c" + $(containingE).children().length);
-        
     }
+    
+    
     
 }
 
@@ -382,13 +405,17 @@ function ToolbarItemClick(value,index)
             ShowInputDialog("triSlider",target);
             break;
             
-        default:
+        case "imagePicker":
+            ShowInputDialog("imagePicker", target);
+            break;
             
+        default:
+            HideInputDialog();
             $(activeElement.Object).css(value);
             break;
     }
     
-    
+
     
 }
 
@@ -442,8 +469,9 @@ function ModifyTheme(prev, value)
 //    alert(prev + "|" + value + "\n" + $("#currentTheme").html());
 }
 
-function Release(save)
+function Release(save, mainSwitched)
 {
+    mainSwitched = mainSwitched || false;
     if(isLocked)
     {
         if(!save)
@@ -460,9 +488,16 @@ function Release(save)
         $(edit).attr("title","Edit element");
         $(edit).tooltip({content:"Edit element"}).tooltip('close').tooltip('open').tooltip('close');
 
-        activate();
+        if(!mainSwitched)
+        {
+            activate();
+            
+        }
+        else
+            $(".element").css({"outline":"1px dashed transparent"});
         $(toolbar).html("");
         HideInputDialog();
+        $("#selector").css({"outline-color":"rgba(0,0,0,0.5)"});
     }
 }
 

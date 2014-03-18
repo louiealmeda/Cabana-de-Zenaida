@@ -218,12 +218,21 @@ setInterval(function(){
     
 }, 10000);
 
-function ComputeNavBarCenter()
+function ComputeNavBarCenter(force)
 {
+    force = force || false;
     $navBar = $("#menu_item_container");
     
-    if(!pageLoaded)
-        navbarWidth = $navBar.outerWidth();
+    if(!pageLoaded || force){
+        navbarWidth = $navBar.innerWidth();
+        navbarWidth = 0;
+        $("#menu_item_container>li").each(function(index,e){
+//            alert($(e).outerWidth());
+            navbarWidth += $(e).outerWidth();
+        });
+        
+//        alert(navbarWidth);
+    }
     
     navbarPosition = ($("#main").outerWidth() - navbarWidth) / 2;
     navbarPosition = navbarPosition / $("#main").outerWidth() * 100;
@@ -232,6 +241,7 @@ function ComputeNavBarCenter()
     $navBar.css({
         "margin": "0px " + ( navbarPosition ) + "%",
         "-webkit-transition": "0s"
+//        "width": navbarWidth + "px"
     });
     
     
@@ -240,15 +250,15 @@ function ComputeNavBarCenter()
 function NavBarClick()
 {
     
-    $("#menu_item_container>li").bind("click", function(){
-        
-        var target = "html, body, #pagePreview";
-//        alert()
-//        if($("#pagePreview").html != "")
-//            target = "#pagePreview";
-        $(target).animate({ scrollTop: $(this).index() * 500 +  "px" });
-        
-    });
+//    $("#menu_item_container>li").bind("click", function(){
+//        
+//        var target = "html, body, #pagePreview";
+////        alert()
+////        if($("#pagePreview").html != "")
+////            target = "#pagePreview";
+//        $(target).animate({ scrollTop: $(this).index() * 500 +  "px" });
+//        
+//    });
     
 //    $("#mi1").click(function(){
 //        $("html, body").animate({ scrollTop:  "0px" });
@@ -265,6 +275,23 @@ function NavBarClick()
 //    $("#mi4").click(function(){
 //        $("html, body").animate({ scrollTop:  "900px" });
 //    });
+}
+
+
+function scrollToSection(id)
+{
+    
+    $("sections").each(function(index, e){
+        
+        if($(e).attr("id") == id)
+        {
+//            alert($(e).offset().top);
+            $(container).animate({ scrollTop: $(container).scrollTop() + $(e).offset().top +  "px" });
+//            alert();
+        }
+
+    });
+    
 }
 
 function ScrollSlider( index, prevIndex )
@@ -333,7 +360,7 @@ function onResize(){
     {
         $("#header #nav_bar>ul#smallScreen>li #search_bar").css({"width":"40px"});
         $("#nav_bar #smallScreen").css({display:"none"});
-        $("#menu_item_container").css({display:"block"});
+        $("#menu_item_container").css({display:"inline-block"});
         
     }
     
@@ -412,10 +439,10 @@ function scroll(container) {
                 "position":"relative"
             });
             
-            $("#menu_item_container").css({
-                "margin": "0px " + navbarPosition + "%",
-                "-webkit-transition": "0.5s"
-            });
+//            $("#menu_item_container").css({
+//                "margin": "0px " + navbarPosition + "%",
+//                "-webkit-transition": "0.5s"
+//            });
             
             $("#nav_bar_filler").css({
                 "display":"none"

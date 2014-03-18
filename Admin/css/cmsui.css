@@ -210,7 +210,7 @@ body, html {
 
 #editPanel #editPanelContent #overflow {
 /*    display:block;*/
-    width:600%;
+    width:500%;
     height:100%;
     list-style:none;
     padding:0px;
@@ -221,12 +221,14 @@ body, html {
 
 
 #editPanel #editPanelContent>#inner>ul#overflow>li {
-    width:16.666666666%;
+    width:20%;
     float:left;
     display:inline-block;
     height: 100%;
     color: white;
 }
+
+
 
 #editPanel #editPanelContent #overflow #imageManager {
     padding: 10px;
@@ -256,15 +258,22 @@ body, html {
     margin: 0px;
     padding: 0px;
     width: 50%;
-/*    outline: 2px solid black;*/
+    font-size: 0.9em;
+    
+/*    outline: 2px solid
+    black;*/
+}
+
+#editPanel #editPanelContent #overflow #sectionsManager #tabsSections>ul>li{
+    margin: 2px 0px;
 }
 
 #editPanel #editPanelContent #overflow #sectionsManager #tabsSections> #sections>li{
 /*    padding-left: 5px;*/
 /*    outline: 1px solid black;*/
-    margin: 2px 0px;
+    
     background-color: black;
-    font-size: 0.9em;
+    
 }
 
 #editPanel #editPanelContent #overflow #sectionsManager #tabsSections> #sections>li#addNew{
@@ -283,7 +292,7 @@ body, html {
 /*    background-color: gray;*/
     margin: 0px 1px;
     color: gray;
-    font-size: 0.8em;
+    font-size: 0.6em;
     cursor: -webkit-grab; cursor: -moz-grab;
     -webkit-smoothing: antialias;
     float: none;
@@ -294,14 +303,21 @@ body, html {
     font-size: 0.6em;
     float: right;
 /*    padding: 3px;*/
-    margin: 4px;
-    padding-right: 3px;
+    margin: 4px 2px;
+/*    padding-right: 3px;*/
     cursor: pointer;
+/*    background-color: rgba(200,200,0,0.5);*/
 }
+
+
 
 #editPanel #editPanelContent #overflow #sectionsManager #tabsSections> #tabs>li{
     text-align:right;
 /*    padding-right: 5px;*/
+}
+
+#editPanel #editPanelContent #overflow #sectionsManager #tabsSections> #tabs .icon-remove{
+    cursor: pointer;
 }
 
 #editPanel #editPanelContent #overflow #imageManager>ul {
@@ -331,6 +347,28 @@ body, html {
 
 #editPanel #editPanelContent #overflow #historyPane {
     padding: 20px;
+}
+#editPanel #editPanelContent #overflow #historyPane>* {
+    display: inline-block;
+}
+#editPanel #editPanelContent #overflow #historyPane #publishButton {
+    color: black;
+    background-color: #0AF;
+    box-shadow: 0px 4px 0px #08D;
+    border-radius: 3px;
+    padding: 4px 10px;
+    margin: 15px;
+    position: relative;
+    transition: 0s;
+    display: inline-block;
+    top: -100px;
+    cursor: pointer;
+}
+
+#editPanel #editPanelContent #overflow #historyPane #publishButton:hover {
+    top: -96px;
+    box-shadow: none;
+    
 }
 
 #editPanel #editPanelContent #overflow #historyPane>ul {

@@ -67,6 +67,11 @@ function LoadAllHistoryStates()
     });
 }
 
+function publish()
+{
+    
+}
+
 function revertToHistoryState(id, callback)
 {   
 //    if(isEditing)

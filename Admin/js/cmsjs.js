@@ -33,6 +33,7 @@ $(document).ready(function(){
             revertToHistoryState("last",function(){
                 LoadSectionsManager();
                 CMSControlerLoad();
+                ComputeNavBarCenter(true);
             });
             
         });
@@ -135,10 +136,10 @@ function loadToolbar(index)
         case 2:
             break;
             
-        case 3:
+        case 4:
             break;
             
-        case 4:
+        case 3:
             $('#upload').bind("change", function(){
                 var formData = new FormData($("#form-upload")[0]);
                 for (var i = 0, len = document.getElementById('upload').files.length; i < len; i++) {

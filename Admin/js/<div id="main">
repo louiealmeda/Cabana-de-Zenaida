@@ -1,0 +1,290 @@
+<div id="main">
+            
+            <div id="loadingPage" style="opacity: 0; visibility: hidden;">
+                <div id="logo"></div>
+            </div>
+            <div id="contact_us" style="display: none; bottom: -282px;">
+                <div id="title">
+                    <div id="notification">5</div>
+                    &nbsp; Talk to Us 
+
+                </div>
+                <div id="title_bottom"></div>
+                <img class="shadow" src="images/bottom-shadow.png" width="100%">
+                <img class="shadow" src="images/bottom-shadow.png" width="100%">
+
+                <div id="content">
+                    <div id="overflow">
+                        <div id="register">
+                            <div>Hi! We're online, what's your name?</div>
+                            <input id="textChat" class="textbox" type="text" placeholder="Type your name here" tabindex="-1">
+                        </div>
+                        <div id="chat">
+                            <div id="chatbox" class="customScroll">                        
+                            </div>
+                                <input id="textChat" class="textbox" type="text" placeholder="Type your message" tabindex="-1">
+                        </div>
+                    </div>
+                    <div id="email">
+                        <p id="number">(049)508-3883</p>
+                        <p id="sub">Give us a call</p>
+                        <div> 
+                            <div class="custom_hr"> </div> 
+                             <p id="sub">Or</p>
+                            <div class="custom_hr"> </div> 
+                        </div>
+                        <p id="sub">Mail us</p>
+                        <div>
+
+                            <input type="text" class="textbox" id="textName" placeholder="Name">
+                            <input type="text" class="textbox" id="textEmail" placeholder="email">
+                            <textarea class="textbox" id="textMessage" placeholder="inquiry"></textarea>
+                            <div class="custom_button">Submit</div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div id="header">
+
+                <div id="logo_container">
+                    <a href="#"><div id="logo"></div></a>
+        <!--                <p class="icon">0</p>-->
+                </div>
+
+                <div id="nav_bar_filler" style="display: block;"></div>
+                <div id="nav_bar_container" style="position: fixed; top: 0px; width: 100%;">
+
+                    <div id="nav_bar">
+
+                        <ul id="smallScreen" style="display: none;">
+                            <li id="nav_menu_small">
+                                <div class="icon-menu"></div>
+
+                            </li>
+                            <li>    
+
+                                <div id="search_bar" style="width: 40px;">
+                                    <div id="container"><input type="text" tabindex="-1"></div>
+                                    <div id="searchIcon" class="icon">7</div>
+                                </div>
+                            </li>
+
+                        </ul>
+        <!--
+                        <ul id = "smallScreen" >
+                            <li id = "nav_menu_small">
+                                <div class = "svg_icon"></div>
+                            </li>
+                            <li id = "searchBarContainer" >
+                                <div id = "search_bar">
+                                    <div id = "container"><input type="text"></div>
+                                    <div class="icon">7</div>
+
+                                </div>
+                            </li>
+
+                        </ul>
+        -->
+                        <ul id="menu_item_container" class="ui-sortable" alt="1" style="margin: 0px 29.7339593114241%; -webkit-transition: 0.5s; transition: 0.5s; display: block;">
+
+                            <li class="menu_item" id = "qwes32" alt="eytu4hjf" onclick="scrollToSection('eytu4hjf')">
+                                <div class="label hovered">Home</div>
+                                <div class="label normal">Home</div>
+                            </li>
+
+                            <li class="menu_item sub1" id = "asd7iu"alt = "2ewradfafdqer" onclick="scrollToSection('2ewradfafdqer')">
+                                <div class="label hovered">Explore</div>
+                                <div class="label normal">Explore</div>
+
+                            </li>
+                            <li class="menu_item" id = "adsqe32ad" alt="rty3tfdhittu" onclick="scrollToSection('rty3tfdhittu')">
+                                <div class="label hovered">Rates</div>
+                                <div class="label normal">Rates</div>
+                            </li>
+
+
+                            <li id="searchBarContainer">
+                                <div id="search_bar">
+                                    <div id="container"><input type="text" tabindex="-1"></div>
+                                    <div class="icon">7</div>
+
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>
+        <!--                <img src="images/top-shadow.png" width="100%">-->
+                    <div id="sub_menu_bar" style="bottom: -13px;">
+                        <ul>
+                            <li>Home</li>
+                            <li>Explore</li>
+                            <li>Rates</li>
+                            <li>The quick brown</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="content">
+
+                <div class="slider">    
+                    <div class="slides">
+                        <div class="overflow">
+                            <div class="inner" style="margin-left: -100%;">
+                                <div class="slide" style="height: 542.4px; background-position-y: -46.63636363636364%;">
+                                    <div id="caption"> <div>The quick brown fox jumps</div></div>
+                                </div>
+                                <div class="slide" style="height: 542.4px; background-position-y: -46.63636363636364%;">
+                                    <div id="caption"> <div>The quick brown fox jumps</div></div>
+                                </div>
+                                <div class="slide" style="height: 542.4px; background-position-y: -46.63636363636364%;">
+                                    <div id="caption"> <div>The quick brown fox jumps</div></div>
+                                </div>
+                                <div class="slide" style="height: 542.4px; background-position-y: -46.63636363636364%;">
+                                    <div id="caption"> <div>The quick brown fox jumps</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="container">
+                        <ul id="sliderControls">
+                            <li class=""></li>
+                            <li class="selected"></li>
+                            <li class=""></li>
+                            <li class=""></li>
+                        </ul>
+                    </div>
+                </div>
+                
+<!--                <img src = 'website/images/slider/slide1.jpg' styles='background-color:blue' height='100px' />-->
+                <section id="dfsg1aaqd" alt = "Home" class="separated">
+                    <div class="tablizer">
+                        <div class="element , inner text " style="outline: transparent dashed 1px;">
+                            
+                            <div class="element " align="center" style="font-size: 2em; color: rgb(127, 77, 53); outline: transparent dashed 1px;" contenteditable="false">Ut enim ad minim vaniam</div>
+                            <div class="element , columns , c2 " style="outline: transparent dashed 1px;">
+                                <div class="element text " align="right" style="outline: transparent dashed 1px; background-image: url(http://localhost:1994/Cabana%20de%20Zenaida/Admin/images/library/slide5.png);">
+                                    
+                                </div>
+                                <div class="element text " style="outline: transparent dashed 1px;">
+                                    <div class="element , image " style="box-shadow: rgba(0, 0, 0, 0.498039) 2px 2px 8px; border: 3px solid white; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; background-image: url(http://localhost:1994/Cabana%20de%20Zenaida/Admin/images/slider/slide0.jpg); outline: transparent dashed 1px;"></div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+                
+                <section id="2ewradfafdqer" alt ="Features" class="inset">
+                    <div class="tablizer">
+                        <div class="element , inner text " style="outline: transparent dashed 1px;">
+                            
+                            <div class="element " align="center" style="font-size: 2em; outline: transparent dashed 1px;">Ut enim ad minim vaniam</div>
+                            <div class="element , columns , c2 " style="outline: transparent dashed 1px;">
+                                <div class="element text " align="right" style="outline: transparent dashed 1px;">
+                                    <div class="element text " style="outline: transparent dashed 1px; font-size: 16px; text-shadow: rgb(0, 0, 0) 8px 8px 10px;">Lorem ipsum dolor sit amet consectetur <br>adipisicing elit, sed do eiusmod tempor<br> incidindunt ut labore et dolore magna aliqua. </div>
+                                    quis nostrud exercitation ullamco<br> laboris nisi ut aliquip ex ea commodo consequat.
+                                </div>
+                                <div class="element text " style="outline: transparent dashed 1px;">
+                                    <div class="element , image " style="height: 200px; width: 80%; background-image: url(http://localhost:1994/Cabana%20de%20Zenaida/Admin/images/slider/slide0.jpg); outline: transparent dashed 1px;"></div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+                
+                
+                
+                
+                <section id="rty3tfdhittu" alt = "FAQ" class="inset">
+                    <div class="tablizer">
+                        <div class="element , inner text " style="background-image: url(http://localhost:1994/Cabana%20de%20Zenaida/Admin/images/slider/slide2.jpg); outline: transparent dashed 1px;">
+                            
+                            <div class="element " align="center" style="font-size: 2em; outline: transparent dashed 1px;">Ut enim ad minim vaniam</div>
+
+                            <div class="element " align="center" style="font-size: 2em; height: 250px; outline: transparent dashed 1px;">&nbsp;</div>
+                        </div>
+
+                        
+
+                    </div>
+
+
+                </section>
+                
+                <section id="eytu4hjf" alt = "Contact">
+                    <div class="tablizer">
+                        <div class="element , inner " style="outline: transparent dashed 1px;">
+<!--                            <div class = "element text">Content</div>-->
+                            <div class="element text " style="font-size: 2em; text-align: center; outline: transparent dashed 1px;">Lorem Ipsum</div>
+<!--                            <div class = "element , image" style="background-image:url(images/slider/slide0.jpg);"></div>-->
+                            <div class="element text " style="text-align: center; outline: transparent dashed 1px;">quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+                            <div class="element , columns  " style="text-align: center; outline: transparent dashed 1px;">
+                                <div class="element text " style="height: 100px; background-image: url(http://localhost:1994/Cabana%20de%20Zenaida/Admin/images/slider/slide0.jpg); outline: transparent dashed 1px;">
+                                    
+                                </div>
+                                <div class="element text " style="background-image: url(http://localhost:1994/Cabana%20de%20Zenaida/Admin/images/slider/slide1.jpg); outline: transparent dashed 1px;">
+                                    
+                                </div>
+
+                                <div class="element text " style="background-image: url(http://localhost:1994/Cabana%20de%20Zenaida/Admin/images/slider/slide2.jpg); outline: transparent dashed 1px;">
+                                    
+                                </div>
+                                <div class="element text " style="background-image: url(http://localhost:1994/Cabana%20de%20Zenaida/Admin/images/slider/slide0.jpg); outline: transparent dashed 1px;">
+                                    
+                                </div>
+                                <div class="element text " style="background-image: url(http://localhost:1994/Cabana%20de%20Zenaida/Admin/images/slider/slide1.jpg); outline: transparent dashed 1px;">
+                                    
+                                </div>
+
+                                <div class="element text " style="background-image: url(http://localhost:1994/Cabana%20de%20Zenaida/Admin/images/slider/slide2.jpg); outline: transparent dashed 1px;">
+                                    
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                
+
+            </div>
+
+
+            <div id="footer">
+                <div id="divider"></div>
+
+                <div id="container">
+                    <div id="logo">asd</div>
+                    <div id="contactInfo">info
+                        <ul>
+                            <li>+63 917 867 2128</li>
+                            <li>+63 928 596 9730</li>
+                            <li>Block 1 Lot 5,<br> Pansol Hot Sprint Resort Village,<br> Pansol Calamba, Laguna</li>
+                            <li>
+                                <div style="display: inline-block; font-size: 1.2em;" class="icon-squarelike"></div>
+                                Like us on facebook
+                            </li>
+                        </ul>
+                    </div>
+                    <div>©2014 Cabana de Zenaida, All rights reserved</div>
+                </div>
+
+            </div>
+
+            <div id="selector" style="opacity: 0; visibility: hidden; left: 22px; top: 1038.390625px; width: 613px; height: 178px;">
+                <div id="handle">
+                    <div class="icon-undo" id="edit" aria-describedby="ui-tooltip-9 ui-tooltip-90 ui-tooltip-0 ui-tooltip-0" title="Release element without saving"></div>
+                    <div id="move">::::::::::</div>
+                    <div class="icon-remove-sign" id="remove" title="Remove element"></div>
+                </div>
+            </div>
+        </div>

@@ -159,6 +159,7 @@ function activate()
     
     $("#selector").css({"opacity":"1","visibility":"visible"});//.delay(500).css({"display":"block"});
     $(".element").css({"outline":"1px dashed gray"});
+    $("#footer")[0].contentEditable = true;
 //    $(".element").addClass(".editing");
     
     $(".element").each(function(index){
@@ -220,7 +221,7 @@ function deactivate()
     
     $(".element").css({"outline":"1px dashed transparent"});
     $("#selector").css({"opacity":"0", "visibility":"hidden"});//.delay(500).css({"display":"none"});
-    
+    $("#footer")[0].contentEditable = false;
 //    $(".element").removeClass(".editing");
     $(".element").unbind();
 //    EnableDropping(false);
@@ -264,6 +265,7 @@ function ResetDragDrop()
     
     $(".element").droppable({
         greedy:true,
+        accept: ".component",
 //        activeClass: "hoveredAddingElement",
         hoverClass: "hoveredAddingElement",
         drop: function( event, ui ) {

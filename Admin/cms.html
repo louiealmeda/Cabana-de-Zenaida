@@ -68,9 +68,8 @@
                     <li class = "selected"> Components</li>
                     <li>Colors</li>
                     <li>Sections and Linking</li>
-                    <li>History</li>
                     <li>Files</li>
-                    <li>Publish</li>
+                    <li>History and Publishing</li>
     <!--
                     <li class="icon">A</li>
                     <li class="icon">@</li>
@@ -150,13 +149,7 @@
                             </div>
                         </li>
                         
-                        <li>
-                            <div id = "historyPane">
-                                <ul class="bevelInset" style="border-radius: 5px;">
-                                    
-                                </ul>
-                            </div>
-                        </li>
+                        
                         
                         <li>
                             <div id = "imageManager">
@@ -183,7 +176,12 @@
                             </div>
                         </li>
                         <li>
-                            Publishing
+                            <div id = "historyPane">
+                                <ul class="bevelInset" style="border-radius: 5px;">
+                                    
+                                </ul>
+                                <div id = "publishButton" onclick="publish()">Publish</div>
+                            </div>
                         </li>
                     </ul>
                     

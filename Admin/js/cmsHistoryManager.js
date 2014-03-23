@@ -73,14 +73,19 @@ function publish()
         deactivate();
     
     
-    var selector = $("#selector").html();
+//    var selector = $("#selector").html();
+    
+    var selector = $("#selector").clone().wrap('<p>').parent().html();
     $("#contact_us").css({"display":"inline-block"});
     
     $("#selector").remove();
     var html = $("#pagePreview").clone();
     var css = $("#currentTheme").html();
     
+//    alert(selector);
+    
     $("#pagePreview").append(selector);
+    
     $("#contact_us").css({"display":"none"});
     
     html = $(html).html();
@@ -89,11 +94,17 @@ function publish()
     
 //    alert(html);
 //    alert(css);
-    MessageBox.Show("Publish", "Please input your password to publish this version", [{"title":"cancel", "callBack": function(){}},{"title":"next","callBack":function(){}}]);
+    MessageBox.Show("Publish", "Please input your password to publish this version<input type = 'password' id = 'confirmPassword'>", [{"title":"cancel", "callBack": function(){MessageBox.Hide();}},{"title":"next","callBack":function(){
+        
+        $.post("dbManager.php", {method: "publish", html:html, css: css, password: $("#confirmPassword").val()}, function(data){
+//            alert(data);
+            MessageBox.Show("Publish", data, [{"title":"ok", "callBack":function(){
+                MessageBox.Hide();
+                
+            }}]);
+        });    
+    }}]);
     
-    $.post("dbManager.php", {method: "publish", html:html, css: css}, function(data){
-        alert(data);
-    });
     
 }
 
@@ -122,11 +133,14 @@ function revertToHistoryState(id, callback)
             else if(type == 'color')
                 changeTheme(data[1], true);
         });
+        
         if(callback!= null)
             callback();
         
-        
+        ReloadTabsList(true);
+        ReloadSectionList(true);
         ResetDragDrop();
+        $("#faqAccrodion").accordion();
 //        activate();
     });
     

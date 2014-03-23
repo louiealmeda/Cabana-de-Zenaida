@@ -34,6 +34,7 @@ $(document).ready(function(){
                 LoadSectionsManager();
                 CMSControlerLoad();
                 ComputeNavBarCenter(true);
+                
             });
             
         });
@@ -186,7 +187,7 @@ function LoadLibraryImage(value)
 
         ///////Image picker////////
         var gridSelector = "#inputDialogue #imagePicker #inner>#grid>#pickerOverflow";
-        $(gridSelector).html("<li style='background-image:url()'></li>");
+        $(gridSelector).html("<li style='background-image:url()'></li> \n");
         ///////Image Library////////
         $("#imageManager>ul").html("");
 

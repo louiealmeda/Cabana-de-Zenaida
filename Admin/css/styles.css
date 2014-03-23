@@ -278,10 +278,108 @@ html, body{
     display:block;
     border-left:1px solid #464646;
     overflow:hidden;
+/*    overflow-y: scroll;*/
     position: relative;
 }
 
-#contentPane #selfCentered{
+#contentPane>#overflow{
+    display: block;
+    height: 300%;
+    position: relative;
+    transition: 0.5s;
+/*    top: -100%;*/
+}
+#contentPane>#overflow>div{
+    height: 33.33333%;
+    position: relative;
+/*    border: 1px solid red;*/
+}
+
+#contentPane #statistics{
+/*    margin: auto;*/
+/*    position: relative;*/
+/*    top: 0; */
+/*    left: 0; */
+/*    bottom: 0; */
+/*    right: 0;*/
+/*    width: 80%;*/
+/*    border: 1px solid red;*/
+    position: relative;
+}
+
+
+#contentPane div> #container #reviewsPane{
+    width: 49%;
+    display: inline-block;
+/*    float: left;*/
+    margin-right: 1%;
+    position: relative;
+}
+#contentPane div> #container #reviewsPaneSave{
+    position: absolute;
+    right: 0px;
+    bottom: -40px;
+    padding: 5px 15px;
+    background-color: #0AF;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#contentPane div> #container #reviewsList{
+    list-style: none;
+    padding: 10px;
+    margin: 0px;
+    height: 300px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+/*    border-radius: 3px;*/
+}
+
+
+#contentPane div> #container #reviewsList li{
+    background-color: #303030;
+    padding: 15px;
+    text-align: left;
+    color: #DDD;
+    position: relative;
+}
+
+#contentPane div> #container #reviewsList #isVisible{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+#contentPane div> #container #reviewsList textarea:focus{
+    outline: none !important;
+}
+
+#contentPane div> #container #reviewsList textarea{
+    margin-top: 10px;
+    border: none;
+    width: 99%;
+    background-color: #444;
+    color: white;
+    font-size: 1em;
+    max-width: 99%;
+}
+
+#contentPane div> #container #reviewsList #name{
+    color: #0AF;
+}
+
+
+#contentPane div> #container #reviewsList #rating{
+    color: #0AF;
+}
+
+#contentPane div> #container #reviewsList #date{
+    font-size: 0.8em;
+}
+
+
+#contentPane div> #container{
+    height: 300px;
     margin: auto;
     position: absolute;
     top: 0; 
@@ -289,7 +387,6 @@ html, body{
     bottom: 0; 
     right: 0;
     width: 80%;
-    height: 300px;
 }
 
 #contentPane #tablizer>#inner{
@@ -298,7 +395,12 @@ html, body{
     height: 100%;
     padding: 20px;
 }
-
+.style-emboss{
+    border-left: 1px solid #333;
+    border-right: 1px solid #333;
+    border-top: 1px solid #464646;
+    border-bottom: 1px solid black;
+}
 
 .style-inset {
     background-color: rgba(0,0,0,0.2);
@@ -413,7 +515,7 @@ html, body{
     width: 100%;
 }
 
-#selfCentered #perMonth {
+#statistics #perMonth {
 /*    background-color: blue;*/
     height: 80px;
     margin-left: 10%;
@@ -423,11 +525,11 @@ html, body{
     background-color: transparent;
 }
 
-#selfCentered #perMonth ul li{
+#statistics #perMonth ul li{
     position: relative;
 }
 
-#selfCentered #perMonth ul li #label {
+#statistics #perMonth ul li #label {
     width: 100%;
     bottom: 0px;
     position: absolute;
@@ -436,7 +538,7 @@ html, body{
 }
 
 
-#selfCentered #perMonth ul{
+#statistics #perMonth ul{
     list-style: none;
     margin: 0px;
     padding: 0px;
@@ -444,7 +546,7 @@ html, body{
     position: relative;
 }
 
-#selfCentered #perMonth ul>li{
+#statistics #perMonth ul>li{
     float: left;
     width: 30px;
     height: 100%;
@@ -476,3 +578,5 @@ html, body{
 #profile:hover {
     margin-left: -70px;
 }
+
+

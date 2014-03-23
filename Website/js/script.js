@@ -16,6 +16,8 @@ var container;
 $(document).ready(function(){
          
  
+    
+    
     container = $("#pagePreview");
     
     if ( $(container).height() == null)
@@ -40,11 +42,13 @@ $(document).ready(function(){
             $("#register #textChat").keypress(function(){
                 if ( event.which == 13 ) {
                     $.post("clientBackend.php", {method:"Register", name:this.value}, function(data){
-                        if(data == "ok")
+                        if(data.indexOf("ok") != -1)
                         {
                             enableChat();
+                            Update();
                             
                         }
+//                        alert(data);
                     });
                 }
             });

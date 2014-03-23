@@ -19,16 +19,16 @@
 
 @font-face{
     font-family:"Open Sans";
-    src: url("../fonts/OpenSans-Regular.ttf");
+    src: url("fonts/OpenSans-Regular.ttf");
 }
 
 @font-face{
     font-family:"Open Sans Light";
-    src: url("../fonts/OpenSans-Light.ttf");
+    src: url("fonts/OpenSans-Light.ttf");
 }
 @font-face{
     font-family:"Open Sans Bold";
-    src: url("../fonts/OpenSans-Bold.ttf");
+    src: url("fonts/OpenSans-Bold.ttf");
 }
 /*
 color: rgb(127, 77, 53);
@@ -1434,3 +1434,216 @@ section .columns > div{
 }
 
 
+
+
+
+
+#reviewsPanelContainer{
+    width: 400px;
+/*    border: 1px solid red;*/
+    left: 50%;
+    position: relative;
+    margin-left: -200px;
+/*    overflow-x: scroll*/
+}
+#reviewsPanelContainer #makeAReview {
+    position: absolute;
+    bottom: -30px;
+    left: 10px;
+    color: rgb(127, 77, 53);
+    cursor: pointer;
+}
+
+#reviewsPanel {
+    width: 400px;
+    height: 300px;
+/*    border: 1px solid red;*/
+    overflow-x: hidden;
+    overflow-y: scroll;
+    border-radius: 4px;
+    box-shadow: 0px 0px 4px rgba(0,0,0,0.5);
+    
+    
+    border:1px solid white;
+    border-bottom: #e5e5e5;
+    background-color:rgb(249, 249, 249);
+/*
+    left: 50%;
+    position: relative;
+    margin-left: -200px;
+*/
+}
+#reviewsPanel #field{
+    background-color: #DDD;
+    padding: 3px 2px;
+    border-radius: 3px;
+    margin: 3px;
+    display: block;
+    width: 100%;
+    border: none !important;
+    font-size: 0.9em;
+    max-width: 100%;
+}
+
+
+#reviewsPanel>#overflow {
+    width: 100%;
+    height: auto;
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    z-index: 0;
+    position: relative;
+}
+
+
+#reviewsPanel>#overflow>li{
+/*    outline:1px solid #DDD;*/
+    transition: 0.5s;
+    padding: 20px;
+    display: block;
+    border-bottom: 1px solid rgb(254, 182, 116);
+    position: relative;
+    left: 0%;
+/*    left: 200px;*/
+    background-color:rgb(249, 249, 249);
+}
+
+#reviewsPanel>#overflow>li.hasReply:hover{
+    left: 80%;
+}
+
+#reviewsPanel>#overflow>li.hasReply:hover>#reply{
+    left: -80%;
+}
+
+#reviewsPanel>#overflow>li>#reply{
+    background-color: rgb(127, 77, 53);
+    color: rgb(254, 182, 116);
+    height: 100%;
+    width: 80%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: -1;
+    left: -200px;
+}
+
+#reviewsPanel>#overflow>li>#reply>#content{
+    padding: 20px;
+/*    padding-right: 50%;*/
+    width: 80%;
+    display: block;
+}
+
+
+#reviewsPanel>#overflow>li>#name{
+    padding: 2px 6px;
+    background-color: rgb(254, 182, 116);
+    color: rgb(127, 77, 53);
+    float: left;
+    border-radius: 3px;
+    margin: 3px;
+    cursor: default;
+}
+
+#reviewsPanel>#overflow>li>#content>.star:hover{
+    color: rgb(127, 77, 53);
+}
+#reviewsPanel>#overflow>li>#content>.star{
+    padding-left: 0px;
+/*    background-color: rgb(127, 77, 53);*/
+    color: rgb(254, 182, 116);
+/*    float: left;*/
+    cursor: pointer;
+/*    border: 1px solid red;*/
+    margin: 0px;
+    float: left;
+}
+
+#reviewsPanel>#overflow>li>#content>#rating{
+    padding: 2px 6px;
+    padding-left: 0px;
+/*    background-color: rgb(127, 77, 53);*/
+    color: rgb(127, 77, 53);
+/*    float: left;*/
+    border-radius: 3px;
+    cursor: default;
+/*    margin: 3px;*/
+}
+
+#reviewsPanel>#overflow>li>#content{
+    clear: left;
+    
+}
+
+#reviewsPanel>#overflow>li>#date{
+    color: rgb(254, 182, 116);
+    font-size: 0.8em;
+}
+
+#reviewsPanel>#overflow>li>#content>#reply{
+    font-size: 0.8em;
+    margin: 2px;
+    color: rgb(127, 77, 53);
+    cursor: pointer;
+    transition: 0s;
+    padding: 2px 4px;
+    border-radius: 2px;
+}
+
+#reviewsPanel>#overflow>li>#content>#reply:hover{
+    background-color: rgb(127, 77, 53);
+    color: rgb(254, 182, 116);
+}
+
+#reviewsPanel>#overflow>li>#content>#reply:hover{
+    
+}
+
+
+
+.ui-accordion .ui-accordion-header {
+    
+    background-color: rgb(127, 77, 53);
+    color: rgb(254, 182, 116);
+    border-radius: 5px 5px 0px 0px;
+    font-family: title font;
+/*    font-family: helvetica;*/
+    font-weight: 100;
+}
+.ui-accordion .ui-accordion-icons {
+	padding-left: 2.2em;
+}
+.ui-accordion .ui-accordion-noicons {
+	padding-left: .7em;
+}
+.ui-accordion .ui-accordion-icons .ui-accordion-icons {
+	padding-left: 2.2em;
+}
+.ui-accordion .ui-accordion-header .ui-accordion-header-icon {
+	position: absolute;
+	left: .5em;
+	top: 50%;
+	margin-top: -8px;
+}
+.ui-accordion .ui-accordion-content {
+	padding: 1em 2.2em;
+	border-top: 0;
+	overflow: auto;
+    font-weight: 100;
+    border: 1px solid rgb(127, 77, 53);
+    border-radius: 0px 0px 4px 4px;
+    font-family: helvetica;
+}
+#faqAccrodion * {
+    transition: 0s;
+}
+
+#faqAccrodion {
+    width: 70%;
+    left: 50%;
+    margin-left: -35%;
+    position: relative;
+    
+}

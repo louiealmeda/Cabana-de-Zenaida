@@ -29,6 +29,30 @@ function WrapInTabItemString(id, name)
     </li>';
 }
 
+function deleteSection(id)
+{
+    var deleteBtn = {"title": "DELETE", "callBack":function(){
+        
+        $("section#"+id).remove();
+        MessageBox.Hide();
+        ComputeNavBarCenter(true);
+        SaveHistory("element", "Deleted Container");
+        ReloadTabsList(true);
+        ReloadSectionList(true);
+    }};
+    
+    var cancelBtn = {"title": "Cancel", "callBack":function(){
+        MessageBox.Hide();
+    }};
+    
+//    var curr = $("container #"+id).html();
+//    alert(".menu_item#"+id);
+//    alert($(".menu_item#"+id).html());
+    MessageBox.Show("Delete Section", "Are you sure you want to delete this section?", [cancelBtn,deleteBtn]);
+
+    
+}
+
 function ReloadTabsList(justStarted)
 {
      justStarted = justStarted || false;
@@ -94,7 +118,7 @@ function ReorderTabs(start,end)
     
     ReloadTabsList()
     ReloadSectionList();
-    
+    SaveHistory("element", "Reordered Tabs");
 }
 
 function ReloadSectionList(justStarted)
@@ -126,7 +150,7 @@ function ReloadSectionList(justStarted)
 //            var id = $(tmp).attr("id");
             var id = $(tmp).attr("id");
             
-            $(tabsContainer).append('<li id = "'+id+'" alt = '+target+' ><span class = "handle icon-remove" onclick = "removeNavBarItem($(this))"></span>'+label+'<span class = "handle icon-menu"></span></li>');
+            $(tabsContainer).append('<li id = "'+id+'" alt = '+target+' ondblclick="editTab(\''+id+'\')" ><span class = "handle icon-remove" onclick = "removeNavBarItem($(this))"></span>'+label+'<span class = "handle icon-menu"></span></li>');
         }
         else
             $(tabsContainer).append('<li>&nbsp; <span onclick="addNavTab($(this).parent(),\''+$(e).attr("id")+'\')" class = "icon-plus"></span></li>');
@@ -155,6 +179,29 @@ function ReloadSectionList(justStarted)
             ReorderSections(startingIndex, finalIndex);
         }
     });
+    
+    ResetDragDrop();
+}
+
+function editTab(id)
+{
+    var doneBtn = {"title": "Done", "callBack":function(){
+//        alert($("#textTabRename").val());
+        $(".menu_item#"+id+">.label").html($("#textTabRename").val());
+        MessageBox.Hide();
+        ComputeNavBarCenter(true);
+        SaveHistory("element", "Edited nav tabs");
+    }};
+    
+    var cancelBtn = {"title": "Cancel", "callBack":function(){
+        MessageBox.Hide();
+    }};
+    
+    var curr = $(".menu_item#"+id+">.label").html();
+//    alert(".menu_item#"+id);
+//    alert($(".menu_item#"+id).html());
+    MessageBox.Show("Rename Tab", "input tab Name: <input type = 'text' id = 'textTabRename' value = '"+curr+"'>", [cancelBtn,doneBtn]);
+//    alert(id);
 }
 
 function addNavTab(self, target)
@@ -169,6 +216,7 @@ function addNavTab(self, target)
     </li>');
     
     ComputeNavBarCenter(true);
+    SaveHistory("element", "Added nav tab");
 }
 
 function ReorderSections(start, end)
@@ -204,11 +252,13 @@ function ReorderSections(start, end)
 //    alert(current);
     ReloadTabsList();
     ReloadSectionList();
+    
+    SaveHistory("element", "Reordered Sections");
 }
 
 function removeNavBarItem(id)
 {
-    alert(id);
+//    alert(id);
 }
 
 function hideSection(id)
@@ -231,7 +281,7 @@ function addSection()
     $($("section")[sections.length-1]).after(sectionHTML);
     ReloadTabsList();
     ReloadSectionList();
-    
+    SaveHistory("element", "Added Section");
 }
 
 function GenerateSectionID()

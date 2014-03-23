@@ -223,24 +223,24 @@ function activate()
 
 function deactivate()
 {
-    var cancel = false;
-    if(isLocked)
-    {
-        MessageBox.Show("Discard", "Are you sure you want to discard changes to this element?", [{"title":"cancel", "callBack": 
-                function(){MessageBox.Hide(); return false;}},{"title":"DISCARD","callBack":function(){
-            MessageBox.Hide();
-            continueDeactivation();
-            
-            return true;
-         }}]);
-        
-        
-    }else
-    {
+//    var cancel = false;
+//    if(isLocked  )
+//    {
+//        MessageBox.Show("Discard", "Are you sure you want to discard changes to this element?", [{"title":"cancel", "callBack": 
+//                function(){MessageBox.Hide(); return false;}},{"title":"DISCARD","callBack":function(){
+//            MessageBox.Hide();
+//            continueDeactivation();
+//            
+//            return true;
+//         }}]);
+//        
+//        
+//    }else
+//    {
         continueDeactivation();
     
         return true;
-    }
+//    }
 }
 
 function continueDeactivation()
@@ -452,7 +452,7 @@ function ToolbarItemClick(value,index)
             
             
             $(activeElement.Object).css(activeElement.ActiveAttribute.key, activeElement.ActiveAttribute.value);
-            alert();
+//            alert();
             HideInputDialog();
             break;
     }
@@ -486,8 +486,13 @@ function changeTheme(sender, stringAlready)
         
     }
     
-    if(!revertedHistory)
+//    alert(revertedHistory);
+    if(revertedHistory)
+    {
+//        alert("before");
         SaveHistory("color", "Changed Theme");
+//        alert();
+    }
     
 //    sender.value 
 }

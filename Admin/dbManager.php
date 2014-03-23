@@ -8,9 +8,24 @@
 //    echo "test";
     switch($_POST['method'])
     {
-        
+        ///////rever to publish
+        ////enabled
         case "publish":
             
+            session_start();
+        
+            $query = "SELECT password FROM `admin` WHERE username = '{$_SESSION['username']}' LIMIT 1";
+            
+           
+//            echo $query;
+            $ret = mysql_fetch_assoc(mysql_query($query))['password'];
+             
+            if(!$ret)
+                die(mysql_error());
+            
+            if( $_POST['password'] != $ret)
+                die("Wrong pasword");
+        
             $frame = file_get_contents("frame.html");
             
             $frame = implode( $_POST['html'], explode("[<Content goes here>]", $frame));
@@ -23,7 +38,9 @@
             fwrite($file, $frame);
             fclose($file);
             
-            echo $frame;
+            echo "Published!";
+//            echo $frame;
+            die();
         break;
         
         case "getStyleSheet":

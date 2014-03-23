@@ -16,53 +16,82 @@
             <ul id = "navPane">
                 <li class="icon">0</li>
                 <li id = "profile">Zenaida <span onclick = "Logout()"> Logout</span></li>
-<!--                <li>To do</li>-->
-<!--                <li>Comment Reviews</li>-->
+                <li>Reservations</li>
+                <li>Comment Reviews</li>
                 <li>Statistics <span class="icon">j</span></li>
 <!--                <li>Content Library</li>-->
                 <li>Chat</li>
                 <li><a href="cms.html">Edit website</a></li>
             </ul>
             <div id = "contentPane">
-                
-                <div id = "selfCentered" >
-<!--
-                    <div id = "perMonth" class="style-inset">
-                        <ul>
-                            <li><div><span id = "value">29</span></div><span id = "label">label</span></li>
-                            <li><div><span id = "value">29</span></div><span id = "label">label</span></li>
-                            <li><div><span id = "value">29</span></div><span id = "label">label</span></li>
-                            <li><div><span id = "value">29</span></div><span id = "label">label</span></li>
-                            <li><div><span id = "value">29</span></div><span id = "label">label</span></li>
-                            <li><div><span id = "value">29</span></div><span id = "label">label</span></li>
-                            <li><div><span id = "value">29</span></div><span id = "label">label</span></li>
-                        </ul>
+                <div id = "overflow">
+                    <div>
+                        <div id = "container">
+                            <div class="style-inset">Reservations</div>
+                        
+                        </div>
                     </div>
--->
-                    <ul id = "values">
-                        <li>500</li>
-                        <li>400</li>
-                        <li>300</li>
-                        <li>200</li>
-                        <li>100</li>
-                        <li>0</li>
-                    </ul>
-                    <div id = "graph" class="style-inset">
-                        <ul>
-                            <li><div><span id = "value">29</span></div><span id = "label">label</span></li>
-                            <li><div><span id = "value">29</span></div><span id = "label">label</span></li>
-                            <li><div><span id = "value">29</span></div><span id = "label">label</span></li>
-                            <li><div><span id = "value">29</span></div><span id = "label">label</span></li>
-                            <li><div><span id = "value">29</span></div><span id = "label">label</span></li>
-                            <li><div><span id = "value">29</span></div><span id = "label">label</span></li>
-                            <li><div><span id = "value">29</span></div><span id = "label">label</span></li>
-                        </ul>
-                    </div>    
+                    <div>
+                        <div id = "container">
+                            <div id = "reviewsPane" class="style-inset">
+                                <div id = "reviewsPaneSave" onclick="saveReviewChanges();">Save</div>
+                                <ul id = "reviewsList">
+                                    <li class="style-emboss"> 
+                                        <div id = "name">name</div><input id = "isVisible" type="checkbox">
+                                        <div id = "content"><span id = "rating">&#9733;&#9733;&#9733;&#9734;&#9734; </span> The quick brown fox jumps over the lazy dog</div>
+                                        <div id = "date">auguest 2014</div>
+                                        <textarea placeholder="Admin reply"></textarea>
+                                    </li>
+                                    
+                                </ul>
+                            </div>
+                            
+                        </div>
+                    </div>
                     
-                    <div id = "ranges">
-                        <input type="range" id = "statRange" min="0" max="10" onchange="UpdateBarGraph(this)">
+                    
+                    <div id = "statistics" >
+                        
+                        <div id = "container">
+    <!--
+                            <div id = "perMonth" class="style-inset">
+                                <ul>
+                                    <li><div><span id = "value">29</span></div><span id = "label">label</span></li>
+                                    <li><div><span id = "value">29</span></div><span id = "label">label</span></li>
+                                    <li><div><span id = "value">29</span></div><span id = "label">label</span></li>
+                                    <li><div><span id = "value">29</span></div><span id = "label">label</span></li>
+                                    <li><div><span id = "value">29</span></div><span id = "label">label</span></li>
+                                    <li><div><span id = "value">29</span></div><span id = "label">label</span></li>
+                                    <li><div><span id = "value">29</span></div><span id = "label">label</span></li>
+                                </ul>
+                            </div>
+        -->
+                            <ul id = "values">
+                                <li>500</li>
+                                <li>400</li>
+                                <li>300</li>
+                                <li>200</li>
+                                <li>100</li>
+                                <li>0</li>
+                            </ul>
+                            <div id = "graph" class="style-inset">
+                                <ul>
+                                    <li><div><span id = "value">29</span></div><span id = "label">label</span></li>
+                                    <li><div><span id = "value">29</span></div><span id = "label">label</span></li>
+                                    <li><div><span id = "value">29</span></div><span id = "label">label</span></li>
+                                    <li><div><span id = "value">29</span></div><span id = "label">label</span></li>
+                                    <li><div><span id = "value">29</span></div><span id = "label">label</span></li>
+                                    <li><div><span id = "value">29</span></div><span id = "label">label</span></li>
+                                    <li><div><span id = "value">29</span></div><span id = "label">label</span></li>
+                                </ul>
+                            </div>    
+
+                            <div id = "ranges">
+                                <input type="range" id = "statRange" min="0" max="10" onchange="UpdateBarGraph(this)">
+                            </div>
+                        </div>
                     </div>
-                 
+                    
                 </div>
             </div>
             

@@ -31,20 +31,20 @@
     src: url("fonts/OpenSans-Bold.ttf");
 }
 /*
-color: rgb(51, 72, 166);
-color: rgb(51, 72, 166);
-rgb(146, 226, 254)
+color: rgb(127, 77, 53);
+color: rgb(127, 77, 53);
+rgb(254, 182, 116)
 */
 .colorPalette#primary{
-    background-color: rgb(51, 72, 166);
+    background-color: rgb(127, 77, 53);
 }
 
 .colorPalette#secondary{
-    background-color: rgb(146, 226, 254);
+    background-color: rgb(254, 182, 116);
 }
 
 .colorPalette#background{
-    background-color: rgb(157, 231, 223);
+    background-color: rgb(249, 249, 249);
 }
 
 .colorPalette#text{
@@ -56,7 +56,7 @@ body{
     margin:0px;
 /*    max-width:1280px;*/
     position:relative;
-    background-color:rgb(157, 231, 223);
+    background-color:rgb(249, 249, 249);
     overflow: scroll;
     -webkit-overflow-scrolling: touch;
     position: relative;
@@ -69,7 +69,7 @@ body #loadingPage{
     
     width: 100%;
     height: 100%;
-    background-color: rgb(146, 226, 254);
+    background-color: rgb(254, 182, 116);
     display: block;
     position: absolute;
     z-index:9999999;
@@ -85,12 +85,12 @@ a{
 }
 
 ::selection {
-	color: rgb(51, 72, 166);
-    background: rgb(146, 226, 254);
+	color: rgb(127, 77, 53);
+    background: rgb(254, 182, 116);
 }
 ::-moz-selection {
-	color: rgb(146, 226, 254);
-    background: rgb(146, 226, 254);
+	color: rgb(254, 182, 116);
+    background: rgb(254, 182, 116);
 }
 
 #main {
@@ -106,7 +106,7 @@ a{
 
 .customScroll::-webkit-scrollbar-track{
     border-radius:10px;
-    background-color: rgb(146, 226, 254);
+    background-color: rgb(254, 182, 116);
 } 
 
 .customScroll::-webkit-scrollbar-thumb{
@@ -115,10 +115,10 @@ a{
 }
 
 .customScroll::-webkit-scrollbar-thumb:hover{
-    background-color:rgb(51, 72, 166);
+    background-color:rgb(127, 77, 53);
 }
 .customScroll::-webkit-scrollbar-thumb:active{
-    background-color:rgb(51, 72, 166);
+    background-color:rgb(127, 77, 53);
 } 
 
 
@@ -204,7 +204,7 @@ a{
     cursor:hand;
     width:15px;
     height:15px;
-    background-color:rgb(51, 72, 166);
+    background-color:rgb(127, 77, 53);
     opacity: 0.6;
     display:inline-block;
     border-radius:50%;
@@ -213,7 +213,7 @@ a{
 }
 .slider #container ul#sliderControls li.selected{
     opacity: 1;
-    background-color:rgb(146, 226, 254);
+    background-color:rgb(254, 182, 116);
     box-shadow: 0px 0px 8px black;
 }
 
@@ -262,7 +262,7 @@ a{
     margin:auto;
     top:50px;
     margin-bottom:20px;
-    background-color: rgb(51, 72, 166);
+    background-color: rgb(127, 77, 53);
     -webkit-mask: url(images/logo.svg) top left / cover;
     -o-mask: url(images/logo.svg) top left / cover;
     -ms-mask: url(images/logo.svg) top left / cover;
@@ -272,7 +272,7 @@ a{
     width:100%;
     height:225px;
     position:relative;
-    background-color: rgb(146, 226, 254);
+    background-color: rgb(254, 182, 116);
     margin:0px;
     padding:0px;
     -webkit-user-select:none;
@@ -289,7 +289,7 @@ a{
 
 #logo_container p{
     font-size:400px;
-    color:rgb(51, 72, 166);
+    color:rgb(127, 77, 53);
     padding:0px;
     margin:0px;
     text-align:center;
@@ -303,7 +303,7 @@ a{
     position:relative;
     height:60px;
     width:100%;
-    background-color:rgb(146, 226, 254);
+    background-color:rgb(254, 182, 116);
 /*    box-shadow:0px 0px 8px rgba(0, 0, 0, 0.8);*/
     box-shadow: 0 2px 7px -3px black;
     align-content:center;
@@ -393,14 +393,14 @@ a{
     font-size:1.4em;
     font-family:title font;
     text-align:center;
-    color:rgb(51, 72, 166);
+    color:rgb(127, 77, 53);
     -webkit-font-smoothing:antialiased;
     display:inline-block;
     padding-left:0;
     overflow:hidden;
     cursor:pointer;
     cursor:hand;
-    background-color: rgb(146, 226, 254);
+    background-color: rgb(254, 182, 116);
     -webkit-transition:0.4s;
     -moz-transition:0.4s;
     -ms-transition:0.4s;
@@ -415,11 +415,11 @@ a{
 }
 
 .menu_item .hovered {
-    color: rgb(146, 226, 254);
+    color: rgb(254, 182, 116);
 }
 
 .menu_item .normal {
-    color: rgb(51, 72, 166);
+    color: rgb(127, 77, 53);
 }
 
 .label {
@@ -440,14 +440,14 @@ a{
 }
 
 .menu_item:hover{
-    background-color: rgb(51, 72, 166);
+    background-color: rgb(127, 77, 53);
     box-shadow:inset 0px 0px 8px black;
 }
 
 .menu_itemPlaceholder
 {
 /*    box-sizing: content-box;*/
-    background-color: rgb(51, 72, 166);
+    background-color: rgb(127, 77, 53);
     opacity: 0.5;
     height: 100%;
 /*    width: 50px;*/
@@ -466,7 +466,7 @@ a{
 /*    top:-150px;*/
     bottom:-13px;
     
-    background-color:rgb(51, 72, 166);
+    background-color:rgb(127, 77, 53);
     box-shadow:0px 0px 8px black;
     z-index:-9999;
     -webkit-transition:0.2s;
@@ -491,13 +491,13 @@ a{
     list-style:none;
 /*    border:1px solid red;*/
     padding:15px;
-    color:rgb(146, 226, 254);
+    color:rgb(254, 182, 116);
     font-family: title font;
 }
 
 #sub_menu_bar ul li:hover{
-    background-color:rgb(146, 226, 254);
-    color:rgb(51, 72, 166);
+    background-color:rgb(254, 182, 116);
+    color:rgb(127, 77, 53);
     box-shadow:0px 0px 8px rgba(0, 0, 0, 0.55);
 }
 
@@ -540,7 +540,7 @@ a{
 #search_bar {
     overflow:hidden;
     border-radius: 10px;
-    color: rgb(146, 226, 254);
+    color: rgb(254, 182, 116);
     width:40px;
     height:40px;
     display:inline-block;
@@ -548,7 +548,7 @@ a{
 /*    text-align:right;*/
     
 /*    padding-right:5px;*/
-    background-color:rgb(51, 72, 166);
+    background-color:rgb(127, 77, 53);
 /*    margin:5px;*/
     margin-top:9px;
     position:absolute;
@@ -559,13 +559,13 @@ a{
 #search_bar .icon{
     line-height:40px;
     position:absolute;
-    color: rgb(146, 226, 254);
+    color: rgb(254, 182, 116);
     width:40px;
     height:40px;
     text-align:center;
     right:0px;
     display:inline-block;
-    background-color:rgb(51, 72, 166);
+    background-color:rgb(127, 77, 53);
 }
 
 #search_bar #container{
@@ -584,7 +584,7 @@ a{
     font-size:0.6em;
 /*    opacity:0;*/
     background-color:transparent;
-    color: rgb(146, 226, 254);
+    color: rgb(254, 182, 116);
     border: none !important;
 }
 
@@ -597,7 +597,7 @@ a{
 }
 
 .submenu {
-    color:rgb(146, 226, 254);
+    color:rgb(254, 182, 116);
     font-size:0.8em;
     position:absolute;
     display:block;
@@ -644,7 +644,7 @@ body>#content {
 #contact_us {
     width:230px;
     height:330px;
-    background:rgb(146, 226, 254);
+    background:rgb(254, 182, 116);
     position:fixed;
 
     z-index:1000;
@@ -680,12 +680,12 @@ body>#content {
 #contact_us #title{
     height:35px;
     width:100%;
-    background-color: rgb(51, 72, 166);
+    background-color: rgb(127, 77, 53);
     border-radius:7px 7px 0px 0px;
 /*    box-shadow: 0 5px 5px -2px black;*/
     font-size:1.6em;
     padding-top:10px;
-    color: rgb(146, 226, 254);
+    color: rgb(254, 182, 116);
     font-family:title font;
     -webkit-font-smoothing:antialiased;
     font-weight:300;
@@ -696,7 +696,7 @@ body>#content {
 #contact_us #title_bottom {
     height:3px;
     width:100%;
-    background-color: rgb(51, 72, 166);
+    background-color: rgb(127, 77, 53);
 }
 
 #contact_us #content {
@@ -747,8 +747,8 @@ body>#content {
     padding: 10px;
     margin: 10px;
     border-radius: 4px;
-    background-color: rgb(51, 72, 166);
-    color: rgb(146, 226, 254);
+    background-color: rgb(127, 77, 53);
+    color: rgb(254, 182, 116);
 }
 
 
@@ -805,18 +805,18 @@ body>#content {
 }
 
 #chat #chatbox>div.in span{
-    background-color: rgb(51, 72, 166);
+    background-color: rgb(127, 77, 53);
     border-radius: 0px 8px 8px 8px;
     text-align: left;
-    color: rgb(146, 226, 254);
+    color: rgb(254, 182, 116);
     left: 0px;
     float: left;
 }
 
 #chat #chatbox>div.out span{
-    background-color: rgb(146, 226, 254);
-    color: rgb(51, 72, 166);
-    border: 1px solid rgb(51, 72, 166);
+    background-color: rgb(254, 182, 116);
+    color: rgb(127, 77, 53);
+    border: 1px solid rgb(127, 77, 53);
     border-radius: 8px 8px 0px 8px;
     text-align: right;
     right: 0px;
@@ -853,12 +853,12 @@ body>#content {
     font-size:2.5em;
     font-family:title font;
     line-height: 1em;
-    color:rgb(51, 72, 166);
+    color:rgb(127, 77, 53);
 }
 
 #contact_us #content #sub {
     margin:0px;
-    color:rgb(51, 72, 166);
+    color:rgb(127, 77, 53);
     display:inline-block;
 }
 
@@ -866,14 +866,14 @@ body>#content {
     margin-bottom:4px;
     width: 40%;
     height:1px;
-    background-color:rgb(51, 72, 166);
+    background-color:rgb(127, 77, 53);
     display:inline-block;
 }
 
 #contact_us #content .textbox {
     width:100%;
-    background-color: rgb(51, 72, 166);
-    color:rgb(146, 226, 254);
+    background-color: rgb(127, 77, 53);
+    color:rgb(254, 182, 116);
     border:none;
     box-shadow:inset 0px 0px 4px black;
     border-radius:3px;
@@ -884,13 +884,13 @@ body>#content {
     
 }
 #contact_us #content .textbox::-webkit-input-placeholder {
-    color: #rgb(146, 226, 254);
+    color: #rgb(254, 182, 116);
     filter:alpha(opacity=40);
     
 }
 #contact_us #content .textbox:focus {
     outline: none !important;
-    border:1px solid rgb(146, 226, 254);
+    border:1px solid rgb(254, 182, 116);
     
 }
 
@@ -907,8 +907,8 @@ body>#content {
     margin-top:8px;
     margin-bottom:10px;
     padding-top:7px;
-    color:rgb(146, 226, 254);
-    background-color:rgb(51, 72, 166);
+    color:rgb(254, 182, 116);
+    background-color:rgb(127, 77, 53);
     width:100%;
     height:25px;
     border-radius:3px;
@@ -932,7 +932,7 @@ body>#content {
     top:29%;
     width:45px;
     height:25px;
-    background-color:rgb(51, 72, 166); 
+    background-color:rgb(127, 77, 53); 
     -webkit-mask: url(images/nav_icon.svg) top left / cover;
     -o-mask: url(images/nav_icon.svg) top left / cover;
     -ms-mask: url(images/nav_icon.svg) top left / cover;
@@ -957,7 +957,7 @@ body>#content {
     -webkit-transition: 0.5s;
 }*/
 .svg_icon_background {
-    background-color:rgb(146, 226, 254);
+    background-color:rgb(254, 182, 116);
     height:100%;
     width:50px;
     position:absolute;
@@ -984,9 +984,9 @@ body>#content {
     min-height:350px;
     height: auto;
     width:100%;
-    background-color:rgb(51, 72, 166);
+    background-color:rgb(127, 77, 53);
     font-family:"Open Sans";
-    color: rgb(146, 226, 254);
+    color: rgb(254, 182, 116);
 }
 
 #footer>#container {
@@ -1006,14 +1006,14 @@ body>#content {
 
 #footer>#container>#contactInfo li{
     padding: 10px 0px;
-    border-top: 1px solid rgb(146, 226, 254);
+    border-top: 1px solid rgb(254, 182, 116);
 }
 
 #footer>#container #logo{
-/*    color: rgb(146, 226, 254);*/
+/*    color: rgb(254, 182, 116);*/
     border: 1px solid red;
     display: inline-block;
-    background-color: rgb(146, 226, 254);
+    background-color: rgb(254, 182, 116);
     width: 200px;
     height: 70px;
     left: 0px;
@@ -1024,7 +1024,7 @@ body>#content {
 
 #footer #divider{
     height:10px;
-    background-color:rgb(146, 226, 254);
+    background-color:rgb(254, 182, 116);
 /*    box-shadow: 0px 0px 8px black;*/
 }
 
@@ -1057,7 +1057,7 @@ body>#content {
 #header #nav_bar>ul#smallScreen>#nav_menu_small {
     font-size: 2em;
     line-height: 1.8em;
-    color:rgb(51, 72, 166);
+    color:rgb(127, 77, 53);
 }
 #header #nav_bar>ul#smallScreen>li{
     display:table-cell;
@@ -1080,7 +1080,7 @@ body>#content {
 #header #nav_bar>ul#smallScreen>li #search_bar {
     overflow:hidden;
     border-radius: 10px;
-    color: rgb(146, 226, 254);
+    color: rgb(254, 182, 116);
     width:40px;
     height:40px;
     display:block;
@@ -1088,7 +1088,7 @@ body>#content {
 /*    text-align:right;*/
     
 /*    padding-right:5px;*/
-    background-color:rgb(51, 72, 166);
+    background-color:rgb(127, 77, 53);
 /*    margin:5px;*/
     margin-top:9px;
 /*    position:relative;*/
@@ -1112,7 +1112,7 @@ body>#content {
     text-align:center;
     font-size:40px;
     line-height:60px;
-    color:rgb(51, 72, 166);
+    color:rgb(127, 77, 53);
 /*    padding:0px 10px;*/
 }
 
@@ -1224,7 +1224,7 @@ body>#content {
     border:1px solid white;
     border-bottom: #e5e5e5;
     outline:1px solid #c0c0c0;
-    background-color:rgb(157, 231, 223);
+    background-color:rgb(249, 249, 249);
 }
 
 .element{
@@ -1370,7 +1370,7 @@ section .columns > div{
     top: 0px;
     left: 5%;
 /*    background-color:rgba(127, 77, 53, 0.20);*/
-    background-color: rgb(51, 72, 166);
+    background-color: rgb(127, 77, 53);
     opacity: 0.2;
     width: 90%;
 }
@@ -1381,7 +1381,7 @@ section .columns > div{
     height: 1px;
     bottom: 0px;
     left: 5%;
-    background-color:rgb(51, 72, 166);
+    background-color:rgb(127, 77, 53);
     opacity: 0.2;
     width: 90%;
 }
@@ -1434,3 +1434,382 @@ section .columns > div{
 }
 
 
+
+
+
+
+#reviewsPanelContainer{
+    width: 400px;
+/*    border: 1px solid red;*/
+    left: 50%;
+    position: relative;
+    margin-left: -200px;
+/*    overflow-x: scroll*/
+}
+#reviewsPanelContainer #makeAReview {
+    position: absolute;
+    bottom: -30px;
+    left: 10px;
+    color: rgb(127, 77, 53);
+    cursor: pointer;
+}
+
+#reviewsPanel {
+    width: 400px;
+    height: 300px;
+/*    border: 1px solid red;*/
+    overflow-x: hidden;
+    overflow-y: scroll;
+    border-radius: 4px;
+    box-shadow: 0px 0px 4px rgba(0,0,0,0.5);
+    
+    
+    border:1px solid white;
+    border-bottom: #e5e5e5;
+    background-color:rgb(249, 249, 249);
+/*
+    left: 50%;
+    position: relative;
+    margin-left: -200px;
+*/
+}
+#reviewsPanel #field{
+    background-color: #DDD;
+    padding: 3px 2px;
+    border-radius: 3px;
+    margin: 3px;
+    display: block;
+    width: 100%;
+    border: none !important;
+    font-size: 0.9em;
+    max-width: 100%;
+}
+
+
+#reviewsPanel>#overflow {
+    width: 100%;
+    height: auto;
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    z-index: 0;
+    position: relative;
+}
+
+
+#reviewsPanel>#overflow>li{
+/*    outline:1px solid #DDD;*/
+    transition: 0.5s;
+    padding: 20px;
+    display: block;
+    border-bottom: 1px solid rgb(254, 182, 116);
+    position: relative;
+    left: 0%;
+/*    left: 200px;*/
+    background-color:rgb(249, 249, 249);
+}
+
+#reviewsPanel>#overflow>li.hasReply:hover{
+    left: 80%;
+}
+
+#reviewsPanel>#overflow>li.hasReply:hover>#reply{
+    left: -80%;
+}
+
+#reviewsPanel>#overflow>li>#reply{
+    background-color: rgb(127, 77, 53);
+    color: rgb(254, 182, 116);
+    height: 100%;
+    width: 80%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: -1;
+    left: -200px;
+}
+
+#reviewsPanel>#overflow>li>#reply>#content{
+    padding: 20px;
+/*    padding-right: 50%;*/
+    width: 80%;
+    display: block;
+}
+
+
+#reviewsPanel>#overflow>li>#name{
+    padding: 2px 6px;
+    background-color: rgb(254, 182, 116);
+    color: rgb(127, 77, 53);
+    float: left;
+    border-radius: 3px;
+    margin: 3px;
+    cursor: default;
+}
+
+#reviewsPanel>#overflow>li>#content>.star:hover{
+    color: rgb(127, 77, 53);
+}
+#reviewsPanel>#overflow>li>#content>.star{
+    padding-left: 0px;
+/*    background-color: rgb(127, 77, 53);*/
+    color: rgb(254, 182, 116);
+/*    float: left;*/
+    cursor: pointer;
+/*    border: 1px solid red;*/
+    margin: 0px;
+    float: left;
+}
+
+#reviewsPanel>#overflow>li>#content>#rating{
+    padding: 2px 6px;
+    padding-left: 0px;
+/*    background-color: rgb(127, 77, 53);*/
+    color: rgb(127, 77, 53);
+/*    float: left;*/
+    border-radius: 3px;
+    cursor: default;
+/*    margin: 3px;*/
+}
+
+#reviewsPanel>#overflow>li>#content{
+    clear: left;
+    
+}
+
+#reviewsPanel>#overflow>li>#date{
+    color: rgb(254, 182, 116);
+    font-size: 0.8em;
+}
+
+#reviewsPanel>#overflow>li>#content>#reply{
+    font-size: 0.8em;
+    margin: 2px;
+    color: rgb(127, 77, 53);
+    cursor: pointer;
+    transition: 0s;
+    padding: 2px 4px;
+    border-radius: 2px;
+}
+
+#reviewsPanel>#overflow>li>#content>#reply:hover{
+    background-color: rgb(127, 77, 53);
+    color: rgb(254, 182, 116);
+}
+
+#reviewsPanel>#overflow>li>#content>#reply:hover{
+    
+}
+
+
+
+.ui-accordion .ui-accordion-header {
+    
+    background-color: rgb(127, 77, 53);
+    color: rgb(254, 182, 116);
+    border-radius: 5px 5px 0px 0px;
+    font-family: title font;
+/*    font-family: helvetica;*/
+    font-weight: 100;
+}
+.ui-accordion .ui-accordion-icons {
+	padding-left: 2.2em;
+}
+.ui-accordion .ui-accordion-noicons {
+	padding-left: .7em;
+}
+.ui-accordion .ui-accordion-icons .ui-accordion-icons {
+	padding-left: 2.2em;
+}
+.ui-accordion .ui-accordion-header .ui-accordion-header-icon {
+	position: absolute;
+	left: .5em;
+	top: 50%;
+	margin-top: -8px;
+}
+.ui-accordion .ui-accordion-content {
+	padding: 1em 2.2em;
+	border-top: 0;
+	overflow: auto;
+    font-weight: 100;
+    border: 1px solid rgb(127, 77, 53);
+    border-radius: 0px 0px 4px 4px;
+    font-family: helvetica;
+}
+
+
+
+
+
+
+/*Date picker*/
+
+.ui-datepicker *{
+/*    outline: 1px solid red;*/
+}
+
+.ui-datepicker {
+/*	background-color: red;*/
+    border: 2px solid rgb(127, 77, 53);
+    border-radius: 5px;
+    padding: 0px;
+    box-sizing: content-box;
+}
+.ui-datepicker .ui-datepicker-header {
+	background-color: rgb(127, 77, 53);
+    
+}
+.ui-datepicker .ui-datepicker-prev,
+.ui-datepicker .ui-datepicker-next {
+	border-radius: 3px;
+}
+.ui-datepicker .ui-datepicker-prev-hover,
+.ui-datepicker .ui-datepicker-next-hover {
+    cursor: pointer;
+}
+.ui-datepicker .ui-datepicker-prev {
+    background-color: rgb(254, 182, 116);
+}
+.ui-datepicker .ui-datepicker-next {
+    background-color: rgb(254, 182, 116);
+}
+.ui-datepicker .ui-datepicker-prev-hover {
+    
+}
+.ui-datepicker .ui-datepicker-next-hover {
+
+}
+.ui-datepicker .ui-datepicker-prev span,
+.ui-datepicker .ui-datepicker-next span {
+	
+}
+.ui-datepicker .ui-datepicker-title {
+/*	background-color: black;*/
+    color: rgb(254, 182, 116);
+    font-weight: 100;
+}
+.ui-datepicker .ui-datepicker-title select {
+	
+}
+.ui-datepicker select.ui-datepicker-month,
+.ui-datepicker select.ui-datepicker-year {
+
+}
+
+.ui-datepicker th {
+/*	border: 1px solid rgb(127, 77, 53);*/
+    margin: 0px;
+    padding: 2px;
+    color: rgb(127, 77, 53);
+    font-weight: 500;
+}
+
+/*
+.ui-datepicker td:hover {
+    background-color: rgb(127, 77, 53);
+    color: rgb(254, 182, 116);
+}
+
+*/
+
+
+.ui-datepicker td .ui-state-default:hover{
+    color: rgb(254, 182, 116);
+    background-color: rgba(127, 77, 53, 0.80);
+}
+.ui-datepicker td .ui-state-default{
+    padding: 10px;
+}
+
+.ui-datepicker td {
+	border: 1px solid #DDD;
+/*    box-sizing: border-box;*/
+    color: inherit;
+    text-align: center;
+    padding: 0px;
+    position: relative;
+    pointer-events: none;
+}
+
+
+.ui-datepicker tr:last-child td{
+    border-bottom: none;
+}
+
+.ui-datepicker td:last-child{
+    border-right: none;
+}
+
+.ui-datepicker td:first-child{
+    border-left: none;
+}
+
+.ui-datepicker table {
+	border 1px sold black;
+    margin-bottom: 0px;
+}
+
+.ui-datepicker td span,
+.ui-datepicker td a {
+/*	color:black;*/
+}
+
+.ui-state-disabled{
+/*    background-color: #DDD;*/
+    opacity: 0.5;
+    pointer-events: none;
+}
+.ui-state-default{
+    color: rgb(127, 77, 53);
+} 
+
+.ui-priority-secondary{
+    color: rgb(254, 182, 116);
+}
+
+
+.calendar-period.selected{
+    background-color: rgba(7, 250, 231, 0.78);
+}
+
+.calendar-period.occupied{
+    background-color: rgb(254, 182, 116);
+/*    opacity: 0.5;*/
+    z-index: -1;
+}
+
+.calendar-period.c2{
+    right: 0px;
+    
+}
+.calendar-period.c1{
+    left: 0px;
+}
+
+.calendar-period:hover{
+    background-color: rgb(127, 77, 53);
+}
+
+.calendar-period{
+    position: absolute;
+    width: 36%;
+    padding: 0px;
+    height: 85%;
+    bottom: 0px;
+    z-index: 1;
+    pointer-events: all;
+    cursor: pointer;
+    transition: 0s;
+}
+
+#faqAccrodion * {
+    transition: 0s;
+}
+
+#faqAccrodion {
+    width: 70%;
+    left: 50%;
+    margin-left: -35%;
+    position: relative;
+    
+}
